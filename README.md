@@ -15,5 +15,5 @@ For help getting started with Flutter development, view the
 [online documentation](https://docs.flutter.dev/), which offers tutorials,
 samples, guidance on mobile develop
 
-gemail: dart pub global activate flutterfire_cli
+gemail: vetme252@gmail.com
 gmail password: Sf231099
