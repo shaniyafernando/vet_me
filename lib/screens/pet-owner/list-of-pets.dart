@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import '../widgets/profile-avatar.dart';
 import '../../utils.dart';
 
-class Scene extends StatelessWidget {
+class PetList extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     double baseWidth = 390;

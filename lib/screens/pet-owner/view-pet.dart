@@ -1,10 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/gestures.dart';
-import 'dart:ui';
-import '../../utils.dart';
 import '../widgets/profile-avatar.dart';
+import '../../utils.dart';
 
-class Scene extends StatelessWidget {
+class ViewPet extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     double baseWidth = 390;
@@ -19,17 +17,17 @@ class Scene extends StatelessWidget {
     return Container(
       width: double.infinity,
       child: Container(
-        // createpetprofile3Uu (20:160)
-        padding: EdgeInsets.fromLTRB(17*fem, 19*fem, 12*fem, 22*fem),
+        // viewpetpS5 (21:198)
+        padding: EdgeInsets.fromLTRB(17*fem, 19*fem, 12*fem, 21*fem),
         width: double.infinity,
-        decoration: BoxDecoration (
+        decoration: const BoxDecoration (
           color: Color(0xffffffff),
         ),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
             Container(
-              // autogroup3k1t929 (KxK6udTELQbPDjJJYQ3K1T)
+              // autogroupeyswvED (KxKA3859gK9s5L4j92Eysw)
               margin: EdgeInsets.fromLTRB(0*fem, 0*fem, 0*fem, 18*fem),
               width: double.infinity,
               height: 57*fem,
@@ -37,24 +35,24 @@ class Scene extends StatelessWidget {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Container(
-                    // vector4Q1 (21:161)
+                    // vectorqc5 (21:199)
                     margin: EdgeInsets.fromLTRB(0*fem, 3.25*fem, 282.13*fem, 0*fem),
                     width: 21.88*fem,
                     height: 21.88*fem,
                     child: Image.asset(
-                      'assets/page-1/images/vector-chX.png',
+                      'assets/page-1/images/vector-EQZ.png',
                       width: 21.88*fem,
                       height: 21.88*fem,
                     ),
                   ),
                   Container(
-                    // devonlanempD (21:162)
+                    // devonlaneAPT (21:200)
                     width: 57*fem,
                     height: double.infinity,
                     child: Stack(
                       children: [
                         Positioned(
-                          // userpicKaq (I21:162;80:36433)
+                          // userpicWCR (I21:200;80:36433)
                           left: 0*fem,
                           top: 0*fem,
                           child: Align(
@@ -64,14 +62,14 @@ class Scene extends StatelessWidget {
                               child: ClipRRect(
                                 borderRadius: BorderRadius.circular(99*fem),
                                 child: Image.asset(
-                                  'assets/page-1/images/userpic-XYV.png',
+                                  'assets/page-1/images/userpic-gm7.png',
                                 ),
                               ),
                             ),
                           ),
                         ),
                         Positioned(
-                          // labelS9f (I21:162;409:9404)
+                          // labeld29 (I21:200;409:9404)
                           left: 12.5*fem,
                           top: 12*fem,
                           child: Center(
@@ -95,15 +93,15 @@ class Scene extends StatelessWidget {
                           ),
                         ),
                         Positioned(
-                          // outlineedit7Wh (I21:162;410:3)
-                          left: 15.9997024536*fem,
+                          // outlineeditJPB (I21:200;410:3)
+                          left: 15.9996948242*fem,
                           top: 16.0219726562*fem,
                           child: Align(
                             child: SizedBox(
                               width: 16*fem,
                               height: 15.98*fem,
                               child: Image.asset(
-                                'assets/page-1/images/outline-edit-jhB.png',
+                                'assets/page-1/images/outline-edit-FrR.png',
                                 width: 16*fem,
                                 height: 15.98*fem,
                               ),
@@ -111,7 +109,7 @@ class Scene extends StatelessWidget {
                           ),
                         ),
                         Positioned(
-                          // counterpR7 (I21:162;478:18280)
+                          // countercPs (I21:200;478:18280)
                           left: 30*fem,
                           top: 0*fem,
                           child: Container(
@@ -143,7 +141,7 @@ class Scene extends StatelessWidget {
                           ),
                         ),
                         Positioned(
-                          // editRQu (I21:162;478:31983)
+                          // editRcD (I21:200;478:31983)
                           left: 33*fem,
                           top: 33*fem,
                           child: Align(
@@ -151,7 +149,7 @@ class Scene extends StatelessWidget {
                               width: 24*fem,
                               height: 24*fem,
                               child: Image.asset(
-                                'assets/page-1/images/edit-gVo.png',
+                                'assets/page-1/images/edit-4im.png',
                                 width: 24*fem,
                                 height: 24*fem,
                               ),
@@ -159,7 +157,7 @@ class Scene extends StatelessWidget {
                           ),
                         ),
                         Positioned(
-                          // statusXiq (I21:162;482:11528)
+                          // status8mX (I21:200;482:11528)
                           left: 36*fem,
                           top: 36*fem,
                           child: Align(
@@ -167,7 +165,7 @@ class Scene extends StatelessWidget {
                               width: 16*fem,
                               height: 16*fem,
                               child: Image.asset(
-                                'assets/page-1/images/status-sjw.png',
+                                'assets/page-1/images/status-4Ks.png',
                                 width: 16*fem,
                                 height: 16*fem,
                               ),
@@ -181,10 +179,10 @@ class Scene extends StatelessWidget {
               ),
             ),
             Container(
-              // addanewpeteYZ (21:170)
-              margin: EdgeInsets.fromLTRB(0*fem, 0*fem, 8*fem, 10*fem),
+              // petprofileqvq (21:201)
+              margin: EdgeInsets.fromLTRB(0*fem, 0*fem, 15*fem, 10*fem),
               child: Text(
-                'Add a new pet',
+                'Pet profile',
                 style: SafeGoogleFont (
                   'Poppins',
                   fontSize: 18*ffem,
@@ -195,14 +193,14 @@ class Scene extends StatelessWidget {
               ),
             ),
             Container(
-              // autogroup3bztkbb (KxK77hwSUwoNFbN7QJ3BZT)
+              // autogroupgsmxxVf (KxKAFx37NytzSudyJpGSmX)
               margin: EdgeInsets.fromLTRB(97*fem, 0*fem, 104*fem, 27*fem),
               width: double.infinity,
               height: 148*fem,
               child: Stack(
                 children: [
                   Positioned(
-                    // ellipse2HLd (21:172)
+                    // ellipse26Ly (21:202)
                     left: 0*fem,
                     top: 0*fem,
                     child: Align(
@@ -215,7 +213,7 @@ class Scene extends StatelessWidget {
                             image: DecorationImage (
                               fit: BoxFit.cover,
                               image: AssetImage (
-                                'assets/page-1/images/ellipse-2-bg.png',
+                                'assets/page-1/images/ellipse-2-bg-tjB.png',
                               ),
                             ),
                             boxShadow: [
@@ -231,7 +229,7 @@ class Scene extends StatelessWidget {
                     ),
                   ),
                   Positioned(
-                    // buttoniconfilledwRB (21:175)
+                    // buttoniconfilledkAd (21:203)
                     left: 116*fem,
                     top: 98*fem,
                     child: Align(
@@ -239,7 +237,7 @@ class Scene extends StatelessWidget {
                         width: 44*fem,
                         height: 44*fem,
                         child: Image.asset(
-                          'assets/page-1/images/button-icon-filled.png',
+                          'assets/page-1/images/button-icon-filled-Xn1.png',
                           width: 44*fem,
                           height: 44*fem,
                         ),
@@ -250,7 +248,7 @@ class Scene extends StatelessWidget {
               ),
             ),
             Container(
-              // petnameEfB (21:183)
+              // petnamef2h (21:209)
               margin: EdgeInsets.fromLTRB(0*fem, 0*fem, 248*fem, 2*fem),
               child: Text(
                 'Pet Name',
@@ -264,7 +262,7 @@ class Scene extends StatelessWidget {
               ),
             ),
             Container(
-              // autogroupz8uh9n9 (KxK7Cho7WUiKrN5gnwZ8Uh)
+              // autogroupfasjnND (KxKAMcYLgBjQnyvA5pFasj)
               margin: EdgeInsets.fromLTRB(22*fem, 0*fem, 21*fem, 19*fem),
               padding: EdgeInsets.fromLTRB(12*fem, 11*fem, 12*fem, 11*fem),
               width: double.infinity,
@@ -284,75 +282,7 @@ class Scene extends StatelessWidget {
               ),
             ),
             Container(
-              // detailspNV (21:184)
-              margin: EdgeInsets.fromLTRB(0*fem, 0*fem, 268*fem, 2*fem),
-              child: Text(
-                'Age',
-                style: SafeGoogleFont (
-                  'Poppins',
-                  fontSize: 14*ffem,
-                  fontWeight: FontWeight.w500,
-                  height: 1.5*ffem/fem,
-                  color: Color(0xff000000),
-                ),
-              ),
-            ),
-            Container(
-              // autogrouph5eqXnh (KxK7HHVp7iYsV558ZsH5eq)
-              margin: EdgeInsets.fromLTRB(22*fem, 0*fem, 21*fem, 19*fem),
-              padding: EdgeInsets.fromLTRB(12*fem, 10*fem, 12*fem, 12*fem),
-              width: double.infinity,
-              decoration: BoxDecoration (
-                border: Border.all(color: Color(0xffa8a8a8)),
-                borderRadius: BorderRadius.circular(8*fem),
-              ),
-              child: Text(
-                'Age of the Pet',
-                style: SafeGoogleFont (
-                  'Poppins',
-                  fontSize: 12*ffem,
-                  fontWeight: FontWeight.w400,
-                  height: 1.5*ffem/fem,
-                  color: Color(0xff000000),
-                ),
-              ),
-            ),
-            Container(
-              // detailspNV (21:184)
-              margin: EdgeInsets.fromLTRB(0*fem, 0*fem, 268*fem, 2*fem),
-              child: Text(
-                'Breed',
-                style: SafeGoogleFont (
-                  'Poppins',
-                  fontSize: 14*ffem,
-                  fontWeight: FontWeight.w500,
-                  height: 1.5*ffem/fem,
-                  color: Color(0xff000000),
-                ),
-              ),
-            ),
-            Container(
-              // autogrouph5eqXnh (KxK7HHVp7iYsV558ZsH5eq)
-              margin: EdgeInsets.fromLTRB(22*fem, 0*fem, 21*fem, 19*fem),
-              padding: EdgeInsets.fromLTRB(12*fem, 10*fem, 12*fem, 12*fem),
-              width: double.infinity,
-              decoration: BoxDecoration (
-                border: Border.all(color: Color(0xffa8a8a8)),
-                borderRadius: BorderRadius.circular(8*fem),
-              ),
-              child: Text(
-                'Breed of the Pet',
-                style: SafeGoogleFont (
-                  'Poppins',
-                  fontSize: 12*ffem,
-                  fontWeight: FontWeight.w400,
-                  height: 1.5*ffem/fem,
-                  color: Color(0xff000000),
-                ),
-              ),
-            ),
-            Container(
-              // detailsoER (21:196)
+              // detailsEk1 (21:210)
               margin: EdgeInsets.fromLTRB(0*fem, 0*fem, 268*fem, 2*fem),
               child: Text(
                 'Details',
@@ -366,8 +296,8 @@ class Scene extends StatelessWidget {
               ),
             ),
             Container(
-              // autogrouptexjj85 (KxK7MhY8A3A3vxAvVhtEXj)
-              margin: EdgeInsets.fromLTRB(22*fem, 0*fem, 21*fem, 146*fem),
+              // autogroupd8emAdf (KxKASXZpRG2goLguYvD8eM)
+              margin: EdgeInsets.fromLTRB(22*fem, 0*fem, 21*fem, 19*fem),
               padding: EdgeInsets.fromLTRB(12*fem, 10*fem, 12*fem, 12*fem),
               width: double.infinity,
               decoration: BoxDecoration (
@@ -386,30 +316,178 @@ class Scene extends StatelessWidget {
               ),
             ),
             Container(
-              // frame6CGZ (21:193)
-              margin: EdgeInsets.fromLTRB(12*fem, 0*fem, 21*fem, 25*fem),
+              // detailsqzh (21:216)
+              margin: EdgeInsets.fromLTRB(0*fem, 0*fem, 268*fem, 2*fem),
+              child: Text(
+                'Details',
+                style: SafeGoogleFont (
+                  'Poppins',
+                  fontSize: 14*ffem,
+                  fontWeight: FontWeight.w500,
+                  height: 1.5*ffem/fem,
+                  color: Color(0xff000000),
+                ),
+              ),
+            ),
+            Container(
+              // autogroupagqymdT (KxKAXSbJALKxohTf22AgQy)
+              margin: EdgeInsets.fromLTRB(22*fem, 0*fem, 21*fem, 84*fem),
+              padding: EdgeInsets.fromLTRB(12*fem, 10*fem, 12*fem, 12*fem),
+              width: double.infinity,
+              decoration: BoxDecoration (
+                border: Border.all(color: Color(0xffa8a8a8)),
+                borderRadius: BorderRadius.circular(8*fem),
+              ),
+              child: Text(
+                'Other details',
+                style: SafeGoogleFont (
+                  'Poppins',
+                  fontSize: 12*ffem,
+                  fontWeight: FontWeight.w400,
+                  height: 1.5*ffem/fem,
+                  color: Color(0xff000000),
+                ),
+              ),
+            ),
+            Container(
+              // frame8eBT (21:252)
+              margin: EdgeInsets.fromLTRB(14*fem, 0*fem, 19*fem, 15*fem),
               width: double.infinity,
               height: 48*fem,
               decoration: BoxDecoration (
                 color: Color(0xff263774),
                 borderRadius: BorderRadius.circular(8*fem),
               ),
-              child: Center(
-                child: Text(
-                  'Save',
-                  style: SafeGoogleFont (
-                    'Poppins',
-                    fontSize: 16*ffem,
-                    fontWeight: FontWeight.w700,
-                    height: 1.5*ffem/fem,
-                    color: Color(0xffffffff),
+              child: Stack(
+                children: [
+                  Positioned(
+                    // editNNM (21:253)
+                    left: 148.5*fem,
+                    top: 12*fem,
+                    child: Align(
+                      child: SizedBox(
+                        width: 31*fem,
+                        height: 24*fem,
+                        child: Text(
+                          'Edit',
+                          style: SafeGoogleFont (
+                            'Poppins',
+                            fontSize: 16*ffem,
+                            fontWeight: FontWeight.w700,
+                            height: 1.5*ffem/fem,
+                            color: Color(0xffffffff),
+                          ),
+                        ),
+                      ),
+                    ),
                   ),
-                ),
+                  Positioned(
+                    // frame9f6Z (21:254)
+                    left: 0*fem,
+                    top: 0*fem,
+                    child: Container(
+                      padding: EdgeInsets.fromLTRB(72*fem, 12*fem, 79*fem, 12*fem),
+                      width: 328*fem,
+                      height: 48*fem,
+                      decoration: BoxDecoration (
+                        color: Color(0xff05537e),
+                        borderRadius: BorderRadius.circular(8*fem),
+                      ),
+                      child: Row(
+                        crossAxisAlignment: CrossAxisAlignment.center,
+                        children: [
+                          Container(
+                            // outlineplussquareYw3 (21:257)
+                            margin: EdgeInsets.fromLTRB(0*fem, 0*fem, 23*fem, 0*fem),
+                            width: 18*fem,
+                            height: 18*fem,
+                            child: Image.asset(
+                              'assets/page-1/images/outline-plus-square.png',
+                              width: 18*fem,
+                              height: 18*fem,
+                            ),
+                          ),
+                          Text(
+                            // medicalrecordsGs3 (21:255)
+                            'Medical Records',
+                            style: SafeGoogleFont (
+                              'Poppins',
+                              fontSize: 16*ffem,
+                              fontWeight: FontWeight.w700,
+                              height: 1.5*ffem/fem,
+                              color: Color(0xffffffff),
+                            ),
+                          ),
+                        ],
+                      ),
+                    ),
+                  ),
+                ],
               ),
             ),
             Container(
-              // autogroupvzg1tQH (KxK7S2kEuu9YnRKtVzvzG1)
-              margin: EdgeInsets.fromLTRB(141*fem, 0*fem, 159*fem, 0*fem),
+              // frame6RE9 (21:211)
+              margin: EdgeInsets.fromLTRB(14*fem, 0*fem, 19*fem, 25*fem),
+              width: double.infinity,
+              height: 48*fem,
+              decoration: BoxDecoration (
+                color: Color(0xff263774),
+                borderRadius: BorderRadius.circular(8*fem),
+              ),
+              child: Stack(
+                children: [
+                  Positioned(
+                    // edit8PT (21:212)
+                    left: 148.5*fem,
+                    top: 12*fem,
+                    child: Align(
+                      child: SizedBox(
+                        width: 31*fem,
+                        height: 24*fem,
+                        child: Text(
+                          'Edit',
+                          style: SafeGoogleFont (
+                            'Poppins',
+                            fontSize: 16*ffem,
+                            fontWeight: FontWeight.w700,
+                            height: 1.5*ffem/fem,
+                            color: Color(0xffffffff),
+                          ),
+                        ),
+                      ),
+                    ),
+                  ),
+                  Positioned(
+                    // frame7db7 (21:250)
+                    left: 0*fem,
+                    top: 0*fem,
+                    child: Container(
+                      width: 328*fem,
+                      height: 48*fem,
+                      decoration: BoxDecoration (
+                        color: Color(0xff263774),
+                        borderRadius: BorderRadius.circular(8*fem),
+                      ),
+                      child: Center(
+                        child: Text(
+                          'Edit',
+                          style: SafeGoogleFont (
+                            'Poppins',
+                            fontSize: 16*ffem,
+                            fontWeight: FontWeight.w700,
+                            height: 1.5*ffem/fem,
+                            color: Color(0xffffffff),
+                          ),
+                        ),
+                      ),
+                    ),
+                  ),
+                ],
+              ),
+            ),
+            Container(
+              // autogroup1rtmKTw (KxKAcBxPLVPsdELke31RtM)
+              margin: EdgeInsets.fromLTRB(147*fem, 0*fem, 153*fem, 0*fem),
               padding: EdgeInsets.fromLTRB(15*fem, 16.03*fem, 16*fem, 15.02*fem),
               width: double.infinity,
               decoration: BoxDecoration (
@@ -434,12 +512,12 @@ class Scene extends StatelessWidget {
                 ],
               ),
               child: Center(
-                // iconsaxlinearhomehashtagvrm (36:165)
+                // iconsaxlinearhomehashtagyYV (36:169)
                 child: SizedBox(
                   width: 30*fem,
                   height: 29.96*fem,
                   child: Image.asset(
-                    'assets/page-1/images/iconsax-linear-homehashtag-6gy.png',
+                    'assets/page-1/images/iconsax-linear-homehashtag-WxH.png',
                     width: 30*fem,
                     height: 29.96*fem,
                   ),
@@ -449,6 +527,6 @@ class Scene extends StatelessWidget {
           ],
         ),
       ),
-    );
+          );
   }
 }
