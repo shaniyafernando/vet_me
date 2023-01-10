@@ -107,7 +107,6 @@ class _RegistrationState extends State<Registration> {
                         textInputAction: TextInputAction.next,
                         decoration: const InputDecoration(
                             border: InputBorder.none, hintText: 'Email'),
-                        inputFormatters: [maskFormatter],
                       ))),
               const SizedBox(
                 height: 10.0,

@@ -55,10 +55,19 @@ class _LoginState extends State<Login> {
               ),
             ),
             const SizedBox(height: 30.0,),
-            InputField(
-                hintText: 'Email',
-                controller: _emailController,
-                obscureText: false),
+            Container(
+                decoration: BoxDecoration(
+                    border: Border.all(color: Colors.grey.shade300),
+                    borderRadius: BorderRadius.circular(12.0)),
+                child: Padding(
+                    padding: const EdgeInsets.only(left: 20.0),
+                    child: TextField(
+                      controller: _emailController,
+                      keyboardType: TextInputType.emailAddress,
+                      textInputAction: TextInputAction.next,
+                      decoration: const InputDecoration(
+                          border: InputBorder.none, hintText: 'Email'),
+                    ))),
             const SizedBox(height: 10.0,),
             InputField(
                 hintText: "Password",
