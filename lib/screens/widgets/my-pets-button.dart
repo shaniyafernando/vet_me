@@ -15,19 +15,22 @@ class _MyPetsButtonState extends State<MyPetsButton> {
     double baseWidth = 390;
     double fem = MediaQuery.of(context).size.width / baseWidth;
     double ffem = fem * 0.97;
-    return  ElevatedButton(
-      style:  ElevatedButton.styleFrom(
-        backgroundColor: Colors.blue.shade900,
-        textStyle: SafeGoogleFont (
-        'Poppins',
-        fontSize: 15*ffem,
-        fontWeight: FontWeight.w600,
-        height: 1.1812192917*ffem/fem,
-        color: Colors.white,
-      ) ,
+    return  Align(
+      alignment: Alignment.bottomRight,
+      child: ElevatedButton(
+        style:  ElevatedButton.styleFrom(
+          backgroundColor: Colors.blue.shade900,
+          textStyle: SafeGoogleFont (
+          'Poppins',
+          fontSize: 15*ffem,
+          fontWeight: FontWeight.w600,
+          height: 1.1812192917*ffem/fem,
+          color: Colors.white,
+        ) ,
+        ),
+        onPressed: () {},
+        child: const Text('My Pets >'),
       ),
-      onPressed: () {},
-      child: const Text('My Pets >'),
     );
   }
 }
