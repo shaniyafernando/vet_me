@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-
-import '../utils.dart';
+import '../widgets/profile-avatar.dart';
+import '../../utils.dart';
 
 class Scene extends StatelessWidget {
   @override
@@ -8,6 +8,12 @@ class Scene extends StatelessWidget {
     double baseWidth = 390;
     double fem = MediaQuery.of(context).size.width / baseWidth;
     double ffem = fem * 0.97;
+
+    AppBar(
+      leading: IconButton(onPressed: () {}, icon: const Icon(Icons.menu)),
+      actions: const [ProfileAvatar(), SizedBox(width: 10.0)],
+    );
+
     return Container(
       width: double.infinity,
       child: Container(
