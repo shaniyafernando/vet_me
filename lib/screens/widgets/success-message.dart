@@ -4,7 +4,8 @@ import '../../utils.dart';
 
 
 class SuccessMessage extends StatelessWidget {
-  const SuccessMessage({super.key});
+  final String message;
+  const SuccessMessage({super.key, required this.message});
 
   @override
   Widget build(BuildContext context) {
@@ -67,7 +68,7 @@ class SuccessMessage extends StatelessWidget {
                         width: 221*fem,
                         height: 78*fem,
                         child: Text(
-                          'Account created Successfully',
+                          message,
                           textAlign: TextAlign.center,
                           style: SafeGoogleFont (
                             'Poppins',
