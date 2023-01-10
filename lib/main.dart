@@ -6,6 +6,7 @@ import 'package:mad_cw2_vet_me/screens/authentication/login-screen.dart';
 import 'package:mad_cw2_vet_me/screens/authentication/opening-screen-default.dart';
 import 'package:mad_cw2_vet_me/screens/authentication/registration.dart';
 import 'package:mad_cw2_vet_me/screens/pet-owner/pet-owner-dashboard.dart';
+import 'package:mad_cw2_vet_me/screens/clinic/clinic-db.dart';
 import 'package:mad_cw2_vet_me/utils.dart';
 
 import 'firebase_options.dart';
