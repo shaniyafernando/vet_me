@@ -5,6 +5,7 @@ import '../../utils.dart';
 import '../widgets/profile-avatar.dart';
 
 class Scene extends StatelessWidget {
+
   @override
   Widget build(BuildContext context) {
     double baseWidth = 390;

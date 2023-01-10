@@ -4,7 +4,7 @@ import 'dart:ui';
 
 import '../utils.dart';
 
-class Scene extends StatelessWidget {
+class Clinic2 extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     double baseWidth = 390;

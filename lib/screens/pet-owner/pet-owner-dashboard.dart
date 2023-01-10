@@ -6,6 +6,7 @@ import 'package:mad_cw2_vet_me/screens/widgets/profile-avatar.dart';
 import 'package:mad_cw2_vet_me/screens/widgets/text-field.dart';
 
 import '../../utils.dart';
+import '../widgets/drawer.dart';
 
 class PetOwnerDashboard extends StatefulWidget {
   const PetOwnerDashboard({Key? key}) : super(key: key);
@@ -16,6 +17,7 @@ class PetOwnerDashboard extends StatefulWidget {
 
 class _PetOwnerDashboardState extends State<PetOwnerDashboard> {
   final TextEditingController _filterController = TextEditingController();
+
   @override
   Widget build(BuildContext context) {
     double baseWidth = 390;
@@ -64,7 +66,11 @@ class _PetOwnerDashboardState extends State<PetOwnerDashboard> {
               const SizedBox(
                 height: 10.0,
               ),
-              const MyPetsButton()
+              const MyPetsButton(),
+
+
+
+
             ],
           ),
         ),
