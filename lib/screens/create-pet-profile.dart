@@ -281,7 +281,7 @@ class Scene extends StatelessWidget {
               // detailspNV (21:184)
               margin: EdgeInsets.fromLTRB(0*fem, 0*fem, 268*fem, 2*fem),
               child: Text(
-                'Details',
+                'Age',
                 style: SafeGoogleFont (
                   'Poppins',
                   fontSize: 14*ffem,
@@ -301,7 +301,41 @@ class Scene extends StatelessWidget {
                 borderRadius: BorderRadius.circular(8*fem),
               ),
               child: Text(
-                'Other details',
+                'Age of the Pet',
+                style: SafeGoogleFont (
+                  'Poppins',
+                  fontSize: 12*ffem,
+                  fontWeight: FontWeight.w400,
+                  height: 1.5*ffem/fem,
+                  color: Color(0xff000000),
+                ),
+              ),
+            ),
+            Container(
+              // detailspNV (21:184)
+              margin: EdgeInsets.fromLTRB(0*fem, 0*fem, 268*fem, 2*fem),
+              child: Text(
+                'Breed',
+                style: SafeGoogleFont (
+                  'Poppins',
+                  fontSize: 14*ffem,
+                  fontWeight: FontWeight.w500,
+                  height: 1.5*ffem/fem,
+                  color: Color(0xff000000),
+                ),
+              ),
+            ),
+            Container(
+              // autogrouph5eqXnh (KxK7HHVp7iYsV558ZsH5eq)
+              margin: EdgeInsets.fromLTRB(22*fem, 0*fem, 21*fem, 19*fem),
+              padding: EdgeInsets.fromLTRB(12*fem, 10*fem, 12*fem, 12*fem),
+              width: double.infinity,
+              decoration: BoxDecoration (
+                border: Border.all(color: Color(0xffa8a8a8)),
+                borderRadius: BorderRadius.circular(8*fem),
+              ),
+              child: Text(
+                'Breed of the Pet',
                 style: SafeGoogleFont (
                   'Poppins',
                   fontSize: 12*ffem,
