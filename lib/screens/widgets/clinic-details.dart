@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:mad_cw2_vet_me/screens/Clinic/ClinciDB.dart';
 
 import '../../utils.dart';
 
@@ -59,3 +60,76 @@ class ClinicDetails extends StatelessWidget {
     );
   }
 }
+class DoctorCard extends StatelessWidget {
+  const DoctorCard({Key? key}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return DocCard();
+
+
+  }
+}
+
+class DocCard extends StatelessWidget {
+  const DocCard({
+    Key? key,
+  }) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      width: double.infinity,
+      height: 110,
+      padding: new EdgeInsets.all(5.0),
+      child: Card(
+        color: Colors.lightBlue.shade100.withOpacity(1.0),
+        shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.circular(10.0),
+        ),
+        child: ListTile(
+          onTap: (){
+
+          },
+          leading: const Icon(Icons.person),
+          title: Text('Doctor Name', style: SafeGoogleFont(
+            'Poppins',
+            fontSize: 18,
+            fontWeight: FontWeight.w600,
+            // height: 10,
+            color: Colors.blue.shade900,
+          ),),
+
+          subtitle: Text('9.00am- 1.00pm', style: SafeGoogleFont(
+            'Poppins',
+            fontSize: 15,
+            fontWeight: FontWeight.w600,
+            // height: 10,
+            color: Colors.blue.shade500,
+          ),),
+          trailing: Container(
+            width: 80,
+            height: 35,
+            padding: new EdgeInsets.all(5.0),
+
+            decoration: BoxDecoration(
+              borderRadius: BorderRadius.circular(15),
+              color: Colors.green,
+            ),
+            child: Center(child: Text('Available',  style: SafeGoogleFont(
+              'Poppins',
+              fontSize: 13,
+              fontWeight: FontWeight.w600,
+              // height: 10,
+              color: Colors.black,
+            ),)),
+
+          ),
+
+        ),
+
+      ),
+    );
+  }
+}
+

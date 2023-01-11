@@ -6,6 +6,7 @@ import '../widgets/clinic-details.dart';
 import '../widgets/my-pets-button.dart';
 import '../widgets/profile-avatar.dart';
 import '../widgets/text-field.dart';
+import 'ClinicSchedule.dart';
 
 
 class ClinicDb extends StatefulWidget {
@@ -56,6 +57,7 @@ class _ClinicDbState extends State<ClinicDb> {
 
 
               const Banner1(),
+              //Doctor and schedule button
               Row(
 
                 children: [
@@ -65,64 +67,75 @@ class _ClinicDbState extends State<ClinicDb> {
 
 
                     child:
-                    Container(
+                    InkWell(
+                      child: Container(
 
-                      height: 80,
-                      width: 150,
-                      decoration: BoxDecoration(
-                        color: Colors.grey.shade50,
-                        borderRadius: BorderRadius.circular(10.0),
-                        boxShadow: [
-                          BoxShadow(
-                            offset: Offset(6, 5),
-                            spreadRadius: -8,
-                            blurRadius: 13,
-                            color: Color.fromRGBO(0, 0, 0, 1),
-                          ),
-                        ],
+                        height: 80,
+                        width: 150,
+                        decoration: BoxDecoration(
+                          color: Colors.grey.shade50,
+                          borderRadius: BorderRadius.circular(10.0),
+                          boxShadow: [
+                            BoxShadow(
+                              offset: Offset(6, 5),
+                              spreadRadius: -8,
+                              blurRadius: 13,
+                              color: Color.fromRGBO(0, 0, 0, 1),
+                            ),
+                          ],
 
 
+                        ),
+
+                        child: Row(
+                          crossAxisAlignment: CrossAxisAlignment.center,
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            Icon( Icons.backup_table, ),
+                            Text('Schedule'),
+                          ],
+                        ),
                       ),
+                      onTap: () {
+                      Navigator.of(context).push(MaterialPageRoute(builder: (context) => const ClinicSchedule(),));}
 
-                      child: Row(
-                        crossAxisAlignment: CrossAxisAlignment.center,
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: [
-                          Icon( Icons.backup_table, ),
-                          Text('Schedule'),
-
-                        ],
-                      ),
                     ),
                   ),
-                  Container(
+                  InkWell(
+                    child:
+                      Container(
 
-                    height: 80,
-                    width: 160,
-                    decoration: BoxDecoration(
-                      color: Colors.grey.shade50,
-                      borderRadius: BorderRadius.circular(10.0),
-                      boxShadow: [
-                        BoxShadow(
-                          offset: Offset(6, 5),
-                          spreadRadius: -8,
-                          blurRadius: 13,
-                          color: Color.fromRGBO(0, 0, 0, 1),
+                        height: 80,
+                        width: 160,
+                        decoration: BoxDecoration(
+                          color: Colors.grey.shade50,
+                          borderRadius: BorderRadius.circular(10.0),
+                          boxShadow: [
+                            BoxShadow(
+                              offset: Offset(6, 5),
+                              spreadRadius: -8,
+                              blurRadius: 13,
+                              color: Color.fromRGBO(0, 0, 0, 1),
+                            ),
+                          ],
+
+
                         ),
-                      ],
 
+                        child: Row(
+                          crossAxisAlignment: CrossAxisAlignment.center,
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            Icon( Icons.account_circle, ),
+                            Text('Doctor'),
 
-                    ),
+                          ],
+                        ),),
+                    onTap: () {
+                      Navigator.of(context).push(MaterialPageRoute(builder: (context) => const ClinicSchedule(),));
+                    },
 
-                    child: Row(
-                      crossAxisAlignment: CrossAxisAlignment.center,
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        Icon( Icons.account_circle, ),
-                        Text('Doctor'),
-                        
-                      ],
-                    ),)
+                  )
                 ],
               ),
 
@@ -130,20 +143,39 @@ class _ClinicDbState extends State<ClinicDb> {
               const SizedBox(
                 height: 10.0,
               ),
-              const ClinicDetails(
-                  name: 'Ss clinic',
-                  radius: '200',
-                  location: '49/11,fife rod'),
+              // const ClinicDetails(
+              //     name: 'Ss clinic',
+              //     radius: '200',
+              //     location: '49/11,fife rod'),
+              DoctorCard(),
+              DoctorCard(),
+              DoctorCard(),
+              DoctorCard(),
+              DoctorCard(),
+              DoctorCard(),
+              DoctorCard(),
+              DoctorCard(),
+
               const SizedBox(
                 height: 10.0,
               ),
-              const MyPetsButton(),
+
+
 
             ],
 
           ),
         ),
         ),
+      floatingActionButton: FloatingActionButton.extended(
+        onPressed: () {
+          // Add your onPressed code here!
+        },
+        label: const Text('Home'),
+        icon: const Icon(Icons.thumb_up),
+        backgroundColor: Colors.pink,
+      ),
+
             );
   }
 }
