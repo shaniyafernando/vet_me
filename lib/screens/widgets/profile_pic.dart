@@ -39,16 +39,17 @@ class _ProfilePicState extends State<ProfilePic> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      body: Padding(
-        padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 20),
-        child: ListView(
-          children: <Widget>[
-            imageProfile(),
-          ],
-        ),
-      ),
-    );
+    return imageProfile();
+    // return Scaffold(
+    //   body: Padding(
+    //     padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 20),
+    //     child: ListView(
+    //       children: <Widget>[
+    //         imageProfile(),
+    //       ],
+    //     ),
+    //   ),
+    // );
   }
   Widget imageProfile() {
     return Center(
