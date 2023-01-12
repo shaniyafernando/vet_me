@@ -1,4 +1,6 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:mad_cw2_vet_me/controllers/authentication-controller.dart';
 import 'package:mad_cw2_vet_me/screens/widgets/text-field.dart';
 
 import '../../utils.dart';
@@ -21,6 +23,13 @@ class _LoginState extends State<Login> {
     double baseWidth = 390;
     double fem = MediaQuery.of(context).size.width / baseWidth;
     double ffem = fem * 0.97;
+
+    AuthenticationController auth = AuthenticationController();
+
+    login(){
+
+
+    }
 
     return Scaffold(
       backgroundColor: Colors.white,
@@ -55,10 +64,19 @@ class _LoginState extends State<Login> {
               ),
             ),
             const SizedBox(height: 30.0,),
-            InputField(
-                hintText: 'Email',
-                controller: _emailController,
-                obscureText: false),
+            Container(
+                decoration: BoxDecoration(
+                    border: Border.all(color: Colors.grey.shade300),
+                    borderRadius: BorderRadius.circular(12.0)),
+                child: Padding(
+                    padding: const EdgeInsets.only(left: 20.0),
+                    child: TextField(
+                      controller: _emailController,
+                      keyboardType: TextInputType.emailAddress,
+                      textInputAction: TextInputAction.next,
+                      decoration: const InputDecoration(
+                          border: InputBorder.none, hintText: 'Email'),
+                    ))),
             const SizedBox(height: 10.0,),
             InputField(
                 hintText: "Password",
@@ -66,7 +84,14 @@ class _LoginState extends State<Login> {
                 obscureText: true),
             const SizedBox(height: 40.0,),
             InkWell(
-              onTap: () {},
+              onTap: () {
+                try{
+                  auth.signInWithEmailAndPassword(email: _emailController.text, password: _passwordController.text);
+                  ScaffoldMessenger.of(context).showSnackBar(const SnackBar(content: Text("Welcome back to VetMe")));
+                } on FirebaseAuthException catch(error){
+                  ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text(error.message!)));
+                }
+              },
               child: Container(
                 // autogroupyrimvbK (KxJZrwMJRpCK8LHMSCYrim)
                 // margin: EdgeInsets.fromLTRB(0 * fem, 0 * fem, 0 * fem, 67 * fem),
