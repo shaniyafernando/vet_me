@@ -56,11 +56,10 @@ class _ProfilePicState extends State<ProfilePic> {
       child: Stack(
         children: <Widget>[
           CircleAvatar(
-            radius: 80.0,
-
+            radius: 100.0,
             backgroundColor: Colors.teal,
             child: _image != null
-                ? new CircleAvatar(backgroundImage: new FileImage(_image!), radius: 80.0,)
+                ? new CircleAvatar(backgroundImage: new FileImage(_image!), radius: 100.0,)
             //Image.file(_image!)
                 : const Text('Select an image'),
           ),
