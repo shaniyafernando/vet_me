@@ -24,14 +24,17 @@ class AppUser{
       DocumentSnapshot<Map<String, dynamic>> snapshot,
       SnapshotOptions? options,
       ) {
+    final geo = GeoFlutterFire();
     final data = snapshot.data();
-    return AppUser(
-        referenceId: snapshot.reference.id,
-        username:data?['username'],
-        email:data?['email'],
-        contact:data?['contact'],
-        address:data?['address'],
-        uid:data?['uid']);
+
+      return AppUser(
+          referenceId: snapshot.reference.id,
+          username: data!['username'],
+          email:data['email'],
+          contact:data['contact'],
+          address: geo.point(latitude: data['address-lat'], longitude: data['address-lng']),
+          uid:data['uid']);
+
   }
 
   Map<String, dynamic> toFireStore() {
@@ -39,7 +42,8 @@ class AppUser{
       "username": username,
       "email": email,
       "contact": contact,
-      "address": address,
+      "address-lat": address.latitude,
+      "address-lng": address.longitude,
       "uid": uid
     };
   }

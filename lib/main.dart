@@ -30,11 +30,8 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       title: 'Flutter',
       debugShowCheckedModeBanner: false,
-      theme: ThemeData(
-        primaryColor: Colors.white
-      ),
       scrollBehavior: MyCustomScrollBehavior(),
-      home: const Registration(),
+      home: const PetOwnerDashboard(),
     );
   }
 }
