@@ -1,5 +1,6 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.vet_me.mad_cw2_vet_me">
+    <uses-permission android:name="android.permission.INTERNET" />
    <application
         android:label="mad_cw2_vet_me"
         android:name="${applicationName}"

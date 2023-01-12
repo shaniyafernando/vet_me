@@ -59,7 +59,7 @@ class _ProfilePicState extends State<ProfilePic> {
             radius: 100.0,
             backgroundColor: Colors.teal,
             child: _image != null
-                ? new CircleAvatar(backgroundImage: new FileImage(_image!), radius: 100.0,)
+                ? CircleAvatar(backgroundImage: FileImage(_image!), radius: 100.0,)
             //Image.file(_image!)
                 : const Text('Please select an image'),
           ),
@@ -73,7 +73,7 @@ class _ProfilePicState extends State<ProfilePic> {
                   builder: ((builder) => bottomSheet()),
                 );
               },
-              child: CircleAvatar(
+              child: const CircleAvatar(
                 radius: 25.0,
                 backgroundColor: Colors.blue,
                 child: Icon(
@@ -94,32 +94,32 @@ class _ProfilePicState extends State<ProfilePic> {
     return Container(
       height: 100.0,
       width: MediaQuery.of(context).size.width,
-      margin: EdgeInsets.symmetric(
+      margin: const EdgeInsets.symmetric(
         horizontal: 20,
         vertical: 20,
       ),
       child: Column(children: <Widget>[
-        Text(
+        const Text(
           "Choose Display Picture",
           style: TextStyle(
             fontSize: 20.0,
           ),
         ),
-        SizedBox(
+        const SizedBox(
           height: 20,
         ),
         Row(
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
             TextButton.icon(
-              icon: Icon(Icons.camera),
+              icon: const Icon(Icons.camera),
               onPressed: _openImagePicker1,
-              label: Text("Camera"),
+              label: const Text("Camera"),
             ),
             TextButton.icon(
-              icon: Icon(Icons.camera),
+              icon: const Icon(Icons.camera),
               onPressed: _openImagePicker,
-              label: Text("Gallery"),
+              label: const Text("Gallery"),
             ),
           ],
         )

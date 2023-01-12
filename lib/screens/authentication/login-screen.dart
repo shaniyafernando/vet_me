@@ -1,4 +1,6 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:mad_cw2_vet_me/controllers/authentication-controller.dart';
 import 'package:mad_cw2_vet_me/screens/widgets/text-field.dart';
 
 import '../../utils.dart';
@@ -21,6 +23,13 @@ class _LoginState extends State<Login> {
     double baseWidth = 390;
     double fem = MediaQuery.of(context).size.width / baseWidth;
     double ffem = fem * 0.97;
+
+    AuthenticationController auth = AuthenticationController();
+
+    login(){
+
+
+    }
 
     return Scaffold(
       backgroundColor: Colors.white,
@@ -75,7 +84,14 @@ class _LoginState extends State<Login> {
                 obscureText: true),
             const SizedBox(height: 40.0,),
             InkWell(
-              onTap: () {},
+              onTap: () {
+                try{
+                  auth.signInWithEmailAndPassword(email: _emailController.text, password: _passwordController.text);
+                  ScaffoldMessenger.of(context).showSnackBar(const SnackBar(content: Text("Welcome back to VetMe")));
+                } on FirebaseAuthException catch(error){
+                  ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text(error.message!)));
+                }
+              },
               child: Container(
                 // autogroupyrimvbK (KxJZrwMJRpCK8LHMSCYrim)
                 // margin: EdgeInsets.fromLTRB(0 * fem, 0 * fem, 0 * fem, 67 * fem),

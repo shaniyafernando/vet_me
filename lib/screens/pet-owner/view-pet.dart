@@ -1,16 +1,15 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/gestures.dart';
-import 'dart:ui';
 import '../../utils.dart';
 import '../widgets/profile-avatar.dart';
 import 'package:mad_cw2_vet_me/screens/widgets/text-field.dart';
-import 'package:mad_cw2_vet_me/screens/widgets/Theme/VetTheme.dart';
 
 import '../widgets/profile_pic.dart';
 
 class ViewPet extends StatelessWidget {
   final TextEditingController _nameController = TextEditingController();
   final TextEditingController _ageController = TextEditingController();
+
+  ViewPet({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -24,8 +23,8 @@ class ViewPet extends StatelessWidget {
         actions: const [ProfileAvatar(), SizedBox(width: 10.0)],
       ),
       body: ListView(
-        padding: EdgeInsets.symmetric(horizontal: 32),
-        physics: BouncingScrollPhysics(),
+        padding: const EdgeInsets.symmetric(horizontal: 32),
+        physics: const BouncingScrollPhysics(),
         children: [
           const SizedBox(
             height: 20.0,
@@ -41,7 +40,7 @@ class ViewPet extends StatelessWidget {
                 fontSize: 18*ffem,
                 fontWeight: FontWeight.w600,
                 height: 1.9462193383*ffem/fem,
-                color: Color(0xff000000),
+                color: const Color(0xff000000),
               ),
             ),
           ),
@@ -49,35 +48,35 @@ class ViewPet extends StatelessWidget {
             height: 20.0,
           ),
 
-          ProfilePic(),
+          const ProfilePic(),
 
           const SizedBox(
             height: 30.0,
           ),
 
           InputField(
-              hintText: "Pet's Name",
+              hintText: "Name",
               controller: _nameController,
               obscureText: false),
           const SizedBox(
             height: 20.0,
           ),
           InputField(
-              hintText: "Pet's Age",
+              hintText: "Age",
               controller: _ageController,
               obscureText: false),
           const SizedBox(
             height: 20.0,
           ),
           InputField(
-              hintText: "Pet's Gender",
+              hintText: "Gender",
               controller: _ageController,
               obscureText: false),
           const SizedBox(
             height: 20.0,
           ),
           InputField(
-              hintText: "Pet's Breed",
+              hintText: "Breed",
               controller: _nameController,
               obscureText: false),
           const SizedBox(
@@ -93,11 +92,11 @@ class ViewPet extends StatelessWidget {
          ElevatedButton.icon(
           onPressed: () {},
            style: ElevatedButton.styleFrom(primary: Colors.red),
-          icon: Icon( // <-- Icon
+          icon: const Icon( // <-- Icon
           Icons.medical_information,
           size: 24.0,
           ),
-           label: Text('Medical Records'), // <-- Text
+           label: const Text('Medical Records'), // <-- Text
           ),
           const SizedBox(
             height: 20.0,

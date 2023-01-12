@@ -1,4 +1,12 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:geoflutterfire2/geoflutterfire2.dart';
+import 'package:google_places_flutter/google_places_flutter.dart';
+import 'package:google_places_flutter/model/prediction.dart';
+import 'package:mad_cw2_vet_me/controllers/authentication-controller.dart';
+import 'package:mad_cw2_vet_me/controllers/clinic-controller.dart';
+import 'package:mad_cw2_vet_me/controllers/pet-owner-controller.dart';
+import 'package:mad_cw2_vet_me/models/users.dart';
 import 'package:mad_cw2_vet_me/screens/widgets/text-field.dart';
 import 'package:mask_text_input_formatter/mask_text_input_formatter.dart';
 
@@ -11,24 +19,47 @@ class Registration extends StatefulWidget {
   State<Registration> createState() => _RegistrationState();
 }
 
+const List<String> list = <String>['Pet Owner','Clinic'];
+
+
 class _RegistrationState extends State<Registration> {
   final TextEditingController _emailController = TextEditingController();
+  final TextEditingController _usernameController = TextEditingController();
   final TextEditingController _passwordController = TextEditingController();
   final TextEditingController _confirmPasswordController =
       TextEditingController();
   final TextEditingController _phoneNumberController = TextEditingController();
   final TextEditingController _locationController = TextEditingController();
+  final String key = "AIzaSyCOpaFa6BK4mGwxG1XAEFOQOifWdCMAd8g";
+  final geo = GeoFlutterFire();
+  late GeoFirePoint myLocation;
   final maskFormatter = MaskTextInputFormatter(mask: "### ### ####");
-
+  List<bool> isSelected = <bool>[true, false];
+  bool isAPetOwner = true;
   static const List<Widget> user = <Widget>[Text('Pet Owner'), Text('Clinic')];
 
   @override
+  void dispose() {
+    _usernameController.dispose();
+    _emailController.dispose();
+    _passwordController.dispose();
+    _confirmPasswordController.dispose();
+    _phoneNumberController.dispose();
+    _locationController.dispose();
+    super.dispose();
+  }
+
+  @override
   Widget build(BuildContext context) {
-    final List<bool> _selected = <bool>[true, false];
 
     double baseWidth = 390;
     double fem = MediaQuery.of(context).size.width / baseWidth;
     double ffem = fem * 0.97;
+
+    PetOwnerController newPet = PetOwnerController();
+    ClinicController newClinic = ClinicController();
+    AuthenticationController auth = AuthenticationController();
+
 
     return Scaffold(
       backgroundColor: Colors.white,
@@ -73,28 +104,37 @@ class _RegistrationState extends State<Registration> {
               ToggleButtons(
                 direction: Axis.horizontal,
                 onPressed: (int index) {
-                  setState(() {
-                    // The button that is tapped is set to true, and the others to false.
-                    for (int i = 0; i < _selected.length; i++) {
-                      _selected[i] = i == index;
-                    }
-                  });
+                    setState(() {
+                      for (int buttonIndex = 0; buttonIndex < isSelected.length; buttonIndex++) {
+                        isSelected[buttonIndex] = !isSelected[buttonIndex];
+                      }
+                      if (isSelected[0] == true) {
+                        isAPetOwner;
+                      } else {
+                        !isAPetOwner;
+                      }
+                    });
                 },
                 borderRadius: const BorderRadius.all(Radius.circular(8)),
-                selectedBorderColor: Colors.orange[700],
+                selectedBorderColor: Colors.deepOrange[700],
                 selectedColor: Colors.white,
-                fillColor: Colors.orange[200],
-                color: Colors.orange[400],
+                fillColor: Colors.deepOrange[200],
+                color: Colors.deepOrange[400],
                 constraints: const BoxConstraints(
                   minHeight: 40.0,
                   minWidth: 80.0,
                 ),
-                isSelected: _selected,
+                isSelected: isSelected,
                 children: user,
               ),
               const SizedBox(
                 height: 30.0,
               ),
+              InputField(
+                  hintText: "Username",
+                  controller: _usernameController,
+                  obscureText: false),
+              const SizedBox(height: 10.0,),
               Container(
                   decoration: BoxDecoration(
                       border: Border.all(color: Colors.grey.shade300),
@@ -142,44 +182,61 @@ class _RegistrationState extends State<Registration> {
               const SizedBox(
                 height: 10.0,
               ),
-              TextButton(
-                  onPressed: () {},
-                  child: Padding(
-                    padding: const EdgeInsets.all(8.0),
-                    child: Text(
-                      'Choose a location',
-                      style: SafeGoogleFont(
-                        'Inter',
-                        fontSize: 20 * ffem,
-                        fontWeight: FontWeight.w600,
-                        height: 1.2125 * ffem / fem,
-                        color: Colors.orange,
-                      ),
-                    ),
-                  )
-              ),
-              const SizedBox(
-                height: 10.0,
-              ),
               Container(
                   decoration: BoxDecoration(
                       border: Border.all(color: Colors.grey.shade300),
                       borderRadius: BorderRadius.circular(12.0)),
                   child: Padding(
                     padding: const EdgeInsets.only(left: 20.0),
-                    child: TextField(
-                      controller: _locationController,
-                      keyboardType: TextInputType.streetAddress,
-                      textInputAction: TextInputAction.next,
-                      decoration: const InputDecoration(
-                          border: InputBorder.none, hintText: 'Location'),
-                    ),
+                    child: GooglePlaceAutoCompleteTextField(
+                          textEditingController: _locationController,
+                          googleAPIKey: key,
+                          inputDecoration: const InputDecoration(border: InputBorder.none,hintText: "Address"),
+                          countries: const ['lk'],
+                          debounceTime: 800,
+                          isLatLngRequired: true,
+                          getPlaceDetailWithLatLng: (Prediction prediction) {
+                            myLocation = geo.point(latitude: double.parse(prediction.lat!), longitude: double.parse(prediction.lng!));
+                          },
+                          itmClick: (Prediction prediction) {
+                            _locationController.text = prediction.description!;
+
+                            _locationController.selection = TextSelection.fromPosition(
+                                TextPosition(offset: prediction.description!.length));
+                          }
+                        // default 600 ms ,
+                      )
                   )),
               const SizedBox(
                 height: 40.0,
               ),
               InkWell(
-                onTap: () {},
+                onTap: () {
+
+                  try{
+                    if(_passwordController.text.trim() ==
+                        _confirmPasswordController.text.trim()){
+
+                      auth.signInWithEmailAndPassword(email: _emailController.text, password: _passwordController.text);
+                    }
+                    ScaffoldMessenger.of(context).showSnackBar(const SnackBar(content: Text("Welcome to VetMe!")));
+                  } on FirebaseAuthException catch(error){
+                    ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text(error.message!)));
+                  }
+
+                  AppUser newUser = AppUser.user(
+                      _usernameController.text,
+                      _emailController.text,
+                      _phoneNumberController.text,
+                      myLocation,
+                      FirebaseAuth.instance.currentUser!.uid);
+
+                  if(isAPetOwner){
+                    newPet.addPetOwner(newUser);
+                  }
+                  newClinic.addClinic(newUser);
+
+                },
                 child: Container(
                   // autogroupyrimvbK (KxJZrwMJRpCK8LHMSCYrim)
                   // margin: EdgeInsets.fromLTRB(0 * fem, 0 * fem, 0 * fem, 67 * fem),

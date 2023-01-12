@@ -1,10 +1,5 @@
 import 'package:flutter/material.dart';
 
-
-
-
-
-
 class ClinicDb extends StatelessWidget {
   const ClinicDb({Key? key}) : super(key: key);
 
@@ -12,11 +7,9 @@ class ClinicDb extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-
         title: Row(
           crossAxisAlignment: CrossAxisAlignment.center,
-          children: <Widget>[Text("Power Fuel",
-
+          children: const <Widget>[Text("Power Fuel",
           ),],),),
 
       body: Container(
