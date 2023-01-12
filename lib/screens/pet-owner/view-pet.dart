@@ -8,6 +8,9 @@ import '../widgets/profile_pic.dart';
 class ViewPet extends StatelessWidget {
   final TextEditingController _nameController = TextEditingController();
   final TextEditingController _ageController = TextEditingController();
+  final TextEditingController _genderController = TextEditingController();
+  final TextEditingController _breedController = TextEditingController();
+  final TextEditingController _detailsController = TextEditingController();
 
   ViewPet({super.key});
 
@@ -54,12 +57,28 @@ class ViewPet extends StatelessWidget {
             height: 30.0,
           ),
 
+          Text(
+            'Name',
+            style: SafeGoogleFont (
+              'KrubKrub:wght@600',
+              fontSize: 18*ffem,
+              color: const Color(0xff000000),
+            ),
+          ),
           InputField(
               hintText: "Name",
               controller: _nameController,
               obscureText: false),
           const SizedBox(
             height: 20.0,
+          ),
+          Text(
+            'Age',
+            style: SafeGoogleFont (
+              'KrubKrub:wght@600',
+              fontSize: 18*ffem,
+              color: const Color(0xff000000),
+            ),
           ),
           InputField(
               hintText: "Age",
@@ -68,23 +87,47 @@ class ViewPet extends StatelessWidget {
           const SizedBox(
             height: 20.0,
           ),
+          Text(
+            'Gender',
+            style: SafeGoogleFont (
+              'KrubKrub:wght@600',
+              fontSize: 18*ffem,
+              color: const Color(0xff000000),
+            ),
+          ),
           InputField(
               hintText: "Gender",
-              controller: _ageController,
+              controller: _genderController,
               obscureText: false),
           const SizedBox(
             height: 20.0,
+          ),
+          Text(
+            'Breed',
+            style: SafeGoogleFont (
+              'KrubKrub:wght@600',
+              fontSize: 18*ffem,
+              color: const Color(0xff000000),
+            ),
           ),
           InputField(
               hintText: "Breed",
-              controller: _nameController,
+              controller: _breedController,
               obscureText: false),
           const SizedBox(
             height: 20.0,
           ),
+          Text(
+            'Other Details',
+            style: SafeGoogleFont (
+              'KrubKrub:wght@600',
+              fontSize: 18*ffem,
+              color: const Color(0xff000000),
+            ),
+          ),
           InputField(
               hintText: "Other Details",
-              controller: _ageController,
+              controller: _detailsController,
               obscureText: false),
           const SizedBox(
             height: 30.0,
