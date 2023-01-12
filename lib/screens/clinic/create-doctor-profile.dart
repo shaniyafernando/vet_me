@@ -19,6 +19,7 @@ class _CreateDoctorProfileState extends State<CreateDoctorProfile> {
   final TextEditingController _contactController = TextEditingController();
 
   bool ch1 = false;
+
   bool ch2 = false;
   bool ch3 = false;
   bool ch4 = false;

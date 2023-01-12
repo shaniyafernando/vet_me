@@ -210,6 +210,7 @@ class _CreateScheduleState extends State<CreateSchedule> {
             height: 10.0,
           ),
 
+
           Text(
             'Details',
             style: SafeGoogleFont (

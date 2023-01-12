@@ -57,6 +57,7 @@ class _ProfilePicState extends State<ProfilePic> {
         children: <Widget>[
           CircleAvatar(
             radius: 80.0,
+
             backgroundColor: Colors.teal,
             child: _image != null
                 ? new CircleAvatar(backgroundImage: new FileImage(_image!), radius: 80.0,)
