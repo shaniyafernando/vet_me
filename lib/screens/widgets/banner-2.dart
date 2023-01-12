@@ -2,8 +2,8 @@ import 'package:flutter/material.dart';
 
 import '../../utils.dart';
 
-class Banner1 extends StatelessWidget {
-  const Banner1({Key? key}) : super(key: key);
+class Banner2 extends StatelessWidget {
+  const Banner2({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -36,10 +36,10 @@ class Banner1 extends StatelessWidget {
                     ),
                     children: [
                       const TextSpan(
-                        text: 'Let the ',
+                        text: 'I am ',
                       ),
                       TextSpan(
-                        text: 'Vet',
+                        text: 'Your',
                         style: SafeGoogleFont(
                           'Poppins',
                           fontSize: 20 * ffem,
@@ -48,9 +48,9 @@ class Banner1 extends StatelessWidget {
                           color: const Color(0xffff7f0a),
                         ),
                       ),
-                      const TextSpan(
-                        text: ', Take care of your ',
-                      ),
+                    const TextSpan(
+                       text: ' Lovely ',
+                    ),
                       TextSpan(
                         text: 'Pet',
                         style: SafeGoogleFont(

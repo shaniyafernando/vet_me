@@ -54,7 +54,7 @@ class _PetListDashboardState extends State<PetList> {
               const SizedBox(
                 height: 20.0,
               ),
-              const Banner1(),
+              const Banner2(),
               const SizedBox(
                 height: 10.0,
               ),
