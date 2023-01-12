@@ -100,44 +100,44 @@ class _CreateScheduleState extends State<CreateSchedule> {
             height: 20.0,
           ),
 
-          Text(
-            'Time',
-            style: SafeGoogleFont (
-              'Poppins',
-              fontSize: 18*ffem,
-              color: const Color(0xff000000),
-            ),
-          ),
-          Row(
-            children: [
-              Checkbox(
-                value: ch1,
-                onChanged: (val) {
-                  setState(() {
-                    ch1 = val!;
-                  });
-                },
-              ),
-              const Text("09.00 - 12.00"),
-            ],
-          ),
-          Row(
-            children: [
-              Checkbox(
-                value: ch2,
-                onChanged: (val) {
-                  setState(() {
-                    ch2 = val!;
-                  });
-                },
-              ),
-              const Text("13.00 - 15.00"),
-            ],
-          ),
-
-          const SizedBox(
-            height: 10.0,
-          ),
+          // Text(
+          //   'Time',
+          //   style: SafeGoogleFont (
+          //     'Poppins',
+          //     fontSize: 18*ffem,
+          //     color: const Color(0xff000000),
+          //   ),
+          // ),
+          // Row(
+          //   children: [
+          //     Checkbox(
+          //       value: ch1,
+          //       onChanged: (val) {
+          //         setState(() {
+          //           ch1 = val!;
+          //         });
+          //       },
+          //     ),
+          //     const Text("09.00 - 12.00"),
+          //   ],
+          // ),
+          // Row(
+          //   children: [
+          //     Checkbox(
+          //       value: ch2,
+          //       onChanged: (val) {
+          //         setState(() {
+          //           ch2 = val!;
+          //         });
+          //       },
+          //     ),
+          //     const Text("13.00 - 15.00"),
+          //   ],
+          // ),
+          //
+          // const SizedBox(
+          //   height: 10.0,
+          // ),
 
           Text(
             'Doctor',
