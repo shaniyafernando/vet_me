@@ -35,209 +35,213 @@ class _LoginState extends State<Login> {
       backgroundColor: Colors.white,
       body: Padding(
         padding: const EdgeInsets.all(20.0),
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.start,
-          crossAxisAlignment: CrossAxisAlignment.center,
-          children: [
-            const SizedBox(height: 10.0,),
-            Text(
-              'Login',
-              textAlign: TextAlign.start,
-              style: SafeGoogleFont(
-                'Inter',
-                fontSize: 20 * ffem,
-                fontWeight: FontWeight.w600,
-                height: 1.2125 * ffem / fem,
-                color: const Color(0xff000000),
-              ),
-            ),
-            const SizedBox(height: 10.0,),
-            Text(
-              'Hello, welcome back to our account!',
-              textAlign: TextAlign.start,
-              style: SafeGoogleFont(
-                'Inter',
-                fontSize: 14 * ffem,
-                fontWeight: FontWeight.w600,
-                height: 1.2125 * ffem / fem,
-                color: const Color(0xff595959),
-              ),
-            ),
-            const SizedBox(height: 30.0,),
-            Container(
-                decoration: BoxDecoration(
-                    border: Border.all(color: Colors.grey.shade300),
-                    borderRadius: BorderRadius.circular(12.0)),
-                child: Padding(
-                    padding: const EdgeInsets.only(left: 20.0),
-                    child: TextField(
-                      controller: _emailController,
-                      keyboardType: TextInputType.emailAddress,
-                      textInputAction: TextInputAction.next,
-                      decoration: const InputDecoration(
-                          border: InputBorder.none, hintText: 'Email'),
-                    ))),
-            const SizedBox(height: 10.0,),
-            InputField(
-                hintText: "Password",
-                controller: _passwordController,
-                obscureText: true),
-            const SizedBox(height: 40.0,),
-            InkWell(
-              onTap: () {
-                try{
-                  auth.signInWithEmailAndPassword(email: _emailController.text, password: _passwordController.text);
-                  ScaffoldMessenger.of(context).showSnackBar(const SnackBar(content: Text("Welcome back to VetMe")));
-                } on FirebaseAuthException catch(error){
-                  ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text(error.message!)));
-                }
-              },
-              child: Container(
-                // autogroupyrimvbK (KxJZrwMJRpCK8LHMSCYrim)
-                // margin: EdgeInsets.fromLTRB(0 * fem, 0 * fem, 0 * fem, 67 * fem),
-                width: double.infinity,
-                height: 50 * fem,
-                decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(15 * fem),
-                  gradient: const LinearGradient(
-                    begin: Alignment(-0.118, -1.684),
-                    end: Alignment(-0.096, 2.702),
-                    colors: <Color>[Color(0xb204097e), Color(0xb20019ff)],
-                    stops: <double>[0, 1],
-                  ),
-                ),
-                child: Center(
-                  child: Text(
-                    'Login',
-                    textAlign: TextAlign.center,
-                    style: SafeGoogleFont(
-                      'Inter',
-                      fontSize: 14 * ffem,
-                      fontWeight: FontWeight.w600,
-                      height: 1.2125 * ffem / fem,
-                      color: const Color(0xffffffff),
-                    ),
-                  ),
+        child: SingleChildScrollView(
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.start,
+            crossAxisAlignment: CrossAxisAlignment.center,
+            children: [
+              const SizedBox(height: 10.0,),
+              Text(
+                'Login',
+                textAlign: TextAlign.start,
+                style: SafeGoogleFont(
+                  'Inter',
+                  fontSize: 20 * ffem,
+                  fontWeight: FontWeight.w600,
+                  height: 1.2125 * ffem / fem,
+                  color: const Color(0xff000000),
                 ),
               ),
-            ),
-            const SizedBox(height: 50.0,),
-            Text('------- OR -------',
+              const SizedBox(height: 10.0,),
+              Text(
+                'Hello, welcome back to our account!',
+                textAlign: TextAlign.start,
                 style: SafeGoogleFont(
                   'Inter',
                   fontSize: 14 * ffem,
                   fontWeight: FontWeight.w600,
                   height: 1.2125 * ffem / fem,
-                  color: const Color(0xff000000),
-                )),
-            const SizedBox(height: 50.0,),
-            InkWell(
-              onTap: (){},
-              child: Container(
-                // autogroupfxa1sS1 (KxJa5BVu9GdfM2Ep9BfXa1)
-                // margin: EdgeInsets.fromLTRB(0 * fem, 0 * fem, 0 * fem, 35 * fem),
-                padding: EdgeInsets.fromLTRB(
-                    32.25 * fem, 14.17 * fem, 123.29 * fem, 14.17 * fem),
-                width: double.infinity,
-                decoration: BoxDecoration(
-                  border: Border.all(color: const Color(0x60615e5e)),
-                  borderRadius: BorderRadius.circular(15 * fem),
-                  boxShadow: [
-                    BoxShadow(
-                      color: const Color(0x11000000),
-                      offset: Offset(0 * fem, 3 * fem),
-                      blurRadius: 5 * fem,
-                    ),
-                  ],
-                ),
-                child: Row(
-                  crossAxisAlignment: CrossAxisAlignment.center,
-                  children: [
-                    Container(
-                      // flatcoloriconsgoogleguF (1:435)
-                      margin: EdgeInsets.fromLTRB(
-                          0 * fem, 0 * fem, 10.96 * fem, 0 * fem),
-                      width: 22.5 * fem,
-                      height: 21.67 * fem,
-                      child: Image.asset(
-                        'assets/page-1/images/flat-color-icons-google.png',
-                        width: 22.5 * fem,
-                        height: 21.67 * fem,
-                      ),
-                    ),
-                    Container(
-                      // loginwithgoogleMkV (1:430)
-                      margin:
-                          EdgeInsets.fromLTRB(0 * fem, 0 * fem, 0 * fem, 1 * fem),
-                      child: Text(
-                        'Login with Google',
-                        textAlign: TextAlign.center,
-                        style: SafeGoogleFont(
-                          'Inter',
-                          fontSize: 14 * ffem,
-                          fontWeight: FontWeight.w600,
-                          height: 1.2125 * ffem / fem,
-                          color: const Color(0xff000000),
-                        ),
-                      ),
-                    ),
-                  ],
+                  color: const Color(0xff595959),
                 ),
               ),
-            ),
-            const SizedBox(height: 30.0,),
-            Container(
-              // notregisteredyetcreateanaccoun (1:429)
-              margin:
-                  EdgeInsets.fromLTRB(0 * fem, 0 * fem, 10.59 * fem, 0 * fem),
-              child: InkWell(
-                onTap: (){},
-                child: RichText(
-                  textAlign: TextAlign.center,
-                  text: TextSpan(
-                    style: SafeGoogleFont(
-                      'Inter',
-                      fontSize: 13 * ffem,
-                      fontWeight: FontWeight.w600,
-                      height: 1.2102272327 * ffem / fem,
-                      color: const Color(0xff979797),
+              const SizedBox(height: 30.0,),
+              Container(
+                  decoration: BoxDecoration(
+                      border: Border.all(color: Colors.grey.shade300),
+                      borderRadius: BorderRadius.circular(12.0)),
+                  child: Padding(
+                      padding: const EdgeInsets.only(left: 20.0),
+                      child: TextField(
+                        controller: _emailController,
+                        keyboardType: TextInputType.emailAddress,
+                        textInputAction: TextInputAction.next,
+                        decoration: const InputDecoration(
+                            border: InputBorder.none, hintText: 'Email'),
+                      ))),
+              const SizedBox(height: 10.0,),
+              InputField(
+                  hintText: "Password",
+                  controller: _passwordController,
+                  obscureText: true),
+              const SizedBox(height: 40.0,),
+              InkWell(
+                onTap: () {
+                  try{
+                    auth.signInWithEmailAndPassword(email: _emailController.text, password: _passwordController.text);
+                    ScaffoldMessenger.of(context).showSnackBar(const SnackBar(content: Text("Welcome back to VetMe")));
+                  } on FirebaseAuthException catch(error){
+                    ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text(error.message!)));
+                  }
+                },
+                child: Container(
+                  // autogroupyrimvbK (KxJZrwMJRpCK8LHMSCYrim)
+                  // margin: EdgeInsets.fromLTRB(0 * fem, 0 * fem, 0 * fem, 67 * fem),
+                  width: double.infinity,
+                  height: 50 * fem,
+                  decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(15 * fem),
+                    gradient: const LinearGradient(
+                      begin: Alignment(-0.118, -1.684),
+                      end: Alignment(-0.096, 2.702),
+                      colors: <Color>[Color(0xb204097e), Color(0xb20019ff)],
+                      stops: <double>[0, 1],
                     ),
+                  ),
+                  child: Center(
+                    child: Text(
+                      'Login',
+                      textAlign: TextAlign.center,
+                      style: SafeGoogleFont(
+                        'Inter',
+                        fontSize: 14 * ffem,
+                        fontWeight: FontWeight.w600,
+                        height: 1.2125 * ffem / fem,
+                        color: const Color(0xffffffff),
+                      ),
+                    ),
+                  ),
+                ),
+              ),
+              const SizedBox(height: 50.0,),
+              Text('------- OR -------',
+                  style: SafeGoogleFont(
+                    'Inter',
+                    fontSize: 14 * ffem,
+                    fontWeight: FontWeight.w600,
+                    height: 1.2125 * ffem / fem,
+                    color: const Color(0xff000000),
+                  )),
+              const SizedBox(height: 50.0,),
+              InkWell(
+                onTap: (){
+                  auth.signInWithGoogle();
+                },
+                child: Container(
+                  // autogroupfxa1sS1 (KxJa5BVu9GdfM2Ep9BfXa1)
+                  // margin: EdgeInsets.fromLTRB(0 * fem, 0 * fem, 0 * fem, 35 * fem),
+                  padding: EdgeInsets.fromLTRB(
+                      32.25 * fem, 14.17 * fem, 123.29 * fem, 14.17 * fem),
+                  width: double.infinity,
+                  decoration: BoxDecoration(
+                    border: Border.all(color: const Color(0x60615e5e)),
+                    borderRadius: BorderRadius.circular(15 * fem),
+                    boxShadow: [
+                      BoxShadow(
+                        color: const Color(0x11000000),
+                        offset: Offset(0 * fem, 3 * fem),
+                        blurRadius: 5 * fem,
+                      ),
+                    ],
+                  ),
+                  child: Row(
+                    crossAxisAlignment: CrossAxisAlignment.center,
                     children: [
-                      TextSpan(
-                        text: 'Not Registered yet? ',
-                        style: SafeGoogleFont(
-                          'Inter',
-                          fontSize: 13 * ffem,
-                          fontWeight: FontWeight.w600,
-                          height: 1.2125 * ffem / fem,
-                          color: const Color(0xff979797),
+                      Container(
+                        // flatcoloriconsgoogleguF (1:435)
+                        margin: EdgeInsets.fromLTRB(
+                            0 * fem, 0 * fem, 10.96 * fem, 0 * fem),
+                        width: 22.5 * fem,
+                        height: 21.67 * fem,
+                        child: Image.asset(
+                          'assets/page-1/images/flat-color-icons-google.png',
+                          width: 22.5 * fem,
+                          height: 21.67 * fem,
                         ),
                       ),
-                      TextSpan(
-                        text: 'Create an Account',
-                        style: SafeGoogleFont(
-                          'Inter',
-                          fontSize: 13 * ffem,
-                          fontWeight: FontWeight.w600,
-                          height: 1.2125 * ffem / fem,
-                          color: const Color(0xffff7f0a),
+                      Container(
+                        // loginwithgoogleMkV (1:430)
+                        margin:
+                            EdgeInsets.fromLTRB(0 * fem, 0 * fem, 0 * fem, 1 * fem),
+                        child: Text(
+                          'Login with Google',
+                          textAlign: TextAlign.center,
+                          style: SafeGoogleFont(
+                            'Inter',
+                            fontSize: 14 * ffem,
+                            fontWeight: FontWeight.w600,
+                            height: 1.2125 * ffem / fem,
+                            color: const Color(0xff000000),
+                          ),
                         ),
                       ),
                     ],
                   ),
                 ),
               ),
-            ),
-            const SizedBox(height: 30.0,),
-            SizedBox(
-              width: 227*fem,
-              height: 80*fem,
-              child: Image.asset(
-                'assets/page-1/images/logo-1.png',
-                fit: BoxFit.cover,
+              const SizedBox(height: 30.0,),
+              Container(
+                // notregisteredyetcreateanaccoun (1:429)
+                margin:
+                    EdgeInsets.fromLTRB(0 * fem, 0 * fem, 10.59 * fem, 0 * fem),
+                child: InkWell(
+                  onTap: (){},
+                  child: RichText(
+                    textAlign: TextAlign.center,
+                    text: TextSpan(
+                      style: SafeGoogleFont(
+                        'Inter',
+                        fontSize: 13 * ffem,
+                        fontWeight: FontWeight.w600,
+                        height: 1.2102272327 * ffem / fem,
+                        color: const Color(0xff979797),
+                      ),
+                      children: [
+                        TextSpan(
+                          text: 'Not Registered yet? ',
+                          style: SafeGoogleFont(
+                            'Inter',
+                            fontSize: 13 * ffem,
+                            fontWeight: FontWeight.w600,
+                            height: 1.2125 * ffem / fem,
+                            color: const Color(0xff979797),
+                          ),
+                        ),
+                        TextSpan(
+                          text: 'Create an Account',
+                          style: SafeGoogleFont(
+                            'Inter',
+                            fontSize: 13 * ffem,
+                            fontWeight: FontWeight.w600,
+                            height: 1.2125 * ffem / fem,
+                            color: const Color(0xffff7f0a),
+                          ),
+                        ),
+                      ],
+                    ),
+                  ),
+                ),
               ),
-            ),
-          ],
+              const SizedBox(height: 30.0,),
+              SizedBox(
+                width: 227*fem,
+                height: 80*fem,
+                child: Image.asset(
+                  'assets/page-1/images/logo-1.png',
+                  fit: BoxFit.cover,
+                ),
+              ),
+            ],
+          ),
         ),
       ),
     );

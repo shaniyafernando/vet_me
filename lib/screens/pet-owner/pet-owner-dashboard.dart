@@ -18,20 +18,35 @@ class PetOwnerDashboard extends StatefulWidget {
 
 class _PetOwnerDashboardState extends State<PetOwnerDashboard> {
   final TextEditingController _locationController = TextEditingController();
+  final TextEditingController _radiusController = TextEditingController();
   final String key = "AIzaSyCOpaFa6BK4mGwxG1XAEFOQOifWdCMAd8g";
   final geo = GeoFlutterFire();
   late GeoFirePoint myLocation;
+  double radius = 0;
+
+  @override
+  void dispose() {
+    _radiusController.dispose();
+    _locationController.dispose();
+    super.dispose();
+  }
+
+  filterClinicLocations(double radius,GeoFirePoint location){
+
+  }
 
   @override
   Widget build(BuildContext context) {
     double baseWidth = 390;
     double fem = MediaQuery.of(context).size.width / baseWidth;
     double ffem = fem * 0.97;
-    double radius = 500.0;
 
     return Scaffold(
+      backgroundColor: Colors.white,
       appBar: AppBar(
-        leading: IconButton(onPressed: () {}, icon: const Icon(Icons.menu)),
+        backgroundColor: Colors.white,
+        elevation: 0.0,
+        leading: IconButton(onPressed: () {}, icon: const Icon(Icons.menu, color: Colors.black54,),),
         actions: const [ProfileAvatar(), SizedBox(width: 10.0)],
       ),
       body: Padding(
@@ -50,9 +65,10 @@ class _PetOwnerDashboardState extends State<PetOwnerDashboard> {
                   fontSize: 20 * ffem,
                   fontWeight: FontWeight.w600,
                   height: 1.1812192917 * ffem / fem,
-                  color: const Color(0xffff7f0a),
+                  color:  Colors.black54,
                 ),
               ),
+              const SizedBox(height: 10.0,),
               Container(
                   decoration: BoxDecoration(
                       border: Border.all(color: Colors.grey.shade300),
@@ -82,19 +98,23 @@ class _PetOwnerDashboardState extends State<PetOwnerDashboard> {
               const SizedBox(
                 height: 10.0,
               ),
-              Slider(
-                  value: radius,
-                  onChanged: (value){
-                    setState(() {
-                      radius = value;
-                    });
-                  },
-                  min: 200,
-                  max: 50 * 1000,
-                  divisions: 20,
-                  label: "$radius m",
-                  activeColor: Colors.deepOrange[700],
-                inactiveColor: Colors.deepOrange[200],
+              Container(
+                  decoration: BoxDecoration(
+                      color: Colors.white,
+                      border: Border.all(color: Colors.grey.shade300),
+                      borderRadius: BorderRadius.circular(12.0)),
+                  child: Padding(
+                      padding: const EdgeInsets.only(left: 20.0),
+                      child: TextField(
+                        keyboardType: TextInputType.number,
+                        textInputAction: TextInputAction.done,
+                        controller: _radiusController,
+                        decoration: const InputDecoration(
+                            border: InputBorder.none,
+                            hintText: "Radius (km)"
+                        ),
+                      )
+                  )
               ),
               const SizedBox(
                 height: 10.0,
@@ -103,10 +123,15 @@ class _PetOwnerDashboardState extends State<PetOwnerDashboard> {
               const SizedBox(
                 height: 10.0,
               ),
-              const ClinicDetails(
-                  name: 'fernando clinic',
-                  radius: '200',
-                  location: '49/11,fife rod'),
+              ListView.builder(
+                itemCount: 2,
+                itemBuilder: (context, index) {
+                  return const ClinicDetails(
+                    name: 'fernando clinic',
+                    radius: '200',
+                    location: '49/11,fife rod');
+                  },
+              ),
               const SizedBox(
                 height: 10.0,
               ),

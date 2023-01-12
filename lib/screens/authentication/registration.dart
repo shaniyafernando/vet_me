@@ -35,7 +35,6 @@ class _RegistrationState extends State<Registration> {
   late GeoFirePoint myLocation;
   final maskFormatter = MaskTextInputFormatter(mask: "### ### ####");
   List<bool> isSelected = <bool>[true, false];
-  bool isAPetOwner = true;
   static const List<Widget> user = <Widget>[Text('Pet Owner'), Text('Clinic')];
 
   @override
@@ -107,11 +106,6 @@ class _RegistrationState extends State<Registration> {
                     setState(() {
                       for (int buttonIndex = 0; buttonIndex < isSelected.length; buttonIndex++) {
                         isSelected[buttonIndex] = !isSelected[buttonIndex];
-                      }
-                      if (isSelected[0] == true) {
-                        isAPetOwner;
-                      } else {
-                        !isAPetOwner;
                       }
                     });
                 },
@@ -217,7 +211,7 @@ class _RegistrationState extends State<Registration> {
                     if(_passwordController.text.trim() ==
                         _confirmPasswordController.text.trim()){
 
-                      auth.signInWithEmailAndPassword(email: _emailController.text, password: _passwordController.text);
+                      auth.signUpWithEmailAndPassword(email: _emailController.text, password: _passwordController.text);
                     }
                     ScaffoldMessenger.of(context).showSnackBar(const SnackBar(content: Text("Welcome to VetMe!")));
                   } on FirebaseAuthException catch(error){
@@ -229,12 +223,12 @@ class _RegistrationState extends State<Registration> {
                       _emailController.text,
                       _phoneNumberController.text,
                       myLocation,
-                      FirebaseAuth.instance.currentUser!.uid);
+                      FirebaseAuth.instance.currentUser?.uid ?? '');
 
-                  if(isAPetOwner){
+                  if(isSelected[0] == true){
                     newPet.addPetOwner(newUser);
-                  }
-                  newClinic.addClinic(newUser);
+                  }else{newClinic.addClinic(newUser);}
+
 
                 },
                 child: Container(
