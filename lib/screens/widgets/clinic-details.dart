@@ -133,3 +133,13 @@ class DocCard extends StatelessWidget {
   }
 }
 
+class SlotCard extends StatelessWidget {
+  const SlotCard({Key? key}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return const Placeholder();
+  }
+}
+
+

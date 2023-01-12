@@ -1,3 +1,4 @@
+import 'package:draggable_fab/draggable_fab.dart';
 import 'package:flutter/material.dart';
 import 'package:mad_cw2_vet_me/screens/widgets/banner-1.dart';
 
@@ -97,7 +98,7 @@ class _ClinicDbState extends State<ClinicDb> {
                         ),
                       ),
                       onTap: () {
-                      Navigator.of(context).push(MaterialPageRoute(builder: (context) => const ClinicSchedule(),));}
+                      Navigator.of(context).push(MaterialPageRoute(builder: (context) =>  ClinicSchedule(),));}
 
                     ),
                   ),
@@ -132,7 +133,7 @@ class _ClinicDbState extends State<ClinicDb> {
                           ],
                         ),),
                     onTap: () {
-                      Navigator.of(context).push(MaterialPageRoute(builder: (context) => const ClinicSchedule(),));
+                      Navigator.of(context).push(MaterialPageRoute(builder: (context) =>  ClinicSchedule(),));
                     },
 
                   )
@@ -167,14 +168,21 @@ class _ClinicDbState extends State<ClinicDb> {
           ),
         ),
         ),
-      floatingActionButton: FloatingActionButton.extended(
-        onPressed: () {
-          // Add your onPressed code here!
-        },
-        label: const Text('Home'),
-        icon: const Icon(Icons.thumb_up),
-        backgroundColor: Colors.pink,
-      ),
+      floatingActionButton: DraggableFab(
+        child: FloatingActionButton.extended(
+          onPressed: () {
+            // Add your onPressed code here!
+          },
+          label: const Text('Home'),
+          icon: const Icon(Icons.cottage_rounded),
+          backgroundColor: Colors.indigo,
+          shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(10.0),
+          ),
+          ),
+          ),
+
+
 
             );
   }
