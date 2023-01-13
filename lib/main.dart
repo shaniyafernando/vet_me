@@ -9,9 +9,6 @@ import 'package:mad_cw2_vet_me/screens/authentication/registration.dart';
 import 'package:mad_cw2_vet_me/screens/clinic-dashboard.dart';
 import 'package:mad_cw2_vet_me/screens/clinic.dart';
 import 'package:mad_cw2_vet_me/screens/pet-owner/pet-owner-dashboard.dart';
-import 'package:mad_cw2_vet_me/screens/widgets/banner-1.dart';
-import 'package:mad_cw2_vet_me/screens/widgets/clinic-details.dart';
-import 'package:mad_cw2_vet_me/screens/widgets/my-pets-button.dart';
 import 'package:mad_cw2_vet_me/utils.dart';
 
 
@@ -36,12 +33,8 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       title: 'Flutter',
       debugShowCheckedModeBanner: false,
-      theme: ThemeData(
-        primaryColor: Colors.white
-      ),
       scrollBehavior: MyCustomScrollBehavior(),
-      home:   ClinicDb(),
-
+      home: const Registration(),
     );
   }
 }
