@@ -2,15 +2,17 @@ import 'package:flutter/material.dart';
 import '../../utils.dart';
 import '../widgets/profile-avatar.dart';
 import 'package:mad_cw2_vet_me/screens/widgets/text-field.dart';
-
 import '../widgets/profile_pic.dart';
+import 'list-of-pets.dart';
+
+const List<String> list = <String>['Female','Male'];
 
 class ViewPet extends StatelessWidget {
   final TextEditingController _nameController = TextEditingController();
   final TextEditingController _ageController = TextEditingController();
-  final TextEditingController _genderController = TextEditingController();
   final TextEditingController _breedController = TextEditingController();
   final TextEditingController _detailsController = TextEditingController();
+  String dropdownValue = list.first;
 
   ViewPet({super.key});
 
@@ -80,10 +82,24 @@ class ViewPet extends StatelessWidget {
               color: const Color(0xff000000),
             ),
           ),
-          InputField(
-              hintText: "Age",
-              controller: _ageController,
-              obscureText: false),
+          Container(
+              decoration: BoxDecoration(
+                  color: Colors.white,
+                  border: Border.all(color: Colors.grey.shade300),
+                  borderRadius: BorderRadius.circular(12.0)),
+              child: Padding(
+                  padding: const EdgeInsets.only(left: 20.0),
+                  child: TextField(
+                    keyboardType: TextInputType.number,
+                    textInputAction: TextInputAction.done,
+                    controller: _ageController,
+                    decoration: const InputDecoration(
+                        border: InputBorder.none,
+                        hintText: "Age (Years)"
+                    ),
+                  )
+              )
+          ),
           const SizedBox(
             height: 20.0,
           ),
@@ -95,10 +111,30 @@ class ViewPet extends StatelessWidget {
               color: const Color(0xff000000),
             ),
           ),
-          InputField(
-              hintText: "Gender",
-              controller: _genderController,
-              obscureText: false),
+          Container(
+              decoration: BoxDecoration(
+                  color: Colors.white,
+                  border: Border.all(color: Colors.grey.shade300),
+                  borderRadius: BorderRadius.circular(12.0)),
+              child: Padding(
+                  padding: const EdgeInsets.only(left: 20.0),
+                  child: DropdownButton<String>(
+                    value: dropdownValue,
+                    icon: const Icon(Icons.arrow_downward),
+                    elevation: 0,
+                    onChanged: (String? value) {
+                      // This is called when the user selects an item.
+                      dropdownValue = value!;
+                    },
+                    items: list.map<DropdownMenuItem<String>>((String value) {
+                      return DropdownMenuItem<String>(
+                        value: value,
+                        child: Text(value),
+                      );
+                    }).toList(),
+                  )
+              )
+          ),
           const SizedBox(
             height: 20.0,
           ),
@@ -152,7 +188,21 @@ class ViewPet extends StatelessWidget {
               onPressed: (){
 
               },
-              child: const Text('Edit'))
+              child: const Text('Edit')),
+          const SizedBox(
+            height: 30.0,
+          ),
+          TextButton(
+              style: TextButton.styleFrom(
+                  shape: CircleBorder(),
+                  padding: EdgeInsets.all(15),
+                  foregroundColor: Colors.white,
+                  backgroundColor: Colors.green.shade900,
+                  textStyle: const TextStyle(fontSize: 15)),
+              onPressed: () {
+                Navigator.of(context).push(MaterialPageRoute(builder: (context) => PetList()));
+              },
+              child: const Icon(Icons.filter_list_alt))
         ],
       ),
 

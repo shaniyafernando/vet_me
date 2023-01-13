@@ -4,6 +4,7 @@ import '../widgets/pet-details.dart';
 import '../widgets/profile-avatar.dart';
 import '../../utils.dart';
 import '../widgets/text-field.dart';
+import 'create-pet-profile.dart';
 
 class PetList extends StatefulWidget {
   const PetList({Key? key}) : super(key: key);
@@ -59,20 +60,22 @@ class _PetListDashboardState extends State<PetList> {
                 height: 10.0,
               ),
               const PetDetails(
-                name: 'Poppy',
+                name: 'Chiko',
                 category: 'Labrador',),
               const SizedBox(
                 height: 10.0,
               ),
               TextButton(
                   style: TextButton.styleFrom(
+                      shape: CircleBorder(),
+                      padding: EdgeInsets.all(15),
                       foregroundColor: Colors.white,
-                      backgroundColor: Colors.blue.shade900,
+                      backgroundColor: Colors.green.shade900,
                       textStyle: const TextStyle(fontSize: 15)),
-                  onPressed: (){
-
+                  onPressed: () {
+                    Navigator.of(context).push(MaterialPageRoute(builder: (context) => PetProfile()));
                   },
-                  child: const Text('Add a New Pet'))
+                  child: const Icon(Icons.add))
             ],
           ),
         ),

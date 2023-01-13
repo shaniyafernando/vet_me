@@ -1,14 +1,14 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:geoflutterfire2/geoflutterfire2.dart';
-
 import '../models/users.dart';
 
 class ClinicController{
 
+  final geo = GeoFlutterFire();
   final CollectionReference collection =
   FirebaseFirestore.instance.collection('clinic');
 
-  final geo = GeoFlutterFire();
+  Stream<List<DocumentSnapshot>> filteredClinics = [] as Stream<List<DocumentSnapshot<Object?>>>;
 
   void addClinic(AppUser user) {
     collection.withConverter(
@@ -17,9 +17,10 @@ class ClinicController{
     ).add(user);
   }
 
-  Stream<List<DocumentSnapshot>> filterByLocationAndRadius(double radius,GeoFirePoint location){
-    return geo.collection(collectionRef: collection)
-        .within(center: location, radius: radius, field: 'position');
+   filterClinicsByRadiusForGivenLocation(String radius, GeoFirePoint center){
+    double radiusInKm = double.parse(radius);
+    double radiusInM = radiusInKm * 1000;
+    Stream<List<DocumentSnapshot>> filteredClinics = geo.collection(collectionRef: collection)
+        .within(center: center, radius: radiusInM, field: 'position');
   }
-
 }

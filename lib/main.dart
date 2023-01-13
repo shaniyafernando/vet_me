@@ -1,16 +1,8 @@
-import 'dart:ui';
-
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
-import 'package:mad_cw2_vet_me/screens/Clinic/ClinciDB.dart';
-import 'package:mad_cw2_vet_me/screens/authentication/login-screen.dart';
-import 'package:mad_cw2_vet_me/screens/authentication/opening-screen-default.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:mad_cw2_vet_me/screens/authentication/registration.dart';
-import 'package:mad_cw2_vet_me/screens/clinic-dashboard.dart';
-import 'package:mad_cw2_vet_me/screens/clinic.dart';
-import 'package:mad_cw2_vet_me/screens/pet-owner/pet-owner-dashboard.dart';
 import 'package:mad_cw2_vet_me/utils.dart';
-
 
 import 'firebase_options.dart';
 
@@ -21,18 +13,20 @@ void main() async {
     options: DefaultFirebaseOptions.currentPlatform,
   );
 
-  runApp( const MyApp());
+  runApp(const ProviderScope(child: MyApp(),));
 }
 
-class MyApp extends StatelessWidget {
+class MyApp extends ConsumerWidget {
    const MyApp({super.key});
 
-  // This widget is the root of your application.
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
     return MaterialApp(
       title: 'Flutter',
       debugShowCheckedModeBanner: false,
+      theme: ThemeData(
+        primaryColor: Colors.white
+      ),
       scrollBehavior: MyCustomScrollBehavior(),
       home: const Registration(),
     );

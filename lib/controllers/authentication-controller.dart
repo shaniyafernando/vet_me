@@ -6,11 +6,16 @@ import 'package:mad_cw2_vet_me/screens/authentication/opening-screen-default.dar
 
 import '../screens/authentication/login-screen.dart';
 
-class AuthenticationController{
+class AuthenticationController extends ChangeNotifier{
 
+  List<bool> isSelected = <bool>[true, false];
 
-
-
+  onToggle(){
+    for (int buttonIndex = 0; buttonIndex < isSelected.length; buttonIndex++) {
+      isSelected[buttonIndex] = !isSelected[buttonIndex];
+      notifyListeners();
+    }
+  }
 
   handleAuthState() {
     return StreamBuilder(

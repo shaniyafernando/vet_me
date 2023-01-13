@@ -1,17 +1,20 @@
 import 'package:flutter/material.dart';
 import 'package:google_places_flutter/google_places_flutter.dart';
+import 'package:mad_cw2_vet_me/screens/pet-owner/list-of-pets.dart';
 import '../../utils.dart';
 import '../widgets/profile-avatar.dart';
 import 'package:mad_cw2_vet_me/screens/widgets/text-field.dart';
 import '../widgets/profile_pic.dart';
 
+const List<String> list = <String>['Female','Male'];
+
 class PetProfile extends StatelessWidget {
 
   final TextEditingController _nameController = TextEditingController();
   final TextEditingController _ageController = TextEditingController();
-  final TextEditingController _genderController = TextEditingController();
   final TextEditingController _breedController = TextEditingController();
   final TextEditingController _detailsController = TextEditingController();
+  String dropdownValue = list.first;
 
   PetProfile({super.key});
 
@@ -110,15 +113,30 @@ class PetProfile extends StatelessWidget {
               color: const Color(0xff000000),
             ),
           ),
-   DropdownButton<String>(
-          onChanged: (value){
-
-          },
-          items: [
-      DropdownMenuItem( child: Text('Male'), value: 'Male', ),
-            DropdownMenuItem( child: Text('Female'), value: 'Female', ),
-    ],
-    ),
+          Container(
+              decoration: BoxDecoration(
+                  color: Colors.white,
+                  border: Border.all(color: Colors.grey.shade300),
+                  borderRadius: BorderRadius.circular(12.0)),
+              child: Padding(
+                  padding: const EdgeInsets.only(left: 20.0),
+                  child: DropdownButton<String>(
+                    value: dropdownValue,
+                    icon: const Icon(Icons.arrow_downward),
+                    elevation: 0,
+                    onChanged: (String? value) {
+                      // This is called when the user selects an item.
+                      dropdownValue = value!;
+                    },
+                    items: list.map<DropdownMenuItem<String>>((String value) {
+                      return DropdownMenuItem<String>(
+                        value: value,
+                        child: Text(value),
+                      );
+                    }).toList(),
+                  )
+              )
+          ),
           const SizedBox(
             height: 20.0,
           ),
@@ -158,7 +176,21 @@ class PetProfile extends StatelessWidget {
                   backgroundColor: Colors.blue.shade900,
                   textStyle: const TextStyle(fontSize: 15)),
               onPressed: () {},
-              child: const Text('Save'))
+              child: const Text('Save')),
+          const SizedBox(
+            height: 30.0,
+          ),
+          TextButton(
+              style: TextButton.styleFrom(
+                  shape: CircleBorder(),
+                  padding: EdgeInsets.all(15),
+                  foregroundColor: Colors.white,
+                  backgroundColor: Colors.green.shade900,
+                  textStyle: const TextStyle(fontSize: 15)),
+              onPressed: () {
+                Navigator.of(context).push(MaterialPageRoute(builder: (context) => PetList()));
+              },
+              child: const Icon(Icons.filter_list_alt))
         ],
       ),
     );

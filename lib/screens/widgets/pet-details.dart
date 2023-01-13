@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:mad_cw2_vet_me/screens/pet-owner/view-pet.dart';
 
 import '../../utils.dart';
 
@@ -33,7 +34,9 @@ class PetDetails extends StatelessWidget {
               color: const Color(0xff000000),
             ),
           ),
-          onPressed: () {},
+          onPressed: () {
+            Navigator.of(context).push(MaterialPageRoute(builder: (context) => ViewPet()));
+          },
           child: const Text('view')),
       title: Text(
         name,

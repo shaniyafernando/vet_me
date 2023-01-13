@@ -1,5 +1,6 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:geoflutterfire2/geoflutterfire2.dart';
 import 'package:google_places_flutter/google_places_flutter.dart';
 import 'package:google_places_flutter/model/prediction.dart';
@@ -9,20 +10,18 @@ import 'package:mad_cw2_vet_me/controllers/pet-owner-controller.dart';
 import 'package:mad_cw2_vet_me/models/users.dart';
 import 'package:mad_cw2_vet_me/screens/widgets/text-field.dart';
 import 'package:mask_text_input_formatter/mask_text_input_formatter.dart';
-
 import '../../utils.dart';
 
-class Registration extends StatefulWidget {
+class Registration extends ConsumerStatefulWidget {
   const Registration({Key? key}) : super(key: key);
 
   @override
-  State<Registration> createState() => _RegistrationState();
+  ConsumerState<Registration> createState() => _RegistrationState();
 }
 
-const List<String> list = <String>['Pet Owner','Clinic'];
+const List<String> list = <String>['Pet Owner', 'Clinic'];
 
-
-class _RegistrationState extends State<Registration> {
+class _RegistrationState extends ConsumerState<Registration> {
   final TextEditingController _emailController = TextEditingController();
   final TextEditingController _usernameController = TextEditingController();
   final TextEditingController _passwordController = TextEditingController();
@@ -34,7 +33,7 @@ class _RegistrationState extends State<Registration> {
   final geo = GeoFlutterFire();
   late GeoFirePoint myLocation;
   final maskFormatter = MaskTextInputFormatter(mask: "### ### ####");
-  List<bool> isSelected = <bool>[true, false];
+  List<bool> isSelected = [true, false];
   static const List<Widget> user = <Widget>[Text('Pet Owner'), Text('Clinic')];
 
   @override
@@ -50,7 +49,6 @@ class _RegistrationState extends State<Registration> {
 
   @override
   Widget build(BuildContext context) {
-
     double baseWidth = 390;
     double fem = MediaQuery.of(context).size.width / baseWidth;
     double ffem = fem * 0.97;
@@ -58,7 +56,6 @@ class _RegistrationState extends State<Registration> {
     PetOwnerController newPet = PetOwnerController();
     ClinicController newClinic = ClinicController();
     AuthenticationController auth = AuthenticationController();
-
 
     return Scaffold(
       backgroundColor: Colors.white,
@@ -102,10 +99,16 @@ class _RegistrationState extends State<Registration> {
               ),
               ToggleButtons(
                 direction: Axis.horizontal,
-                onPressed: (int index) {
+                onPressed: (index) {
                     setState(() {
-                      for (int buttonIndex = 0; buttonIndex < isSelected.length; buttonIndex++) {
-                        isSelected[buttonIndex] = !isSelected[buttonIndex];
+                      for (int buttonIndex = 0;
+                      buttonIndex < isSelected.length;
+                      buttonIndex++) {
+                        if (buttonIndex == index) {
+                          isSelected[buttonIndex] = true;
+                        }else{
+                          isSelected[buttonIndex] = false;
+                        }
                       }
                     });
                 },
@@ -128,7 +131,9 @@ class _RegistrationState extends State<Registration> {
                   hintText: "Username",
                   controller: _usernameController,
                   obscureText: false),
-              const SizedBox(height: 10.0,),
+              const SizedBox(
+                height: 10.0,
+              ),
               Container(
                   decoration: BoxDecoration(
                       border: Border.all(color: Colors.grey.shade300),
@@ -181,85 +186,91 @@ class _RegistrationState extends State<Registration> {
                       border: Border.all(color: Colors.grey.shade300),
                       borderRadius: BorderRadius.circular(12.0)),
                   child: Padding(
-                    padding: const EdgeInsets.only(left: 20.0),
-                    child: GooglePlaceAutoCompleteTextField(
+                      padding: const EdgeInsets.only(left: 20.0),
+                      child: GooglePlaceAutoCompleteTextField(
                           textEditingController: _locationController,
                           googleAPIKey: key,
-                          inputDecoration: const InputDecoration(border: InputBorder.none,hintText: "Address"),
+                          inputDecoration: const InputDecoration(
+                              border: InputBorder.none, hintText: "Address"),
                           countries: const ['lk'],
                           debounceTime: 800,
                           isLatLngRequired: true,
                           getPlaceDetailWithLatLng: (Prediction prediction) {
-                            myLocation = geo.point(latitude: double.parse(prediction.lat!), longitude: double.parse(prediction.lng!));
+                            myLocation = geo.point(
+                                latitude: double.parse(prediction.lat!),
+                                longitude: double.parse(prediction.lng!));
                           },
                           itmClick: (Prediction prediction) {
                             _locationController.text = prediction.description!;
 
-                            _locationController.selection = TextSelection.fromPosition(
-                                TextPosition(offset: prediction.description!.length));
+                            _locationController.selection =
+                                TextSelection.fromPosition(TextPosition(
+                                    offset: prediction.description!.length));
                           }
-                        // default 600 ms ,
-                      )
-                  )),
+                          // default 600 ms ,
+                          ))),
               const SizedBox(
                 height: 40.0,
               ),
               InkWell(
-                onTap: () {
-
-                  try{
-                    if(_passwordController.text.trim() ==
-                        _confirmPasswordController.text.trim()){
-
-                      auth.signUpWithEmailAndPassword(email: _emailController.text, password: _passwordController.text);
+                  onTap: () {
+                    try {
+                      if (_passwordController.text.trim() ==
+                          _confirmPasswordController.text.trim()) {
+                        auth.signInWithEmailAndPassword(
+                            email: _emailController.text,
+                            password: _passwordController.text);
+                      }
+                    } on FirebaseAuthException catch (error) {
+                      ScaffoldMessenger.of(context).showSnackBar(
+                          SnackBar(content: Text(error.message!)));
                     }
-                    ScaffoldMessenger.of(context).showSnackBar(const SnackBar(content: Text("Welcome to VetMe!")));
-                  } on FirebaseAuthException catch(error){
-                    ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text(error.message!)));
-                  }
 
-                  AppUser newUser = AppUser.user(
-                      _usernameController.text,
-                      _emailController.text,
-                      _phoneNumberController.text,
-                      myLocation,
-                      FirebaseAuth.instance.currentUser?.uid ?? '');
+                    AppUser newUser = AppUser.user(
+                        _usernameController.text,
+                        _emailController.text,
+                        _phoneNumberController.text,
+                        myLocation,
+                        FirebaseAuth.instance.currentUser!.uid);
 
-                  if(isSelected[0] == true){
-                    newPet.addPetOwner(newUser);
-                  }else{newClinic.addClinic(newUser);}
+                    if (isSelected[0] == true) {
+                      newPet.addPetOwner(newUser);
+                    } else {
+                      newClinic.addClinic(newUser);
+                    }
 
-
-                },
-                child: Container(
-                  // autogroupyrimvbK (KxJZrwMJRpCK8LHMSCYrim)
-                  // margin: EdgeInsets.fromLTRB(0 * fem, 0 * fem, 0 * fem, 67 * fem),
-                  width: double.infinity,
-                  height: 50 * fem,
-                  decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(15 * fem),
-                    gradient: const LinearGradient(
-                      begin: Alignment(-0.118, -1.684),
-                      end: Alignment(-0.096, 2.702),
-                      colors: <Color>[Color(0xb204097e), Color(0xb20019ff)],
-                      stops: <double>[0, 1],
+                    ScaffoldMessenger.of(context).showSnackBar(
+                        const SnackBar(content: Text("Welcome to VetMe!")));
+                  },
+                  child: Container(
+                    // autogroupyrimvbK (KxJZrwMJRpCK8LHMSCYrim)
+                    // margin: EdgeInsets.fromLTRB(0 * fem, 0 * fem, 0 * fem, 67 * fem),
+                    width: double.infinity,
+                    height: 50 * fem,
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(15 * fem),
+                      gradient: const LinearGradient(
+                        begin: Alignment(-0.118, -1.684),
+                        end: Alignment(-0.096, 2.702),
+                        colors: <Color>[Color(0xb204097e), Color(0xb20019ff)],
+                        stops: <double>[0, 1],
+                      ),
                     ),
-                  ),
-                  child: Center(
-                    child: Text(
-                      'Register',
-                      textAlign: TextAlign.center,
-                      style: SafeGoogleFont(
-                        'Inter',
-                        fontSize: 14 * ffem,
-                        fontWeight: FontWeight.w600,
-                        height: 1.2125 * ffem / fem,
-                        color: const Color(0xffffffff),
+                    child: Center(
+                      child: Text(
+                        'Register',
+                        textAlign: TextAlign.center,
+                        style: SafeGoogleFont(
+                          'Inter',
+                          fontSize: 14 * ffem,
+                          fontWeight: FontWeight.w600,
+                          height: 1.2125 * ffem / fem,
+                          color: const Color(0xffffffff),
+                        ),
                       ),
                     ),
                   ),
                 ),
-              ),
               const SizedBox(
                 height: 50.0,
               ),
