@@ -42,6 +42,7 @@ dependencies:
   google_places_flutter: ^2.0.5
   geoflutterfire2: ^2.3.14
   cupertino_icons: ^1.0.2
+  draggable_fab: ^0.1.4
   image_picker: ^0.8.6
 
 

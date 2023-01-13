@@ -5,7 +5,7 @@ import 'package:google_fonts/google_fonts.dart';
 
 import '../utils.dart';
 
-class Scene extends StatelessWidget {
+class ClinicTest extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     double baseWidth = 390;
