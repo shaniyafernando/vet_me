@@ -56,12 +56,12 @@ class _ProfilePicState extends State<ProfilePic> {
       child: Stack(
         children: <Widget>[
           CircleAvatar(
-            radius: 100.0,
+            radius: 65.0,
             backgroundColor: Colors.teal,
             child: _image != null
-                ? CircleAvatar(backgroundImage: FileImage(_image!), radius: 100.0,)
+                ? new CircleAvatar(backgroundImage: new FileImage(_image!), radius: 100.0,)
             //Image.file(_image!)
-                : const Text('Please select an image'),
+                : const Text('Select an image'),
           ),
           Positioned(
             bottom: 10.0,
@@ -73,13 +73,13 @@ class _ProfilePicState extends State<ProfilePic> {
                   builder: ((builder) => bottomSheet()),
                 );
               },
-              child: const CircleAvatar(
-                radius: 25.0,
+              child: CircleAvatar(
+                radius: 15.0,
                 backgroundColor: Colors.blue,
                 child: Icon(
                   Icons.edit,
                   color: Colors.white,
-                  size: 30.0,
+                  size: 25.0,
                 ),
               ),
 
@@ -94,32 +94,32 @@ class _ProfilePicState extends State<ProfilePic> {
     return Container(
       height: 100.0,
       width: MediaQuery.of(context).size.width,
-      margin: const EdgeInsets.symmetric(
+      margin: EdgeInsets.symmetric(
         horizontal: 20,
         vertical: 20,
       ),
       child: Column(children: <Widget>[
-        const Text(
+        Text(
           "Choose Display Picture",
           style: TextStyle(
             fontSize: 20.0,
           ),
         ),
-        const SizedBox(
+        SizedBox(
           height: 20,
         ),
         Row(
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
             TextButton.icon(
-              icon: const Icon(Icons.camera),
+              icon: Icon(Icons.camera),
               onPressed: _openImagePicker1,
-              label: const Text("Camera"),
+              label: Text("Camera"),
             ),
             TextButton.icon(
-              icon: const Icon(Icons.camera),
+              icon: Icon(Icons.camera),
               onPressed: _openImagePicker,
-              label: const Text("Gallery"),
+              label: Text("Gallery"),
             ),
           ],
         )
