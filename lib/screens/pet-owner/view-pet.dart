@@ -5,9 +5,14 @@ import 'package:mad_cw2_vet_me/screens/widgets/text-field.dart';
 
 import '../widgets/profile_pic.dart';
 
+const List<String> list = <String>['Female','Male'];
+
 class ViewPet extends StatelessWidget {
   final TextEditingController _nameController = TextEditingController();
   final TextEditingController _ageController = TextEditingController();
+  final TextEditingController _breedController = TextEditingController();
+  final TextEditingController _otherController = TextEditingController();
+  String dropdownValue = list.first;
 
   ViewPet({super.key});
 
@@ -68,23 +73,43 @@ class ViewPet extends StatelessWidget {
           const SizedBox(
             height: 20.0,
           ),
-          InputField(
-              hintText: "Gender",
-              controller: _ageController,
-              obscureText: false),
+      Container(
+          decoration: BoxDecoration(
+              color: Colors.white,
+              border: Border.all(color: Colors.grey.shade300),
+              borderRadius: BorderRadius.circular(12.0)),
+          child: Padding(
+              padding: const EdgeInsets.only(left: 20.0),
+              child: DropdownButton<String>(
+                value: dropdownValue,
+                icon: const Icon(Icons.arrow_downward),
+                elevation: 0,
+                onChanged: (String? value) {
+                  // This is called when the user selects an item.
+                  dropdownValue = value!;
+                },
+                items: list.map<DropdownMenuItem<String>>((String value) {
+                  return DropdownMenuItem<String>(
+                    value: value,
+                    child: Text(value),
+                  );
+                }).toList(),
+              )
+          )
+      ),
           const SizedBox(
             height: 20.0,
           ),
           InputField(
               hintText: "Breed",
-              controller: _nameController,
+              controller: _breedController,
               obscureText: false),
           const SizedBox(
             height: 20.0,
           ),
           InputField(
               hintText: "Other Details",
-              controller: _ageController,
+              controller: _otherController,
               obscureText: false),
           const SizedBox(
             height: 30.0,

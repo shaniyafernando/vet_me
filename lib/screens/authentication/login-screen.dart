@@ -18,7 +18,6 @@ class _LoginState extends State<Login> {
 
   @override
   Widget build(BuildContext context) {
-    List<bool> isSelected = [true, false];
 
     double baseWidth = 390;
     double fem = MediaQuery.of(context).size.width / baseWidth;
@@ -26,10 +25,6 @@ class _LoginState extends State<Login> {
 
     AuthenticationController auth = AuthenticationController();
 
-    login(){
-
-
-    }
 
     return Scaffold(
       backgroundColor: Colors.white,
