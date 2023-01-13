@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:google_places_flutter/google_places_flutter.dart';
+import 'package:mad_cw2_vet_me/screens/pet-owner/list-of-pets.dart';
 import '../../utils.dart';
 import '../widgets/profile-avatar.dart';
 import 'package:mad_cw2_vet_me/screens/widgets/text-field.dart';
@@ -6,12 +8,12 @@ import '../widgets/profile_pic.dart';
 
 const List<String> list = <String>['Female','Male'];
 
-
 class PetProfile extends StatelessWidget {
+
   final TextEditingController _nameController = TextEditingController();
   final TextEditingController _ageController = TextEditingController();
   final TextEditingController _breedController = TextEditingController();
-  final TextEditingController _otherController = TextEditingController();
+  final TextEditingController _detailsController = TextEditingController();
   String dropdownValue = list.first;
 
   PetProfile({super.key});
@@ -19,8 +21,12 @@ class PetProfile extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     double baseWidth = 390;
-    double fem = MediaQuery.of(context).size.width / baseWidth;
+    double fem = MediaQuery
+        .of(context)
+        .size
+        .width / baseWidth;
     double ffem = fem * 0.97;
+
 
     return Scaffold(
       appBar: AppBar(
@@ -41,7 +47,7 @@ class PetProfile extends StatelessWidget {
               'Add a new pet',
               style: SafeGoogleFont(
                 'Poppins',
-                fontSize: 18 * ffem,
+                fontSize: 20 * ffem,
                 fontWeight: FontWeight.w600,
                 height: 1.9462193383 * ffem / fem,
                 color: const Color(0xff000000),
@@ -55,6 +61,14 @@ class PetProfile extends StatelessWidget {
           const SizedBox(
             height: 30.0,
           ),
+          Text(
+            'Name',
+            style: SafeGoogleFont(
+              'KrubKrub:wght@600',
+              fontSize: 18 * ffem,
+              color: const Color(0xff000000),
+            ),
+          ),
           InputField(
               hintText: "Name",
               controller: _nameController,
@@ -62,12 +76,42 @@ class PetProfile extends StatelessWidget {
           const SizedBox(
             height: 20.0,
           ),
-          InputField(
-              hintText: "Age",
-              controller: _ageController,
-              obscureText: false),
+          Text(
+            'Age',
+            style: SafeGoogleFont(
+              'KrubKrub:wght@600',
+              fontSize: 18 * ffem,
+              color: const Color(0xff000000),
+            ),
+          ),
+          Container(
+              decoration: BoxDecoration(
+                  color: Colors.white,
+                  border: Border.all(color: Colors.grey.shade300),
+                  borderRadius: BorderRadius.circular(12.0)),
+              child: Padding(
+                  padding: const EdgeInsets.only(left: 20.0),
+                  child: TextField(
+                    keyboardType: TextInputType.number,
+                    textInputAction: TextInputAction.done,
+                    controller: _ageController,
+                    decoration: const InputDecoration(
+                        border: InputBorder.none,
+                        hintText: "Age (Years)"
+                    ),
+                  )
+              )
+          ),
           const SizedBox(
             height: 20.0,
+          ),
+          Text(
+            'Gender',
+            style: SafeGoogleFont(
+              'KrubKrub:wght@600',
+              fontSize: 18 * ffem,
+              color: const Color(0xff000000),
+            ),
           ),
           Container(
               decoration: BoxDecoration(
@@ -82,7 +126,7 @@ class PetProfile extends StatelessWidget {
                     elevation: 0,
                     onChanged: (String? value) {
                       // This is called when the user selects an item.
-                        dropdownValue = value!;
+                      dropdownValue = value!;
                     },
                     items: list.map<DropdownMenuItem<String>>((String value) {
                       return DropdownMenuItem<String>(
@@ -96,6 +140,14 @@ class PetProfile extends StatelessWidget {
           const SizedBox(
             height: 20.0,
           ),
+          Text(
+            'Breed',
+            style: SafeGoogleFont(
+              'KrubKrub:wght@600',
+              fontSize: 18 * ffem,
+              color: const Color(0xff000000),
+            ),
+          ),
           InputField(
               hintText: "Breed",
               controller: _breedController,
@@ -103,9 +155,17 @@ class PetProfile extends StatelessWidget {
           const SizedBox(
             height: 20.0,
           ),
+          Text(
+            'Other Details',
+            style: SafeGoogleFont(
+              'KrubKrub:wght@600',
+              fontSize: 18 * ffem,
+              color: const Color(0xff000000),
+            ),
+          ),
           InputField(
               hintText: "Other Details",
-              controller: _otherController,
+              controller: _detailsController,
               obscureText: false),
           const SizedBox(
             height: 30.0,
@@ -116,9 +176,24 @@ class PetProfile extends StatelessWidget {
                   backgroundColor: Colors.blue.shade900,
                   textStyle: const TextStyle(fontSize: 15)),
               onPressed: () {},
-              child: const Text('Save'))
+              child: const Text('Save')),
+          const SizedBox(
+            height: 30.0,
+          ),
+          TextButton(
+              style: TextButton.styleFrom(
+                  shape: CircleBorder(),
+                  padding: EdgeInsets.all(15),
+                  foregroundColor: Colors.white,
+                  backgroundColor: Colors.green.shade900,
+                  textStyle: const TextStyle(fontSize: 15)),
+              onPressed: () {
+                Navigator.of(context).push(MaterialPageRoute(builder: (context) => PetList()));
+              },
+              child: const Icon(Icons.filter_list_alt))
         ],
       ),
     );
   }
+
 }

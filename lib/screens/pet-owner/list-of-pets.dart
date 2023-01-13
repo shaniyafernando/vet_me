@@ -60,7 +60,7 @@ class _PetListDashboardState extends State<PetList> {
                 height: 10.0,
               ),
               const PetDetails(
-                name: 'Poppy',
+                name: 'Chiko',
                 category: 'Labrador',),
               const SizedBox(
                 height: 10.0,
