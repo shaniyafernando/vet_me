@@ -4,6 +4,7 @@ import '../widgets/profile-avatar.dart';
 import 'package:mad_cw2_vet_me/screens/widgets/text-field.dart';
 
 import '../widgets/profile_pic.dart';
+import 'list-of-pets.dart';
 
 class ViewPet extends StatelessWidget {
   final TextEditingController _nameController = TextEditingController();
@@ -152,7 +153,21 @@ class ViewPet extends StatelessWidget {
               onPressed: (){
 
               },
-              child: const Text('Edit'))
+              child: const Text('Edit')),
+          const SizedBox(
+            height: 30.0,
+          ),
+          TextButton(
+              style: TextButton.styleFrom(
+                  shape: CircleBorder(),
+                  padding: EdgeInsets.all(15),
+                  foregroundColor: Colors.white,
+                  backgroundColor: Colors.green.shade900,
+                  textStyle: const TextStyle(fontSize: 15)),
+              onPressed: () {
+                Navigator.of(context).push(MaterialPageRoute(builder: (context) => PetList()));
+              },
+              child: const Icon(Icons.filter_list_alt))
         ],
       ),
 

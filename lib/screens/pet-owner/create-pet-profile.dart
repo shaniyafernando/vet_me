@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:google_places_flutter/google_places_flutter.dart';
+import 'package:mad_cw2_vet_me/screens/pet-owner/list-of-pets.dart';
 import '../../utils.dart';
 import '../widgets/profile-avatar.dart';
 import 'package:mad_cw2_vet_me/screens/widgets/text-field.dart';
@@ -158,7 +159,21 @@ class PetProfile extends StatelessWidget {
                   backgroundColor: Colors.blue.shade900,
                   textStyle: const TextStyle(fontSize: 15)),
               onPressed: () {},
-              child: const Text('Save'))
+              child: const Text('Save')),
+          const SizedBox(
+            height: 30.0,
+          ),
+          TextButton(
+              style: TextButton.styleFrom(
+                  shape: CircleBorder(),
+                  padding: EdgeInsets.all(15),
+                  foregroundColor: Colors.white,
+                  backgroundColor: Colors.green.shade900,
+                  textStyle: const TextStyle(fontSize: 15)),
+              onPressed: () {
+                Navigator.of(context).push(MaterialPageRoute(builder: (context) => PetList()));
+              },
+              child: const Icon(Icons.filter_list_alt))
         ],
       ),
     );
