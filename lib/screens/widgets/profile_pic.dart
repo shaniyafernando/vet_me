@@ -56,7 +56,7 @@ class _ProfilePicState extends State<ProfilePic> {
       child: Stack(
         children: <Widget>[
           CircleAvatar(
-            radius: 100.0,
+            radius: 65.0,
             backgroundColor: Colors.teal,
             child: _image != null
                 ? new CircleAvatar(backgroundImage: new FileImage(_image!), radius: 100.0,)
@@ -74,7 +74,7 @@ class _ProfilePicState extends State<ProfilePic> {
                 );
               },
               child: CircleAvatar(
-                radius: 25.0,
+                radius: 15.0,
                 backgroundColor: Colors.blue,
                 child: Icon(
                   Icons.edit,

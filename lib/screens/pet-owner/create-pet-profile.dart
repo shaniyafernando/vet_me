@@ -1,20 +1,29 @@
 import 'package:flutter/material.dart';
+import 'package:google_places_flutter/google_places_flutter.dart';
 import '../../utils.dart';
 import '../widgets/profile-avatar.dart';
 import 'package:mad_cw2_vet_me/screens/widgets/text-field.dart';
 import '../widgets/profile_pic.dart';
 
 class PetProfile extends StatelessWidget {
+
   final TextEditingController _nameController = TextEditingController();
   final TextEditingController _ageController = TextEditingController();
+  final TextEditingController _genderController = TextEditingController();
+  final TextEditingController _breedController = TextEditingController();
+  final TextEditingController _detailsController = TextEditingController();
 
   PetProfile({super.key});
 
   @override
   Widget build(BuildContext context) {
     double baseWidth = 390;
-    double fem = MediaQuery.of(context).size.width / baseWidth;
+    double fem = MediaQuery
+        .of(context)
+        .size
+        .width / baseWidth;
     double ffem = fem * 0.97;
+
 
     return Scaffold(
       appBar: AppBar(
@@ -35,7 +44,7 @@ class PetProfile extends StatelessWidget {
               'Add a new pet',
               style: SafeGoogleFont(
                 'Poppins',
-                fontSize: 18 * ffem,
+                fontSize: 20 * ffem,
                 fontWeight: FontWeight.w600,
                 height: 1.9462193383 * ffem / fem,
                 color: const Color(0xff000000),
@@ -49,6 +58,14 @@ class PetProfile extends StatelessWidget {
           const SizedBox(
             height: 30.0,
           ),
+          Text(
+            'Name',
+            style: SafeGoogleFont(
+              'KrubKrub:wght@600',
+              fontSize: 18 * ffem,
+              color: const Color(0xff000000),
+            ),
+          ),
           InputField(
               hintText: "Name",
               controller: _nameController,
@@ -56,30 +73,81 @@ class PetProfile extends StatelessWidget {
           const SizedBox(
             height: 20.0,
           ),
-          InputField(
-              hintText: "Age",
-              controller: _ageController,
-              obscureText: false),
+          Text(
+            'Age',
+            style: SafeGoogleFont(
+              'KrubKrub:wght@600',
+              fontSize: 18 * ffem,
+              color: const Color(0xff000000),
+            ),
+          ),
+          Container(
+              decoration: BoxDecoration(
+                  color: Colors.white,
+                  border: Border.all(color: Colors.grey.shade300),
+                  borderRadius: BorderRadius.circular(12.0)),
+              child: Padding(
+                  padding: const EdgeInsets.only(left: 20.0),
+                  child: TextField(
+                    keyboardType: TextInputType.number,
+                    textInputAction: TextInputAction.done,
+                    controller: _ageController,
+                    decoration: const InputDecoration(
+                        border: InputBorder.none,
+                        hintText: "Age (Years)"
+                    ),
+                  )
+              )
+          ),
           const SizedBox(
             height: 20.0,
           ),
-          InputField(
-              hintText: "Gender",
-              controller: _ageController,
-              obscureText: false),
+          Text(
+            'Gender',
+            style: SafeGoogleFont(
+              'KrubKrub:wght@600',
+              fontSize: 18 * ffem,
+              color: const Color(0xff000000),
+            ),
+          ),
+   DropdownButton<String>(
+          onChanged: (value){
+
+          },
+          items: [
+      DropdownMenuItem( child: Text('Male'), value: 'Male', ),
+            DropdownMenuItem( child: Text('Female'), value: 'Female', ),
+    ],
+    ),
           const SizedBox(
             height: 20.0,
+          ),
+          Text(
+            'Breed',
+            style: SafeGoogleFont(
+              'KrubKrub:wght@600',
+              fontSize: 18 * ffem,
+              color: const Color(0xff000000),
+            ),
           ),
           InputField(
               hintText: "Breed",
-              controller: _nameController,
+              controller: _breedController,
               obscureText: false),
           const SizedBox(
             height: 20.0,
           ),
+          Text(
+            'Other Details',
+            style: SafeGoogleFont(
+              'KrubKrub:wght@600',
+              fontSize: 18 * ffem,
+              color: const Color(0xff000000),
+            ),
+          ),
           InputField(
               hintText: "Other Details",
-              controller: _ageController,
+              controller: _detailsController,
               obscureText: false),
           const SizedBox(
             height: 30.0,
@@ -95,4 +163,5 @@ class PetProfile extends StatelessWidget {
       ),
     );
   }
+
 }
