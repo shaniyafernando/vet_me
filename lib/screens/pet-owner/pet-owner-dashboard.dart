@@ -4,7 +4,7 @@
 // import 'package:geoflutterfire2/geoflutterfire2.dart';
 // import 'package:google_places_flutter/google_places_flutter.dart';
 // import 'package:google_places_flutter/model/prediction.dart';
-// import 'package:mad_cw2_vet_me/controllers/clinic-controller.dart';
+// // import 'package:mad_cw2_vet_me/controllers/clinic-controller.dart';
 // import 'package:mad_cw2_vet_me/screens/widgets/banner-1.dart';
 // import 'package:mad_cw2_vet_me/screens/widgets/clinic-details.dart';
 // import 'package:mad_cw2_vet_me/screens/widgets/my-pets-button.dart';
@@ -35,7 +35,7 @@
 //   final TextEditingController _locationController = TextEditingController();
 //   final String key = "AIzaSyCOpaFa6BK4mGwxG1XAEFOQOifWdCMAd8g";
 //
-//   ClinicController clinicController = ClinicController();
+//   // ClinicController clinicController = ClinicController();
 //
 //
 //

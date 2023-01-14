@@ -5,7 +5,7 @@ import 'package:geoflutterfire2/geoflutterfire2.dart';
 import 'package:google_places_flutter/google_places_flutter.dart';
 import 'package:google_places_flutter/model/prediction.dart';
 import 'package:mad_cw2_vet_me/controllers/authentication-controller.dart';
-import 'package:mad_cw2_vet_me/controllers/clinic-controller.dart';
+
 import 'package:mad_cw2_vet_me/controllers/pet-owner-controller.dart';
 import 'package:mad_cw2_vet_me/models/users.dart';
 import 'package:mad_cw2_vet_me/screens/widgets/text-field.dart';
@@ -54,7 +54,7 @@ class _RegistrationState extends ConsumerState<Registration> {
     double ffem = fem * 0.97;
 
     PetOwnerController newPet = PetOwnerController();
-    ClinicController newClinic = ClinicController();
+    // ClinicController newClinic = ClinicController();
     AuthenticationController auth = AuthenticationController();
 
     return Scaffold(
@@ -237,7 +237,7 @@ class _RegistrationState extends ConsumerState<Registration> {
                     if (isSelected[0] == true) {
                       newPet.addPetOwner(newUser);
                     } else {
-                      newClinic.addClinic(newUser);
+                      // newClinic.addClinic(newUser);
                     }
 
                     ScaffoldMessenger.of(context).showSnackBar(

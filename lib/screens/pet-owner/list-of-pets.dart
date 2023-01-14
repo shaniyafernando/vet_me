@@ -65,17 +65,20 @@ class _PetListDashboardState extends State<PetList> {
               const SizedBox(
                 height: 10.0,
               ),
-              TextButton(
-                  style: TextButton.styleFrom(
-                      shape: CircleBorder(),
-                      padding: EdgeInsets.all(15),
-                      foregroundColor: Colors.white,
-                      backgroundColor: Colors.green.shade900,
-                      textStyle: const TextStyle(fontSize: 15)),
-                  onPressed: () {
-                    Navigator.of(context).push(MaterialPageRoute(builder: (context) => PetProfile()));
-                  },
-                  child: const Icon(Icons.add))
+              Align(
+                alignment: Alignment.bottomCenter,
+                child: TextButton(
+                    style: TextButton.styleFrom(
+                        shape: CircleBorder(),
+                        padding: EdgeInsets.all(15),
+                        foregroundColor: Colors.white,
+                        backgroundColor: Colors.green.shade900,
+                        textStyle: const TextStyle(fontSize: 15)),
+                    onPressed: () {
+                      Navigator.of(context).push(MaterialPageRoute(builder: (context) => PetProfile()));
+                    },
+                    child: const Icon(Icons.add)),
+              )
             ],
           ),
         ),

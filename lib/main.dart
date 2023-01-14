@@ -1,12 +1,21 @@
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:mad_cw2_vet_me/screens/Clinic/ClinciDB.dart';
 import 'package:mad_cw2_vet_me/screens/Clinic/bookingdetails.dart';
 import 'package:mad_cw2_vet_me/screens/Clinic/create-doctor-profile.dart';
+import 'package:mad_cw2_vet_me/screens/Clinic/create-schedule.dart';
 import 'package:mad_cw2_vet_me/screens/Clinic/createDoctor.dart';
 import 'package:mad_cw2_vet_me/screens/authentication/login-screen.dart';
+import 'package:mad_cw2_vet_me/screens/authentication/opening-screen-default.dart';
 import 'package:mad_cw2_vet_me/screens/authentication/registration.dart';
 import 'package:mad_cw2_vet_me/screens/pet-owner/CreateNewBooking.dart';
+import 'package:mad_cw2_vet_me/screens/pet-owner/create-pet-profile.dart';
+import 'package:mad_cw2_vet_me/screens/pet-owner/list-of-pets.dart';
+import 'package:mad_cw2_vet_me/screens/pet-owner/view-pet.dart';
+import 'package:mad_cw2_vet_me/screens/pet/edit-medical.dart';
+import 'package:mad_cw2_vet_me/screens/pet/pet-med-reco.dart';
+import 'package:mad_cw2_vet_me/screens/pet/view-pet.dart';
 import 'package:mad_cw2_vet_me/utils.dart';
 
 import 'firebase_options.dart';
@@ -18,7 +27,7 @@ void main() async {
     options: DefaultFirebaseOptions.currentPlatform,
   );
 
-  runApp(const ProviderScope(child: MyApp(),));
+  runApp( MyApp(),);
 }
 
 class MyApp extends ConsumerWidget {
@@ -33,7 +42,7 @@ class MyApp extends ConsumerWidget {
         primaryColor: Colors.white
       ),
       scrollBehavior: MyCustomScrollBehavior(),
-      home:  Login(),
+      home:  CreateSchedule(),
     );
   }
 }

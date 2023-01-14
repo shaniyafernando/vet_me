@@ -44,13 +44,10 @@ class ClinicSchedule extends StatelessWidget {
               ),
             ),
             SlotCard(),
-            SlotCard(),
-            SlotCard(),
-            SlotCard(),
-            SlotCard(),
-            SlotCard(),
-            SlotCard(),
-            SlotCard(),
+            SlotCard2(),
+            SlotCard3(),
+            SlotCard4(),
+
 
           ],
         ),
@@ -147,6 +144,261 @@ class SlotCard extends StatelessWidget {
           ),)),
 
         ),
+
+        ),
+
+      ),
+
+
+    );
+
+  }
+
+}
+class SlotCard2 extends StatelessWidget {
+
+  const SlotCard2({
+    Key? key,
+  }) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return Card(
+      color: Colors.lightBlue.shade100.withOpacity(1.0),
+      shape: RoundedRectangleBorder(
+        borderRadius: BorderRadius.circular(10.0),
+
+      ),
+      child: ExpansionTile(
+        //Slots---------------------
+        title: Text('Slot 02', style: SafeGoogleFont(
+          'Poppins',
+          fontSize: 18,
+          fontWeight: FontWeight.w600,
+          // height: 10,
+          color: Colors.blue.shade900,
+        ),),
+
+
+        children: <Widget>[
+          Align(
+            alignment: Alignment.centerLeft,
+            child: Padding(padding: EdgeInsets.only(left: 10.0),
+              child: Text('Dr John Cena', style: SafeGoogleFont(
+                'Poppins',
+                fontSize: 18,
+                fontWeight: FontWeight.w800,
+                // height: 10,
+                color: Colors.blue.shade800,
+              ),),
+            ),
+          ),
+          Align(
+            alignment: Alignment.centerLeft,
+            child: Padding(padding: EdgeInsets.only(left: 10.0, bottom: 10.0),
+              child: Text('2.00pm - 13.00pm', style: SafeGoogleFont(
+                'Poppins',
+                fontSize: 15,
+                fontWeight: FontWeight.w600,
+                // height: 10,
+                color: Colors.black,
+              ),),),
+          )
+
+
+
+        ],
+        leading: const Icon(Icons.person),
+        trailing: InkWell(
+          child: Container(
+
+            width: 80,
+            height: 35,
+            padding: new EdgeInsets.all(5.0),
+
+            decoration: BoxDecoration(
+              borderRadius: BorderRadius.circular(15),
+              color: Colors.deepOrange,
+            ),
+            child: Center(child: Text('Booked',  style: SafeGoogleFont(
+              'Poppins',
+              fontSize: 13,
+              fontWeight: FontWeight.w600,
+              // height: 10,
+              color: Colors.black,
+            ),)),
+
+          ),
+
+        ),
+
+      ),
+
+
+    );
+
+  }
+
+}
+class SlotCard3 extends StatelessWidget {
+
+  const SlotCard3({
+    Key? key,
+  }) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return Card(
+      color: Colors.lightBlue.shade100.withOpacity(1.0),
+      shape: RoundedRectangleBorder(
+        borderRadius: BorderRadius.circular(10.0),
+
+      ),
+      child: ExpansionTile(
+        //Slots---------------------
+        title: Text('Slot 03', style: SafeGoogleFont(
+          'Poppins',
+          fontSize: 18,
+          fontWeight: FontWeight.w600,
+          // height: 10,
+          color: Colors.blue.shade900,
+        ),),
+
+
+        children: <Widget>[
+          Align(
+            alignment: Alignment.centerLeft,
+            child: Padding(padding: EdgeInsets.only(left: 10.0),
+              child: Text('Dr Silva', style: SafeGoogleFont(
+                'Poppins',
+                fontSize: 18,
+                fontWeight: FontWeight.w800,
+                // height: 10,
+                color: Colors.blue.shade800,
+              ),),
+            ),
+          ),
+          Align(
+            alignment: Alignment.centerLeft,
+            child: Padding(padding: EdgeInsets.only(left: 10.0, bottom: 10.0),
+              child: Text('15.00pm', style: SafeGoogleFont(
+                'Poppins',
+                fontSize: 15,
+                fontWeight: FontWeight.w600,
+                // height: 10,
+                color: Colors.black,
+              ),),),
+          )
+
+
+
+        ],
+        leading: const Icon(Icons.person),
+        trailing: InkWell(
+          child: Container(
+
+            width: 80,
+            height: 35,
+            padding: new EdgeInsets.all(5.0),
+
+            decoration: BoxDecoration(
+              borderRadius: BorderRadius.circular(15),
+              color: Colors.green,
+            ),
+            child: Center(child: Text('Available',  style: SafeGoogleFont(
+              'Poppins',
+              fontSize: 13,
+              fontWeight: FontWeight.w600,
+              // height: 10,
+              color: Colors.black,
+            ),)),
+
+          ),
+
+        ),
+
+      ),
+
+
+    );
+
+  }
+
+}
+class SlotCard4 extends StatelessWidget {
+
+  const SlotCard4({
+    Key? key,
+  }) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return Card(
+      color: Colors.lightBlue.shade100.withOpacity(1.0),
+      shape: RoundedRectangleBorder(
+        borderRadius: BorderRadius.circular(10.0),
+
+      ),
+      child: ExpansionTile(
+        //Slots---------------------
+        title: Text('Slot 04', style: SafeGoogleFont(
+          'Poppins',
+          fontSize: 18,
+          fontWeight: FontWeight.w600,
+          // height: 10,
+          color: Colors.blue.shade900,
+        ),),
+
+
+        children: <Widget>[
+          Align(
+            alignment: Alignment.centerLeft,
+            child: Padding(padding: EdgeInsets.only(left: 10.0),
+              child: Text('Dr Kumara', style: SafeGoogleFont(
+                'Poppins',
+                fontSize: 18,
+                fontWeight: FontWeight.w800,
+                // height: 10,
+                color: Colors.blue.shade800,
+              ),),
+            ),
+          ),
+          Align(
+            alignment: Alignment.centerLeft,
+            child: Padding(padding: EdgeInsets.only(left: 10.0, bottom: 10.0),
+              child: Text('9.00am - 13.00pm', style: SafeGoogleFont(
+                'Poppins',
+                fontSize: 15,
+                fontWeight: FontWeight.w600,
+                // height: 10,
+                color: Colors.black,
+              ),),),
+          )
+
+
+
+        ],
+        leading: const Icon(Icons.person),
+        trailing: InkWell(
+          child: Container(
+
+            width: 80,
+            height: 35,
+            padding: new EdgeInsets.all(5.0),
+
+            decoration: BoxDecoration(
+              borderRadius: BorderRadius.circular(15),
+              color: Colors.deepOrange,
+            ),
+            child: Center(child: Text('Booked',  style: SafeGoogleFont(
+              'Poppins',
+              fontSize: 13,
+              fontWeight: FontWeight.w600,
+              // height: 10,
+              color: Colors.black,
+            ),)),
+
+          ),
 
         ),
 

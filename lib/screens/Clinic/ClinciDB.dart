@@ -149,13 +149,11 @@ class _ClinicDbState extends State<ClinicDb> {
               //     radius: '200',
               //     location: '49/11,fife rod'),
               DoctorCard(),
+              DocCard2(),
+              DocCard3(),
+              DocCard4(),
               DoctorCard(),
-              DoctorCard(),
-              DoctorCard(),
-              DoctorCard(),
-              DoctorCard(),
-              DoctorCard(),
-              DoctorCard(),
+
 
               const SizedBox(
                 height: 10.0,
