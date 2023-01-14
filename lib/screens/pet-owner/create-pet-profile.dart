@@ -182,13 +182,13 @@ class PetProfile extends StatelessWidget {
           ),
           TextButton(
               style: TextButton.styleFrom(
-                  shape: CircleBorder(),
-                  padding: EdgeInsets.all(15),
+                  shape: const CircleBorder(),
+                  padding: const EdgeInsets.all(15),
                   foregroundColor: Colors.white,
                   backgroundColor: Colors.green.shade900,
                   textStyle: const TextStyle(fontSize: 15)),
               onPressed: () {
-                Navigator.of(context).push(MaterialPageRoute(builder: (context) => PetList()));
+                Navigator.of(context).push(MaterialPageRoute(builder: (context) => const PetList()));
               },
               child: const Icon(Icons.filter_list_alt))
         ],

@@ -1,15 +1,12 @@
 import 'package:flutter/material.dart';
-import 'package:mad_cw2_vet_me/screens/Clinic/ClinciDB.dart';
 
+import '../../models/users.dart';
 import '../../utils.dart';
 
 class ClinicDetails extends StatelessWidget {
-  final String name, radius, location;
+  final AppUser clinicDetails;
   const ClinicDetails(
-      {Key? key,
-      required this.name,
-      required this.radius,
-      required this.location})
+      {Key? key, required this.clinicDetails,})
       : super(key: key);
 
   @override
@@ -38,7 +35,7 @@ class ClinicDetails extends StatelessWidget {
           onPressed: () {},
           child: const Text('view')),
       title: Text(
-        name,
+        clinicDetails.username,
         style: SafeGoogleFont(
           'Poppins',
           fontSize: 20 * ffem,
@@ -48,7 +45,7 @@ class ClinicDetails extends StatelessWidget {
         ),
       ),
       subtitle: Text(
-        location,
+        clinicDetails.address,
         style: SafeGoogleFont(
           'Poppins',
           fontSize: 15 * ffem,
@@ -65,7 +62,7 @@ class DoctorCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return DocCard();
+    return const DocCard();
 
 
   }
@@ -110,7 +107,7 @@ class DocCard extends StatelessWidget {
           trailing: Container(
             width: 80,
             height: 35,
-            padding: new EdgeInsets.all(5.0),
+            padding:  const EdgeInsets.all(5.0),
 
             decoration: BoxDecoration(
               borderRadius: BorderRadius.circular(15),

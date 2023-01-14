@@ -1,7 +1,6 @@
 import 'dart:js';
 
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:flutter/material.dart';
 import 'package:geoflutterfire2/geoflutterfire2.dart';
 import '../models/users.dart';
 
@@ -13,7 +12,7 @@ class ClinicController{
 
   Stream<List<DocumentSnapshot>> filteredClinics = [] as Stream<List<DocumentSnapshot<Object?>>>;
 
-
+  static const source = Source.cache;
 
   void addClinic(AppUser user) {
     collection.withConverter(
@@ -22,30 +21,32 @@ class ClinicController{
     ).add(user);
   }
 
-   List<AppUser> filterClinicsByRadiusForGivenLocation(String radius, GeoFirePoint center, AppUser user){
-    
+   List<AppUser> filterClinicsByRadiusForGivenLocation(String radius, GeoFirePoint center){
+
     double radiusInKm = double.parse(radius);
     double radiusInM = radiusInKm * 1000;
+
+
     List<AppUser> clinics = [];
     geo.collection(collectionRef: collection)
-        .within(center: center, radius: radiusInM, field: 'coordinates').listen(
+        .within(center: center, radius: radiusInM, field: 'coordinates')
+        .listen(
             (documentList) async {
               for (var element in documentList) {
-              var document = await getDocumentById(element.reference.id);
-              AppUser? data = document.data();
-              if(data != null){
-                clinics.add(data);
-              }else{
-                print(data);
-              }
+              collection.withConverter(
+                fromFirestore: AppUser.fromFireStore,
+                toFirestore: (user, options) => user.toFireStore(),
+              ).doc(element.reference.id).get(const GetOptions(source: source))
+                  .then((value) {
+                AppUser? data = value.data();
+                if(data != null){
+                  clinics.add(data);
+                }else{
+                  print(data);
+                }
+              });
               }});
     return clinics;
   }
 
-  Future<DocumentSnapshot<AppUser>> getDocumentById(String id){
-    return collection.withConverter(
-      fromFirestore: AppUser.fromFireStore,
-      toFirestore: (user, options) => user.toFireStore(),
-    ).doc(id).get();
-  }
 }
