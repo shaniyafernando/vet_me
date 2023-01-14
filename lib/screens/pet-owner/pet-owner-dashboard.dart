@@ -1,3 +1,4 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:geoflutterfire2/geoflutterfire2.dart';
@@ -11,12 +12,13 @@ import 'package:mad_cw2_vet_me/screens/widgets/profile-avatar.dart';
 
 import '../../utils.dart';
 
-final geo = GeoFlutterFire();
+final clinicsStreamProvider = StreamProvider<List<DocumentSnapshot>>(
+    (ref) {
 
-double lat = 0.0;
-double lng = 0.0;
-final myLocation = geo.point(latitude: lat, longitude: lng);
-final TextEditingController _radiusController = TextEditingController();
+      final clinicController = ClinicController();
+      // return clinicController.filterClinicsByRadiusForGivenLocation(radius, center,);
+    }
+);
 
 class PetOwnerDashboard extends ConsumerStatefulWidget {
   const PetOwnerDashboard({Key? key}) : super(key: key);
@@ -26,17 +28,27 @@ class PetOwnerDashboard extends ConsumerStatefulWidget {
 }
 
 class _PetOwnerDashboardState extends ConsumerState<PetOwnerDashboard> {
+  final geo = GeoFlutterFire();
+
+  double lat = 0.0;
+  double lng = 0.0;
+  
+  final TextEditingController _radiusController = TextEditingController();
   final TextEditingController _locationController = TextEditingController();
   final String key = "AIzaSyCOpaFa6BK4mGwxG1XAEFOQOifWdCMAd8g";
 
   ClinicController clinicController = ClinicController();
+  
+  
 
   @override
   Widget build(BuildContext context) {
+    GeoFirePoint myLocation = geo.point(latitude: lat, longitude: lng);
     double baseWidth = 390;
     double fem = MediaQuery.of(context).size.width / baseWidth;
     double ffem = fem * 0.97;
 
+    final clinicsNearby = ref.watch(clinicsStreamProvider);
 
     return Scaffold(
       appBar: AppBar(
@@ -113,6 +125,16 @@ class _PetOwnerDashboardState extends ConsumerState<PetOwnerDashboard> {
               const SizedBox(
                 height: 10.0,
               ),
+              clinicsNearby.when(
+                  data: (data) => ListView.builder(
+                    itemCount: data.length,
+                    itemBuilder: (context,index) => 
+                       ClinicDetails(name: data[index].id, radius: 'radius', location: 'location'),
+                  ), 
+                  error: (error,stackTrace) => SnackBar(content: Text(error.toString())), 
+                  loading: () => const Center(
+                child: CircularProgressIndicator()
+              )),
               const ClinicDetails(
                         name: "clinin",
                         radius: '200',

@@ -1,4 +1,7 @@
+import 'dart:js';
+
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:flutter/material.dart';
 import 'package:geoflutterfire2/geoflutterfire2.dart';
 import '../models/users.dart';
 
@@ -10,6 +13,8 @@ class ClinicController{
 
   Stream<List<DocumentSnapshot>> filteredClinics = [] as Stream<List<DocumentSnapshot<Object?>>>;
 
+
+
   void addClinic(AppUser user) {
     collection.withConverter(
       fromFirestore: AppUser.fromFireStore,
@@ -17,10 +22,30 @@ class ClinicController{
     ).add(user);
   }
 
-   filterClinicsByRadiusForGivenLocation(String radius, GeoFirePoint center){
+   List<AppUser> filterClinicsByRadiusForGivenLocation(String radius, GeoFirePoint center, AppUser user){
+    
     double radiusInKm = double.parse(radius);
     double radiusInM = radiusInKm * 1000;
-    Stream<List<DocumentSnapshot>> filteredClinics = geo.collection(collectionRef: collection)
-        .within(center: center, radius: radiusInM, field: 'position');
+    List<AppUser> clinics = [];
+    geo.collection(collectionRef: collection)
+        .within(center: center, radius: radiusInM, field: 'coordinates').listen(
+            (documentList) async {
+              for (var element in documentList) {
+              var document = await getDocumentById(element.reference.id);
+              AppUser? data = document.data();
+              if(data != null){
+                clinics.add(data);
+              }else{
+                print(data);
+              }
+              }});
+    return clinics;
+  }
+
+  Future<DocumentSnapshot<AppUser>> getDocumentById(String id){
+    return collection.withConverter(
+      fromFirestore: AppUser.fromFireStore,
+      toFirestore: (user, options) => user.toFireStore(),
+    ).doc(id).get();
   }
 }

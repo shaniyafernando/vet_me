@@ -230,6 +230,7 @@ class _RegistrationState extends ConsumerState<Registration> {
                         _usernameController.text,
                         _emailController.text,
                         _phoneNumberController.text,
+                        _locationController.text,
                         myLocation,
                         FirebaseAuth.instance.currentUser!.uid);
 

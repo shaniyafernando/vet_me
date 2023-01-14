@@ -6,7 +6,8 @@ class AppUser{
   String username;
   String email;
   String contact;
-  GeoFirePoint address;
+  String address;
+  GeoFirePoint coordinates;
   String uid;
 
   AppUser(
@@ -15,16 +16,16 @@ class AppUser{
       required this.email,
       required this.contact,
       required this.address,
+      required this.coordinates,
       required this.uid});
 
-  AppUser.user( this.username, this.email, this.contact,
-      this.address, this.uid);
+  AppUser.user( this.username, this.email, this.contact,this.address,
+      this.coordinates, this.uid);
 
   factory AppUser.fromFireStore(
       DocumentSnapshot<Map<String, dynamic>> snapshot,
       SnapshotOptions? options,
       ) {
-    final geo = GeoFlutterFire();
     final data = snapshot.data();
 
       return AppUser(
@@ -32,7 +33,8 @@ class AppUser{
           username: data!['username'],
           email:data['email'],
           contact:data['contact'],
-          address: geo.point(latitude: data['address-lat'], longitude: data['address-lng']),
+          address:data['address'],
+          coordinates: data['coordinates'],
           uid:data['uid']);
 
   }
@@ -42,8 +44,8 @@ class AppUser{
       "username": username,
       "email": email,
       "contact": contact,
-      "address-lat": address.latitude,
-      "address-lng": address.longitude,
+      "address": address,
+      "coordinates": coordinates.data,
       "uid": uid
     };
   }
