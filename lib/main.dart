@@ -3,6 +3,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:mad_cw2_vet_me/screens/Clinic/bookingdetails.dart';
 import 'package:mad_cw2_vet_me/screens/Clinic/create-doctor-profile.dart';
+import 'package:mad_cw2_vet_me/screens/Clinic/createDoctor.dart';
+import 'package:mad_cw2_vet_me/screens/authentication/login-screen.dart';
 import 'package:mad_cw2_vet_me/screens/authentication/registration.dart';
 import 'package:mad_cw2_vet_me/screens/pet-owner/CreateNewBooking.dart';
 import 'package:mad_cw2_vet_me/utils.dart';
@@ -31,7 +33,7 @@ class MyApp extends ConsumerWidget {
         primaryColor: Colors.white
       ),
       scrollBehavior: MyCustomScrollBehavior(),
-      home:  BookNow(),
+      home:  Login(),
     );
   }
 }

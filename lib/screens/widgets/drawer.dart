@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:mad_cw2_vet_me/screens/Clinic/ClinciDB.dart';
 
 import 'package:mad_cw2_vet_me/screens/widgets/banner-1.dart';
 import 'package:mad_cw2_vet_me/screens/widgets/clinic-details.dart';
@@ -40,7 +41,7 @@ class Drawer extends StatelessWidget {
             ListTile(
               title: const Text('Home',),
               onTap: (){
-                Navigator.of(context).push(MaterialPageRoute(builder: (context) => const PetOwnerDashboard()),
+                Navigator.of(context).push(MaterialPageRoute(builder: (context) => const ClinicDb()),
                 );
               },
             ),
