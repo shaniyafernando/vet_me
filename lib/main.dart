@@ -28,7 +28,7 @@ class MyApp extends ConsumerWidget {
         primaryColor: Colors.white
       ),
       scrollBehavior: MyCustomScrollBehavior(),
-      home:  BookNow(),
+      home:  const RedirectPage(),
     );
   }
 }
