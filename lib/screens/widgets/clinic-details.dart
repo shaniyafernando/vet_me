@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:mad_cw2_vet_me/screens/Clinic/ClinciDB.dart';
 
 import '../../utils.dart';
+import '../Clinic/bookingdetails.dart';
+import '../pet-owner/CreateNewBooking.dart';
 
 class ClinicDetails extends StatelessWidget {
   final String name, radius, location;
@@ -89,7 +91,7 @@ class DocCard extends StatelessWidget {
         ),
         child: ListTile(
           onTap: (){
-
+            Navigator.of(context).push(MaterialPageRoute(builder: (context) => BookedPg()));
           },
           leading: const Icon(Icons.person),
           title: Text('Dr John Cena', style: SafeGoogleFont(
@@ -100,7 +102,7 @@ class DocCard extends StatelessWidget {
             color: Colors.blue.shade900,
           ),),
 
-          subtitle: Text('9.00am', style: SafeGoogleFont(
+          subtitle: Text('', style: SafeGoogleFont(
             'Poppins',
             fontSize: 15,
             fontWeight: FontWeight.w600,
@@ -114,9 +116,9 @@ class DocCard extends StatelessWidget {
 
             decoration: BoxDecoration(
               borderRadius: BorderRadius.circular(15),
-              color: Colors.green,
+              color: Colors.deepOrange,
             ),
-            child: Center(child: Text('Available',  style: SafeGoogleFont(
+            child: Center(child: Text('Booked',  style: SafeGoogleFont(
               'Poppins',
               fontSize: 13,
               fontWeight: FontWeight.w600,
@@ -162,7 +164,7 @@ class DocCard2 extends StatelessWidget {
             color: Colors.blue.shade900,
           ),),
 
-          subtitle: Text('2.00am', style: SafeGoogleFont(
+          subtitle: Text('', style: SafeGoogleFont(
             'Poppins',
             fontSize: 15,
             fontWeight: FontWeight.w600,
@@ -223,7 +225,7 @@ class DocCard3 extends StatelessWidget {
             color: Colors.blue.shade900,
           ),),
 
-          subtitle: Text('3.00am', style: SafeGoogleFont(
+          subtitle: Text('', style: SafeGoogleFont(
             'Poppins',
             fontSize: 15,
             fontWeight: FontWeight.w600,
@@ -284,7 +286,7 @@ class DocCard4 extends StatelessWidget {
             color: Colors.blue.shade900,
           ),),
 
-          subtitle: Text('2.00am', style: SafeGoogleFont(
+          subtitle: Text('', style: SafeGoogleFont(
             'Poppins',
             fontSize: 15,
             fontWeight: FontWeight.w600,
@@ -301,6 +303,130 @@ class DocCard4 extends StatelessWidget {
               color: Colors.deepOrange,
             ),
             child: Center(child: Text('Booked',  style: SafeGoogleFont(
+              'Poppins',
+              fontSize: 13,
+              fontWeight: FontWeight.w600,
+              // height: 10,
+              color: Colors.black,
+            ),)),
+
+          ),
+
+        ),
+
+      ),
+    );
+  }
+}
+class DocCard5 extends StatelessWidget {
+  const DocCard5({
+    Key? key,
+  }) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      width: double.infinity,
+      height: 110,
+      padding: new EdgeInsets.all(5.0),
+      child: Card(
+        color: Colors.lightBlue.shade100.withOpacity(1.0),
+        shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.circular(10.0),
+        ),
+        child: ListTile(
+          onTap: (){
+
+          },
+          leading: const Icon(Icons.person),
+          title: Text('Doc 1', style: SafeGoogleFont(
+            'Poppins',
+            fontSize: 18,
+            fontWeight: FontWeight.w600,
+            // height: 10,
+            color: Colors.blue.shade900,
+          ),),
+
+          subtitle: Text('', style: SafeGoogleFont(
+            'Poppins',
+            fontSize: 15,
+            fontWeight: FontWeight.w600,
+            // height: 10,
+            color: Colors.blue.shade500,
+          ),),
+          trailing: Container(
+            width: 80,
+            height: 35,
+            padding: new EdgeInsets.all(5.0),
+
+            decoration: BoxDecoration(
+              borderRadius: BorderRadius.circular(15),
+              color: Colors.green,
+            ),
+            child: Center(child: Text('Available',  style: SafeGoogleFont(
+              'Poppins',
+              fontSize: 13,
+              fontWeight: FontWeight.w600,
+              // height: 10,
+              color: Colors.black,
+            ),)),
+
+          ),
+
+        ),
+
+      ),
+    );
+  }
+}
+class DoctorCardPetBooking extends StatelessWidget {
+  const DoctorCardPetBooking({
+    Key? key,
+  }) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      width: double.infinity,
+      height: 110,
+      padding: new EdgeInsets.all(5.0),
+      child: Card(
+        color: Colors.lightBlue.shade100.withOpacity(1.0),
+        shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.circular(10.0),
+        ),
+        child: ListTile(
+          onTap: (){
+
+
+            Navigator.of(context).push(MaterialPageRoute(builder: (context) => BookNow()));
+          },
+          leading: const Icon(Icons.person),
+          title: Text('Dr John Cena', style: SafeGoogleFont(
+            'Poppins',
+            fontSize: 18,
+            fontWeight: FontWeight.w600,
+            // height: 10,
+            color: Colors.blue.shade900,
+          ),),
+
+          subtitle: Text('', style: SafeGoogleFont(
+            'Poppins',
+            fontSize: 15,
+            fontWeight: FontWeight.w600,
+            // height: 10,
+            color: Colors.blue.shade500,
+          ),),
+          trailing: Container(
+            width: 80,
+            height: 35,
+            padding: new EdgeInsets.all(5.0),
+
+            decoration: BoxDecoration(
+              borderRadius: BorderRadius.circular(15),
+              color: Colors.green,
+            ),
+            child: Center(child: Text('Available',  style: SafeGoogleFont(
               'Poppins',
               fontSize: 13,
               fontWeight: FontWeight.w600,

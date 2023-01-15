@@ -1,12 +1,18 @@
 import 'package:draggable_fab/draggable_fab.dart';
 import 'package:dropdown_textfield/dropdown_textfield.dart';
 import 'package:flutter/material.dart';
+import 'package:mad_cw2_vet_me/models/invoice.dart';
+import 'package:mad_cw2_vet_me/screens/pet-owner/petDashboardempty.dart';
+import 'package:mad_cw2_vet_me/screens/pet-owner/petOwnerDashboard.dart';
 import 'package:mad_cw2_vet_me/screens/pet-owner/view-pet.dart';
+import 'package:mad_cw2_vet_me/screens/widgets/success-message-booking.dart';
+import 'package:mad_cw2_vet_me/screens/widgets/success-message.dart';
 
 import '../../utils.dart';
 import '../widgets/banner-1.dart';
 
 import '../widgets/profile-avatar.dart';
+import 'ClinicDb-PetOwner.dart';
 
 class BookNow extends StatefulWidget {
   const BookNow({Key? key}) : super(key: key);
@@ -14,7 +20,7 @@ class BookNow extends StatefulWidget {
   @override
   State<BookNow> createState() => _BookNowState();
 }
-const List<String> list = <String>['Pet 1','pet 2'];
+const List<String> list = <String>['Chiko','Dog 2'];
 class _BookNowState extends State<BookNow> {
 
 
@@ -232,7 +238,7 @@ class _BookNowState extends State<BookNow> {
                             children: [
 
 
-                              Text('123456', style: SafeGoogleFont(
+                              Text('00121', style: SafeGoogleFont(
                                 'Poppins',
                                 fontSize: 20,
                                 fontWeight: FontWeight.w600,
@@ -249,7 +255,7 @@ class _BookNowState extends State<BookNow> {
                                 color: Colors.black,
                               ), textAlign: TextAlign.start),
                               SizedBox(height: 12,),
-                              Text('06/01/2023', style: SafeGoogleFont(
+                              Text('15/01/2023', style: SafeGoogleFont(
                                 'Poppins',
                                 fontSize: 20,
                                 fontWeight: FontWeight.w600,
@@ -257,7 +263,7 @@ class _BookNowState extends State<BookNow> {
                                 color: Colors.black,
                               ), ),
                               SizedBox(height: 12,),
-                              Text('06', style: SafeGoogleFont(
+                              Text('03', style: SafeGoogleFont(
                                 'Poppins',
                                 fontSize: 20,
                                 fontWeight: FontWeight.w600,
@@ -346,7 +352,9 @@ class _BookNowState extends State<BookNow> {
                       color: Colors.white,
                     ) ,),
 
-                    onPressed: () {},
+                    onPressed: () {
+                      Navigator.of(context).push(MaterialPageRoute(builder: (context) => const SuccessMessageBooking()));
+                    },
                     child: const Text('Book now')),
               ),
 
@@ -360,6 +368,8 @@ class _BookNowState extends State<BookNow> {
       floatingActionButton: DraggableFab(
         child: FloatingActionButton.extended(
           onPressed: () {
+
+            Navigator.of(context).push(MaterialPageRoute(builder: (context) => ClinicDbPetOwner()));
             // Add your onPressed code here!
           },
           label: const Text('Back', ),

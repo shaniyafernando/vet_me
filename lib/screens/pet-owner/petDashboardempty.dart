@@ -1,30 +1,29 @@
 import 'package:flutter/material.dart';
-import '../widgets/Logout.dart';
 import '../widgets/banner-2.dart';
 import '../widgets/pet-details.dart';
 import '../widgets/profile-avatar.dart';
 import '../../utils.dart';
 import '../widgets/text-field.dart';
 import 'create-pet-profile.dart';
-
-class PetList extends StatefulWidget {
-  const PetList({Key? key}) : super(key: key);
+class PetListDb extends StatefulWidget {
+  const PetListDb({Key? key}) : super(key: key);
 
   @override
-  State<PetList> createState() => _PetListDashboardState();
+  State<PetListDb> createState() => _PetListDbState();
 }
 
-class _PetListDashboardState extends State<PetList> {
-  final TextEditingController _filterController = TextEditingController();
+class _PetListDbState extends State<PetListDb> {
   @override
+
   Widget build(BuildContext context) {
+    final TextEditingController _filterController = TextEditingController();
     double baseWidth = 390;
     double fem = MediaQuery.of(context).size.width / baseWidth;
     double ffem = fem * 0.97;
 
     return Scaffold(
       appBar: AppBar(
-        leading:const SettingsMenu(),
+        leading: IconButton(onPressed: () {}, icon: const Icon(Icons.menu)),
         actions: const [ProfileAvatar(), SizedBox(width: 10.0)],
       ),
       body: Padding(
@@ -66,9 +65,6 @@ class _PetListDashboardState extends State<PetList> {
               const SizedBox(
                 height: 10.0,
               ),
-              const PetDetails(
-                name: 'Dog 2',
-                category: 'Doberman',),
               const SizedBox(
                 height: 10.0,
               ),

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:mad_cw2_vet_me/screens/pet/pet-med-reco.dart';
 import '../../utils.dart';
 import '../pet-owner/list-of-pets.dart';
 import '../widgets/profile-avatar.dart';
@@ -32,7 +33,7 @@ class EditMedRec extends StatelessWidget {
           ),
           Container(
             // addanewpeteYZ (21:170)
-            margin: EdgeInsets.fromLTRB(70 * fem, 0 * fem, 8 * fem, 10 * fem),
+            margin: EdgeInsets.fromLTRB(90 * fem, 0 * fem, 8 * fem, 10 * fem),
             child: Text(
               'Add a new record',
               style: SafeGoogleFont(
@@ -47,7 +48,7 @@ class EditMedRec extends StatelessWidget {
           const SizedBox(
             height: 20.0,
           ),
-          const ProfilePic(),
+          // const ProfilePic(),
           Container(
             // addanewpeteYZ (21:170)
             margin: EdgeInsets.fromLTRB(70 * fem, 0 * fem, 8 * fem, 10 * fem),
@@ -97,29 +98,56 @@ class EditMedRec extends StatelessWidget {
             height: 20.0,
           ),
 
-          TextButton(
-              style: TextButton.styleFrom(
-                  foregroundColor: Colors.white,
-                  backgroundColor: Colors.green,
-                  textStyle: const TextStyle(fontSize: 15)),
-              onPressed: (){
-
-              },
-              child: const Text('Attachment')),
+          // TextButton(
+          //
+          //
+          //     style: TextButton.styleFrom(
+          //
+          //         foregroundColor: Colors.white,
+          //         backgroundColor: Colors.blue.shade900,
+          //         textStyle: const TextStyle(fontSize: 15)),
+          //
+          //     onPressed: (){
+          //
+          //     },
+          //     child: const Text('Attachment')),
 
           const SizedBox(
             height: 40.0,
           ),
 
-          TextButton(
-              style: TextButton.styleFrom(
-                  foregroundColor: Colors.white,
-                  backgroundColor: Colors.blue.shade900,
-                  textStyle: const TextStyle(fontSize: 15)),
-              onPressed: (){
+          // TextButton(
+          //     style: TextButton.styleFrom(
+          //         foregroundColor: Colors.white,
+          //         backgroundColor: Colors.green,
+          //         textStyle: const TextStyle(fontSize: 15)),
+          //     onPressed: (){
+          //
+          //     },
+          //     child: const Text('Save')),
+          ElevatedButton(
+            style: TextButton.styleFrom(
+                foregroundColor: Colors.white,
+                backgroundColor: Colors.blue.shade900,
+                textStyle: const TextStyle(fontSize: 15)),
+            onPressed: () {
+              Navigator.of(context).push(MaterialPageRoute(builder: (context) => MedRec()));
+              final snackBar = SnackBar(
+                content: const Text('Medical record saved'),
+                action: SnackBarAction(
+                  label: 'Undo',
+                  onPressed: () {
 
-              },
-              child: const Text('Edit')),
+                  },
+                ),
+              );
+
+              // Find the ScaffoldMessenger in the widget tree
+              // and use it to show a SnackBar.
+              ScaffoldMessenger.of(context).showSnackBar(snackBar);
+            },
+            child: const Text('Save'),
+          ),
 
           const SizedBox(
             height: 30.0,
@@ -135,7 +163,7 @@ class EditMedRec extends StatelessWidget {
               onPressed: () {
                 Navigator.of(context).push(MaterialPageRoute(builder: (context) => PetList()));
               },
-              child: const Icon(Icons.filter_list_alt))
+              child: const Icon(Icons.pets_rounded))
         ],
       ),
     );

@@ -8,64 +8,65 @@ import '../widgets/profile-avatar.dart';
 import '../widgets/text-field.dart';
 import 'create-schedule.dart';
 
-class ClinicSchedule extends StatelessWidget {
-   ClinicSchedule({Key? key}) : super(key: key);
+class ClinicSchedule2 extends StatelessWidget {
+  ClinicSchedule2({Key? key}) : super(key: key);
   final TextEditingController _filterController = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        appBar: AppBar(
+      appBar: AppBar(
         leading: IconButton(onPressed: ()
-    {}, icon: const Icon(Icons.menu)),
-    actions: const [ProfileAvatar(), SizedBox(width: 10.0)],
-    ),
-    drawer: const Drawer(),
-    body: Padding(
-      padding: const EdgeInsets.all(8.0),
-      child: SingleChildScrollView(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.start,
-          children: [
-            InputField(
-                hintText: "Filter by radius",
-                controller: _filterController,
-                obscureText: false),
-            Container(
+        {}, icon: const Icon(Icons.menu)),
+        actions: const [ProfileAvatar(), SizedBox(width: 10.0)],
+      ),
+      drawer: const Drawer(),
+      body: Padding(
+        padding: const EdgeInsets.all(8.0),
+        child: SingleChildScrollView(
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.start,
+            children: [
+              InputField(
+                  hintText: "Filter by radius",
+                  controller: _filterController,
+                  obscureText: false),
+              Container(
 
-              child: Align(
-                alignment: Alignment.centerLeft,
+                child: Align(
+                  alignment: Alignment.centerLeft,
 
-                child: Text('Clinic Name', style: SafeGoogleFont(
-                  'Poppins',
-                  fontSize: 20,
-                  fontWeight: FontWeight.w600,
-                  // height: 10,
-                  color: const Color(0xffff7f0a),
-                ),),
+                  child: Text('Clinic Name', style: SafeGoogleFont(
+                    'Poppins',
+                    fontSize: 20,
+                    fontWeight: FontWeight.w600,
+                    // height: 10,
+                    color: const Color(0xffff7f0a),
+                  ),),
+                ),
               ),
-            ),
-            SlotCard(),
-            SlotCard2(),
-            SlotCard3(),
-            
-            TextButton(
-                style: TextButton.styleFrom(
-                    shape: CircleBorder(),
-                    padding: EdgeInsets.all(15),
-                    foregroundColor: Colors.white,
-                    backgroundColor: Colors.green.shade900,
-                    textStyle: const TextStyle(fontSize: 15)),
-                onPressed: () {
-                  Navigator.of(context).push(MaterialPageRoute(builder: (context) => CreateSchedule()));
-                },
-                child: const Icon(Icons.add)),
+              SlotCard(),
+              SlotCard2(),
+              SlotCard3(),
+              SlotCard4(),
+
+              TextButton(
+                  style: TextButton.styleFrom(
+                      shape: CircleBorder(),
+                      padding: EdgeInsets.all(15),
+                      foregroundColor: Colors.white,
+                      backgroundColor: Colors.green.shade900,
+                      textStyle: const TextStyle(fontSize: 15)),
+                  onPressed: () {
+                    Navigator.of(context).push(MaterialPageRoute(builder: (context) => CreateSchedule()));
+                  },
+                  child: const Icon(Icons.add)),
 
 
-          ],
+            ],
+          ),
         ),
       ),
-    ),
       floatingActionButton: DraggableFab(
         child: FloatingActionButton.extended(
           onPressed: () {
@@ -140,23 +141,23 @@ class SlotCard extends StatelessWidget {
         trailing: InkWell(
           child: Container(
 
-          width: 80,
-          height: 35,
-          padding: new EdgeInsets.all(5.0),
+            width: 80,
+            height: 35,
+            padding: new EdgeInsets.all(5.0),
 
-          decoration: BoxDecoration(
-            borderRadius: BorderRadius.circular(15),
-            color: Colors.deepOrange,
+            decoration: BoxDecoration(
+              borderRadius: BorderRadius.circular(15),
+              color: Colors.deepOrange,
+            ),
+            child: Center(child: Text('Booked',  style: SafeGoogleFont(
+              'Poppins',
+              fontSize: 13,
+              fontWeight: FontWeight.w600,
+              // height: 10,
+              color: Colors.black,
+            ),)),
+
           ),
-          child: Center(child: Text('Booked',  style: SafeGoogleFont(
-            'Poppins',
-            fontSize: 13,
-            fontWeight: FontWeight.w600,
-            // height: 10,
-            color: Colors.black,
-          ),)),
-
-        ),
 
         ),
 

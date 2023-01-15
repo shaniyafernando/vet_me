@@ -1,6 +1,6 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_riverpod/flutter_riverpod.dart';
+// import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:geoflutterfire2/geoflutterfire2.dart';
 import 'package:google_places_flutter/google_places_flutter.dart';
 import 'package:google_places_flutter/model/prediction.dart';
@@ -8,20 +8,23 @@ import 'package:mad_cw2_vet_me/controllers/authentication-controller.dart';
 
 import 'package:mad_cw2_vet_me/controllers/pet-owner-controller.dart';
 import 'package:mad_cw2_vet_me/models/users.dart';
+import 'package:mad_cw2_vet_me/screens/widgets/success-message.dart';
 import 'package:mad_cw2_vet_me/screens/widgets/text-field.dart';
 import 'package:mask_text_input_formatter/mask_text_input_formatter.dart';
 import '../../utils.dart';
+import '../pet-owner/ClinicDb-PetOwner.dart';
+import '../pet-owner/petOwnerDashboard.dart';
 
-class Registration extends ConsumerStatefulWidget {
+class Registration extends StatefulWidget {
   const Registration({Key? key}) : super(key: key);
 
   @override
-  ConsumerState<Registration> createState() => _RegistrationState();
+  State<Registration> createState() => _RegistrationState();
 }
 
 const List<String> list = <String>['Pet Owner', 'Clinic'];
 
-class _RegistrationState extends ConsumerState<Registration> {
+class _RegistrationState extends State<Registration> {
   final TextEditingController _emailController = TextEditingController();
   final TextEditingController _usernameController = TextEditingController();
   final TextEditingController _passwordController = TextEditingController();
@@ -214,17 +217,8 @@ class _RegistrationState extends ConsumerState<Registration> {
               ),
               InkWell(
                   onTap: () {
-                    try {
-                      if (_passwordController.text.trim() ==
-                          _confirmPasswordController.text.trim()) {
-                        auth.signInWithEmailAndPassword(
-                            email: _emailController.text,
-                            password: _passwordController.text);
-                      }
-                    } on FirebaseAuthException catch (error) {
-                      ScaffoldMessenger.of(context).showSnackBar(
-                          SnackBar(content: Text(error.message!)));
-                    }
+                    Navigator.of(context).push(MaterialPageRoute(builder: (context) => const SuccessMessage()));
+
 
                     AppUser newUser = AppUser.user(
                         _usernameController.text,

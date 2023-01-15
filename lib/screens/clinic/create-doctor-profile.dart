@@ -3,6 +3,7 @@ import '../../utils.dart';
 import '../widgets/profile-avatar.dart';
 import 'package:mad_cw2_vet_me/screens/widgets/text-field.dart';
 import '../widgets/profile_pic.dart';
+import 'ClinciDB.dart';
 
 class CreateDoctorProfile extends StatefulWidget {
 
@@ -14,7 +15,7 @@ class CreateDoctorProfile extends StatefulWidget {
 
 class _CreateDoctorProfileState extends State<CreateDoctorProfile> {
 
-  DateTime dateTime = DateTime(2023, 01, 12, 5, 30);
+  // DateTime dateTime = DateTime(2023, 01, 12, 5, 30);
 
   final TextEditingController _dNameController = TextEditingController();
   final TextEditingController _detailsController = TextEditingController();
@@ -31,8 +32,8 @@ class _CreateDoctorProfileState extends State<CreateDoctorProfile> {
     double fem = MediaQuery.of(context).size.width / baseWidth;
     double ffem = fem * 0.97;
 
-    final hours = dateTime.hour.toString().padLeft(2, '0');
-    final minutes = dateTime.minute.toString().padLeft(2, '0');
+    // final hours = dateTime.hour.toString().padLeft(2, '0');
+    // final minutes = dateTime.minute.toString().padLeft(2, '0');
 
     return Scaffold(
       appBar: AppBar(
@@ -124,63 +125,8 @@ class _CreateDoctorProfileState extends State<CreateDoctorProfile> {
             height: 10.0,
           ),
 
-          Text(
-            'Date and Time',
-            style: SafeGoogleFont (
-              'Poppins',
-              fontSize: 18*ffem,
-              color: const Color(0xff000000),
-            ),
-          ),
-
-          Row(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              Expanded(
-                  child: ElevatedButton(
-                    child: Text('${dateTime.year}/${dateTime.month}/${dateTime.day}'),
-                    onPressed: () async {
-                      final date = await pickDate();
-                      if (date == null ) return;
-
-                      final newDateTime = DateTime(
-                        date.year,
-                        date.month,
-                        date.day,
-                        dateTime.hour,
-                        dateTime.minute,
-                      );
-                      setState(() => dateTime = date);
-                    },
-                  )
-              ),
-              const SizedBox(width: 12),
-              Expanded(
-                  child: ElevatedButton(
-                    child: Text('$hours:$minutes'),
-                    onPressed: () async {
-                      final time = await pickTime();
-                      if (time == null ) return;
-                      final newDateTime = DateTime(
-                        dateTime.year,
-                        dateTime.month,
-                        dateTime.day,
-                        time.hour,
-                        time.minute,
-                      );
-                      setState(() => dateTime = newDateTime);
-                    },
-                  )
-              ),
-            ],
-          ),
-
-          const SizedBox(
-            height: 10.0,
-          ),
-
           // Text(
-          //   'Available Time Slots ',
+          //   'Date and Time',
           //   style: SafeGoogleFont (
           //     'Poppins',
           //     fontSize: 18*ffem,
@@ -189,55 +135,44 @@ class _CreateDoctorProfileState extends State<CreateDoctorProfile> {
           // ),
           //
           // Row(
+          //   mainAxisAlignment: MainAxisAlignment.center,
           //   children: [
-          //     Checkbox(
-          //         value: ch1,
-          //         onChanged: (val) {
-          //           setState(() {
-          //           ch1 = val!;
-          //         });
-          //       },
+          //     Expanded(
+          //         child: ElevatedButton(
+          //           child: Text('${dateTime.year}/${dateTime.month}/${dateTime.day}'),
+          //           onPressed: () async {
+          //             final date = await pickDate();
+          //             if (date == null ) return;
+          //
+          //             final newDateTime = DateTime(
+          //               date.year,
+          //               date.month,
+          //               date.day,
+          //               dateTime.hour,
+          //               dateTime.minute,
+          //             );
+          //             setState(() => dateTime = date);
+          //           },
+          //         )
           //     ),
-          //     const Text("09.00 - 12.00"),
-          //   ],
-          // ),
-          // Row(
-          //   children: [
-          //     Checkbox(
-          //       value: ch2,
-          //       onChanged: (val) {
-          //         setState(() {
-          //           ch2 = val!;
-          //         });
-          //       },
+          //     const SizedBox(width: 12),
+          //     Expanded(
+          //         child: ElevatedButton(
+          //           child: Text('$hours:$minutes'),
+          //           onPressed: () async {
+          //             final time = await pickTime();
+          //             if (time == null ) return;
+          //             final newDateTime = DateTime(
+          //               dateTime.year,
+          //               dateTime.month,
+          //               dateTime.day,
+          //               time.hour,
+          //               time.minute,
+          //             );
+          //             setState(() => dateTime = newDateTime);
+          //           },
+          //         )
           //     ),
-          //     const Text("13.00 - 15.00"),
-          //   ],
-          // ),
-          // Row(
-          //   children: [
-          //     Checkbox(
-          //       value: ch3,
-          //       onChanged: (val) {
-          //         setState(() {
-          //           ch3 = val!;
-          //         });
-          //       },
-          //     ),
-          //     const Text("15.00 - 18.00"),
-          //   ],
-          // ),
-          // Row(
-          //   children: [
-          //     Checkbox(
-          //       value: ch4,
-          //       onChanged: (val) {
-          //         setState(() {
-          //           ch4 = val!;
-          //         });
-          //       },
-          //     ),
-          //     const Text("18.00 - 21.00"),
           //   ],
           // ),
 
@@ -245,13 +180,32 @@ class _CreateDoctorProfileState extends State<CreateDoctorProfile> {
             height: 10.0,
           ),
 
-          TextButton(
-              style: TextButton.styleFrom(
-                  foregroundColor: Colors.white,
-                  backgroundColor: Colors.green.shade800,
-                  textStyle: const TextStyle(fontSize: 18)),
-              onPressed: (){},
-              child: const Text('Save')
+          const SizedBox(
+            height: 10.0,
+          ),
+
+          ElevatedButton(
+            style: TextButton.styleFrom(
+                foregroundColor: Colors.white,
+                backgroundColor: Colors.green,
+                textStyle: const TextStyle(fontSize: 15)),
+            onPressed: () {
+              Navigator.of(context).push(MaterialPageRoute(builder: (context) => ClinicDb()));
+              final snackBar = SnackBar(
+                content: const Text('Doctor created'),
+                action: SnackBarAction(
+                  label: 'Undo',
+                  onPressed: () {
+
+                  },
+                ),
+              );
+
+              // Find the ScaffoldMessenger in the widget tree
+              // and use it to show a SnackBar.
+              ScaffoldMessenger.of(context).showSnackBar(snackBar);
+            },
+            child: const Text('Save'),
           ),
 
 
@@ -261,14 +215,14 @@ class _CreateDoctorProfileState extends State<CreateDoctorProfile> {
     );
   }
 
-  Future<DateTime?> pickDate() => showDatePicker(
-    context: context,
-    initialDate: dateTime,
-    firstDate: DateTime(2020),
-    lastDate: DateTime(2025),
-  );
-  Future<TimeOfDay?> pickTime() => showTimePicker(
-    context: context,
-    initialTime: TimeOfDay(hour: dateTime.hour, minute: dateTime.minute),
-  );
+  // Future<DateTime?> pickDate() => showDatePicker(
+  //   context: context,
+  //   initialDate: dateTime,
+  //   firstDate: DateTime(2020),
+  //   lastDate: DateTime(2025),
+  // );
+  // Future<TimeOfDay?> pickTime() => showTimePicker(
+  //   context: context,
+  //   initialTime: TimeOfDay(hour: dateTime.hour, minute: dateTime.minute),
+  // );
 }

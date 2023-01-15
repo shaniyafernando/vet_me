@@ -1,4 +1,6 @@
+import 'package:draggable_fab/draggable_fab.dart';
 import 'package:flutter/material.dart';
+import 'package:mad_cw2_vet_me/screens/Clinic/ClinciDB.dart';
 import 'package:mad_cw2_vet_me/screens/widgets/banner-1.dart';
 
 import '../../utils.dart';
@@ -221,7 +223,7 @@ class _BookedPgState extends State<BookedPg> {
                             children: [
 
 
-                              Text('123456', style: SafeGoogleFont(
+                              Text('00121', style: SafeGoogleFont(
                                 'Poppins',
                                 fontSize: 20,
                                 fontWeight: FontWeight.w600,
@@ -238,7 +240,7 @@ class _BookedPgState extends State<BookedPg> {
                                 color: Colors.black,
                               ), textAlign: TextAlign.start),
                               SizedBox(height: 12,),
-                              Text('06/01/2023', style: SafeGoogleFont(
+                              Text('15/01/2023', style: SafeGoogleFont(
                                 'Poppins',
                                 fontSize: 20,
                                 fontWeight: FontWeight.w600,
@@ -246,7 +248,7 @@ class _BookedPgState extends State<BookedPg> {
                                 color: Colors.black,
                               ), ),
                               SizedBox(height: 12,),
-                              Text('06', style: SafeGoogleFont(
+                              Text('03', style: SafeGoogleFont(
                                 'Poppins',
                                 fontSize: 20,
                                 fontWeight: FontWeight.w600,
@@ -262,7 +264,7 @@ class _BookedPgState extends State<BookedPg> {
                                 color: Colors.black,
                               ), ),
                               SizedBox(height: 12,),
-                              Text('Meow', style: SafeGoogleFont(
+                              Text('Chiko', style: SafeGoogleFont(
                                 'Poppins',
                                 fontSize: 20,
                                 fontWeight: FontWeight.w600,
@@ -270,7 +272,7 @@ class _BookedPgState extends State<BookedPg> {
                                 color: Colors.black,
                               ), ),
                               SizedBox(height: 12,),
-                              Text('0618', style: SafeGoogleFont(
+                              Text('001', style: SafeGoogleFont(
                                 'Poppins',
                                 fontSize: 20,
                                 fontWeight: FontWeight.w600,
@@ -320,9 +322,24 @@ class _BookedPgState extends State<BookedPg> {
                 label: const Text('Patient details'),
 
               ),
+
             ],
 
 
+          ),
+        ),
+      ),
+      floatingActionButton: DraggableFab(
+        child: FloatingActionButton.extended(
+          onPressed: () {
+            Navigator.of(context).push(MaterialPageRoute(builder: (context) => ClinicDb()));
+            // Add your onPressed code here!
+          },
+          label: const Text('Home >'),
+          icon: const Icon(Icons.pets_rounded),
+          backgroundColor: Colors.indigo,
+          shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(10.0),
           ),
         ),
       ),

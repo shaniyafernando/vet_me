@@ -142,7 +142,7 @@ class ViewMedRec extends StatelessWidget {
               onPressed: () {
                 Navigator.of(context).push(MaterialPageRoute(builder: (context) => PetList()));
               },
-              child: const Icon(Icons.filter_list_alt))
+              child: const Icon(Icons.pets_rounded))
         ],
       ),
     );

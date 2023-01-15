@@ -3,11 +3,13 @@ import 'package:flutter/material.dart';
 import 'package:mad_cw2_vet_me/screens/widgets/banner-1.dart';
 
 import '../../utils.dart';
+import '../widgets/Logout.dart';
 import '../widgets/clinic-details.dart';
 import '../widgets/my-pets-button.dart';
 import '../widgets/profile-avatar.dart';
 import '../widgets/text-field.dart';
 import 'ClinicSchedule.dart';
+import 'create-doctor-profile.dart';
 
 
 class ClinicDb extends StatefulWidget {
@@ -24,8 +26,8 @@ class _ClinicDbState extends State<ClinicDb> {
   Widget build(BuildContext context) {
     return Scaffold(
             appBar: AppBar(
-            leading: IconButton(onPressed: ()
-        {}, icon: const Icon(Icons.menu)),
+
+            leading:const SettingsMenu(),
         actions: const [ProfileAvatar(), SizedBox(width: 10.0)],
         ),
         drawer: const Drawer(),
@@ -128,12 +130,12 @@ class _ClinicDbState extends State<ClinicDb> {
                           mainAxisAlignment: MainAxisAlignment.center,
                           children: [
                             Icon( Icons.account_circle, ),
-                            Text('Doctor'),
+                            Text('Create doctor'),
 
                           ],
                         ),),
                     onTap: () {
-                      Navigator.of(context).push(MaterialPageRoute(builder: (context) =>  ClinicSchedule(),));
+                      Navigator.of(context).push(MaterialPageRoute(builder: (context) =>  CreateDoctorProfile(),));
                     },
 
                   )
@@ -152,7 +154,7 @@ class _ClinicDbState extends State<ClinicDb> {
               DocCard2(),
               DocCard3(),
               DocCard4(),
-              DoctorCard(),
+              DocCard5(),
 
 
               const SizedBox(
@@ -166,19 +168,19 @@ class _ClinicDbState extends State<ClinicDb> {
           ),
         ),
         ),
-      floatingActionButton: DraggableFab(
-        child: FloatingActionButton.extended(
-          onPressed: () {
-            // Add your onPressed code here!
-          },
-          label: const Text('Home'),
-          icon: const Icon(Icons.cottage_rounded),
-          backgroundColor: Colors.indigo,
-          shape: RoundedRectangleBorder(
-            borderRadius: BorderRadius.circular(10.0),
-          ),
-          ),
-          ),
+      // floatingActionButton: DraggableFab(
+      //   child: FloatingActionButton.extended(
+      //     onPressed: () {
+      //       // Add your onPressed code here!
+      //     },
+      //     label: const Text('Home'),
+      //     icon: const Icon(Icons.cottage_rounded),
+      //     backgroundColor: Colors.indigo,
+      //     shape: RoundedRectangleBorder(
+      //       borderRadius: BorderRadius.circular(10.0),
+      //     ),
+      //     ),
+      //     ),
 
 
 

@@ -1,20 +1,23 @@
 import 'package:flutter/material.dart';
-import '../../utils.dart';
-import '../pet-owner/list-of-pets.dart';
-import '../widgets/medical-records.dart';
-import '../widgets/profile-avatar.dart';
+import 'package:mad_cw2_vet_me/screens/pet/edit-medical.dart';
+import '../../../utils.dart';
+import '../../pet-owner/list-of-pets.dart';
+
+import '../../widgets/medical-records.dart';
+import '../../widgets/profile-avatar.dart';
+import '../../widgets/profile_pic.dart';
+
 import 'package:mad_cw2_vet_me/screens/widgets/text-field.dart';
-import '../widgets/profile_pic.dart';
 
 
-class MedRec extends StatefulWidget{
-  const MedRec({Key? key}) : super(key: key);
+class MedRecDb extends StatefulWidget{
+  const MedRecDb({Key? key}) : super(key: key);
 
   @override
   _MedRecState createState() => _MedRecState();
 }
 
-class _MedRecState extends State<MedRec>{
+class _MedRecState extends State<MedRecDb>{
 
   @override
   Widget build(BuildContext context) {
@@ -35,13 +38,13 @@ class _MedRecState extends State<MedRec>{
             height: 20.0,
           ),
 
-          // const ProfilePic(),
+          const ProfilePic(),
 
           Container(
             // addanewpeteYZ (21:170)
             margin: EdgeInsets.fromLTRB(70*fem, 0*fem, 8*fem, 10*fem),
             child: Text(
-              'Hi Im Meow',
+              'Hi Im Chiko',
               style: SafeGoogleFont (
                 'Poppins',
                 fontSize: 20*ffem,
@@ -56,21 +59,18 @@ class _MedRecState extends State<MedRec>{
             height: 30.0,
           ),
 
-          const MedicalRecords(
-            title: 'Record 1',
-            description: 'First medical record',),
-          const SizedBox(
-            height: 20.0,
-          ),
-          const MedicalRecords(
-            title: 'Record 2',
-            description: 'Medical record',),
+          // const MedicalRecords(
+          //   title: 'Record 2',
+          //   description: 'First medical record',),
 
           const SizedBox(
             height: 30.0,
           ),
           ElevatedButton.icon(
-            onPressed: () {},
+            onPressed: () {
+
+              Navigator.of(context).push(MaterialPageRoute(builder: (context) => EditMedRec()));
+            },
             style: ElevatedButton.styleFrom(primary: Colors.red),
             icon: const Icon( // <-- Icon
               Icons.add,

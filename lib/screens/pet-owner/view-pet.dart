@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
 import '../../utils.dart';
+import '../pet/empty/medicalRecordDb-Empt.dart';
+import '../pet/pet-med-reco.dart';
+import '../pet/view-pet.dart';
 import '../widgets/profile-avatar.dart';
 import 'package:mad_cw2_vet_me/screens/widgets/text-field.dart';
 import '../widgets/profile_pic.dart';
@@ -39,7 +42,7 @@ class ViewPet extends StatelessWidget {
             // addanewpeteYZ (21:170)
             margin: EdgeInsets.fromLTRB(70*fem, 0*fem, 8*fem, 10*fem),
             child: Text(
-              'Update Pet Details',
+              'View Pet Details',
               style: SafeGoogleFont (
                 'Poppins',
                 fontSize: 18*ffem,
@@ -68,7 +71,7 @@ class ViewPet extends StatelessWidget {
             ),
           ),
           InputField(
-              hintText: "Name",
+              hintText: "Chiko",
               controller: _nameController,
               obscureText: false),
           const SizedBox(
@@ -95,7 +98,7 @@ class ViewPet extends StatelessWidget {
                     controller: _ageController,
                     decoration: const InputDecoration(
                         border: InputBorder.none,
-                        hintText: "Age (Years)"
+                        hintText: "2"
                     ),
                   )
               )
@@ -147,7 +150,7 @@ class ViewPet extends StatelessWidget {
             ),
           ),
           InputField(
-              hintText: "Breed",
+              hintText: "Labrador",
               controller: _breedController,
               obscureText: false),
           const SizedBox(
@@ -169,7 +172,9 @@ class ViewPet extends StatelessWidget {
             height: 30.0,
           ),
          ElevatedButton.icon(
-          onPressed: () {},
+          onPressed: () {
+            Navigator.of(context).push(MaterialPageRoute(builder: (context) => MedRecDb()));
+          },
            style: ElevatedButton.styleFrom(primary: Colors.red),
           icon: const Icon( // <-- Icon
           Icons.medical_information,
@@ -186,7 +191,7 @@ class ViewPet extends StatelessWidget {
                   backgroundColor: Colors.blue.shade900,
                   textStyle: const TextStyle(fontSize: 15)),
               onPressed: (){
-
+                Navigator.of(context).push(MaterialPageRoute(builder: (context) => MedRecDb()));
               },
               child: const Text('Edit')),
           const SizedBox(
@@ -202,7 +207,7 @@ class ViewPet extends StatelessWidget {
               onPressed: () {
                 Navigator.of(context).push(MaterialPageRoute(builder: (context) => PetList()));
               },
-              child: const Icon(Icons.filter_list_alt))
+              child: const Icon(Icons.pets_rounded))
         ],
       ),
 

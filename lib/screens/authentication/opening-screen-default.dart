@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
 import '../../utils.dart';
+import 'login-screen.dart';
 
 class DefaultOpeningScreen extends StatelessWidget {
   const DefaultOpeningScreen({super.key});
@@ -115,7 +116,9 @@ class DefaultOpeningScreen extends StatelessWidget {
                       width: 66*fem,
                       height: 66*fem,
                       child: TextButton(
-                        onPressed: () {},
+                        onPressed: () {
+                          Navigator.of(context).push(MaterialPageRoute(builder: (context) => Login()));
+                        },
                         style: TextButton.styleFrom (
                           padding: EdgeInsets.zero,
                         ),

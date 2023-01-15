@@ -170,16 +170,35 @@ class PetProfile extends StatelessWidget {
           const SizedBox(
             height: 30.0,
           ),
-          TextButton(
-              style: TextButton.styleFrom(
-                  foregroundColor: Colors.white,
-                  backgroundColor: Colors.blue.shade900,
-                  textStyle: const TextStyle(fontSize: 15)),
-              onPressed: () {},
-              child: const Text('Save')),
+          ElevatedButton(
+            style: TextButton.styleFrom(
+                foregroundColor: Colors.white,
+                backgroundColor: Colors.blue.shade900,
+                textStyle: const TextStyle(fontSize: 15)),
+            onPressed: () {
+              Navigator.of(context).push(MaterialPageRoute(builder: (context) => PetList()));
+              final snackBar = SnackBar(
+                content: const Text('Pet Created'),
+                action: SnackBarAction(
+                  label: 'Undo',
+                  onPressed: () {
+
+                  },
+                ),
+              );
+
+              // Find the ScaffoldMessenger in the widget tree
+              // and use it to show a SnackBar.
+              ScaffoldMessenger.of(context).showSnackBar(snackBar);
+            },
+            child: const Text('Save'),
+          ),
+
           const SizedBox(
             height: 30.0,
           ),
+
+
           TextButton(
               style: TextButton.styleFrom(
                   shape: CircleBorder(),
@@ -190,7 +209,9 @@ class PetProfile extends StatelessWidget {
               onPressed: () {
                 Navigator.of(context).push(MaterialPageRoute(builder: (context) => PetList()));
               },
-              child: const Icon(Icons.filter_list_alt))
+              child: const Icon(Icons.home)),
+
+
         ],
       ),
     );

@@ -3,6 +3,9 @@ import '../../utils.dart';
 import '../widgets/profile-avatar.dart';
 import 'package:mad_cw2_vet_me/screens/widgets/text-field.dart';
 
+import 'ClinicSchedule.dart';
+import 'Schdule2Dup.dart';
+
 
 class CreateSchedule extends StatefulWidget {
 
@@ -18,24 +21,32 @@ class _CreateScheduleState extends State<CreateSchedule> {
   final TextEditingController _descriptionController = TextEditingController();
   final TextEditingController _detailsController = TextEditingController();
 
+  DateTime dateTime = DateTime(2023, 01, 12, 5, 30);
+
   bool ch1 = false;
   bool ch2 = false;
 
-  String dropdownvalue = 'Item 1';
+  String dropdownvalue = 'Slot 4';
   var items = [
-    'Item 1',
-    'Item 2',
-    'Item 3',
-    'Item 4',
-    'Item 5',
+
+    'Slot 4',
+    'Slot 5',
   ];
-  
+
+  String dropdownvalue2 = 'Dr John Cena';
+  var doctorsList = ['Dr John Cena', 'Dr Kumara,', 'Dr Silva'];
+
+  String statusDropDown = 'Available';
+  var statusList = ['Available', 'Booked', 'Cancelled '];
+
 
   @override
   Widget build(BuildContext context) {
     double baseWidth = 390;
     double fem = MediaQuery.of(context).size.width / baseWidth;
     double ffem = fem * 0.97;
+    final hours = dateTime.hour.toString().padLeft(2, '0');
+    final minutes = dateTime.minute.toString().padLeft(2, '0');
 
     return Scaffold(
       appBar: AppBar(
@@ -148,17 +159,17 @@ class _CreateScheduleState extends State<CreateSchedule> {
             ),
           ),
           DropdownButton(
-              value: dropdownvalue,
+              value: dropdownvalue2,
               icon: const Icon(Icons.keyboard_arrow_down),
-              items: items.map((String items) {
+              items: doctorsList.map((String doctorsList) {
                 return DropdownMenuItem(
-                  value: items,
-                  child: Text(items),
+                  value: doctorsList ,
+                  child: Text(doctorsList),
                 );
               }).toList(),
-              onChanged: (String? newValue){
+              onChanged: (String? newValue2){
                 setState(() {
-                  dropdownvalue = newValue!;
+                  dropdownvalue2 = newValue2!;
                 });
               }
           ),
@@ -176,17 +187,17 @@ class _CreateScheduleState extends State<CreateSchedule> {
             ),
           ),
           DropdownButton(
-              value: dropdownvalue,
+              value: statusDropDown,
               icon: const Icon(Icons.keyboard_arrow_down),
-              items: items.map((String items) {
+              items: statusList.map((String statusList) {
                 return DropdownMenuItem(
-                  value: items,
-                  child: Text(items),
+                  value: statusList,
+                  child: Text(statusList),
                 );
               }).toList(),
-              onChanged: (String? newValue){
+              onChanged: (String? newValue3){
                 setState(() {
-                  dropdownvalue = newValue!;
+                  statusDropDown = newValue3!;
                 });
               }
           ),
@@ -226,15 +237,96 @@ class _CreateScheduleState extends State<CreateSchedule> {
           const SizedBox(
             height: 30.0,
           ),
-
-          TextButton(
-              style: TextButton.styleFrom(
-                  foregroundColor: Colors.white,
-                  backgroundColor: Colors.green.shade800,
-                  textStyle: const TextStyle(fontSize: 18)),
-              onPressed: (){},
-              child: const Text('Save')
+          Text(
+            'Date and Time',
+            style: SafeGoogleFont (
+              'Poppins',
+              fontSize: 18*ffem,
+              color: const Color(0xff000000),
+            ),
           ),
+          Row(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              Expanded(
+                  child: ElevatedButton(
+                    child: Text('${dateTime.year}/${dateTime.month}/${dateTime.day}'),
+                    onPressed: () async {
+                      final date = await pickDate();
+                      if (date == null ) return;
+
+                      final newDateTime = DateTime(
+                        date.year,
+                        date.month,
+                        date.day,
+                        dateTime.hour,
+                        dateTime.minute,
+                      );
+                      setState(() => dateTime = date);
+                    },
+                  )
+              ),
+              const SizedBox(width: 12),
+              Expanded(
+                  child: ElevatedButton(
+                    child: Text('$hours:$minutes'),
+                    onPressed: () async {
+                      final time = await pickTime();
+                      if (time == null ) return;
+                      final newDateTime = DateTime(
+                        dateTime.year,
+                        dateTime.month,
+                        dateTime.day,
+                        time.hour,
+                        time.minute,
+                      );
+                      setState(() => dateTime = newDateTime);
+                    },
+                  )
+              ),
+            ],
+          ),
+          const SizedBox(
+            height: 30.0,
+          ),
+          ElevatedButton(
+            style: TextButton.styleFrom(
+                foregroundColor: Colors.white,
+                backgroundColor: Colors.green,
+                textStyle: const TextStyle(fontSize: 15)),
+            onPressed: () {
+              Navigator.of(context).push(MaterialPageRoute(builder: (context) => ClinicSchedule2()));
+              final snackBar = SnackBar(
+                content: const Text('Schedule created'),
+                action: SnackBarAction(
+                  label: 'Undo',
+                  onPressed: () {
+
+                  },
+                ),
+              );
+
+              // Find the ScaffoldMessenger in the widget tree
+              // and use it to show a SnackBar.
+              ScaffoldMessenger.of(context).showSnackBar(snackBar);
+            },
+            child: const Text('Save'),
+          ),
+
+          // TextButton(
+          //     style: TextButton.styleFrom(
+          //         foregroundColor: Colors.white,
+          //         backgroundColor: Colors.green.shade800,
+          //         textStyle: const TextStyle(fontSize: 18)),
+          //     onPressed: (){},
+          //     child: const Text('Save')
+          // ),
+          // const SizedBox(
+          //   height: 30.0,
+          // ),
+
+
+
 
 
         ],
@@ -242,4 +334,14 @@ class _CreateScheduleState extends State<CreateSchedule> {
 
     );
   }
+  Future<DateTime?> pickDate() => showDatePicker(
+    context: context,
+    initialDate: dateTime,
+    firstDate: DateTime(2020),
+    lastDate: DateTime(2025),
+  );
+  Future<TimeOfDay?> pickTime() => showTimePicker(
+    context: context,
+    initialTime: TimeOfDay(hour: dateTime.hour, minute: dateTime.minute),
+  );
 }
