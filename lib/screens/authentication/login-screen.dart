@@ -1,30 +1,33 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:mad_cw2_vet_me/controllers/authentication-controller.dart';
+import 'package:mad_cw2_vet_me/screens/authentication/redirect-page.dart';
+import 'package:mad_cw2_vet_me/screens/pet-owner/pet-owner-dashboard.dart';
 import 'package:mad_cw2_vet_me/screens/widgets/text-field.dart';
 
 import '../../utils.dart';
+import '../Clinic/ClinciDB.dart';
 
-class Login extends StatefulWidget {
+class Login extends ConsumerStatefulWidget {
   const Login({Key? key}) : super(key: key);
 
   @override
-  State<Login> createState() => _LoginState();
+  ConsumerState<Login> createState() => _LoginState();
 }
 
-class _LoginState extends State<Login> {
+class _LoginState extends ConsumerState<Login> {
   final TextEditingController _emailController = TextEditingController();
   final TextEditingController _passwordController = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
-
     double baseWidth = 390;
     double fem = MediaQuery.of(context).size.width / baseWidth;
     double ffem = fem * 0.97;
 
     AuthenticationController auth = AuthenticationController();
-
+    final String userRole = ref.watch(currentUserRoleProvider);
 
     return Scaffold(
       backgroundColor: Colors.white,
@@ -35,7 +38,9 @@ class _LoginState extends State<Login> {
             mainAxisAlignment: MainAxisAlignment.start,
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
-              const SizedBox(height: 10.0,),
+              const SizedBox(
+                height: 10.0,
+              ),
               Text(
                 'Login',
                 textAlign: TextAlign.start,
@@ -47,7 +52,9 @@ class _LoginState extends State<Login> {
                   color: const Color(0xff000000),
                 ),
               ),
-              const SizedBox(height: 10.0,),
+              const SizedBox(
+                height: 10.0,
+              ),
               Text(
                 'Hello, welcome back to our account!',
                 textAlign: TextAlign.start,
@@ -59,7 +66,9 @@ class _LoginState extends State<Login> {
                   color: const Color(0xff595959),
                 ),
               ),
-              const SizedBox(height: 30.0,),
+              const SizedBox(
+                height: 30.0,
+              ),
               Container(
                   decoration: BoxDecoration(
                       border: Border.all(color: Colors.grey.shade300),
@@ -73,19 +82,35 @@ class _LoginState extends State<Login> {
                         decoration: const InputDecoration(
                             border: InputBorder.none, hintText: 'Email'),
                       ))),
-              const SizedBox(height: 10.0,),
+              const SizedBox(
+                height: 10.0,
+              ),
               InputField(
                   hintText: "Password",
                   controller: _passwordController,
                   obscureText: true),
-              const SizedBox(height: 40.0,),
+              const SizedBox(
+                height: 40.0,
+              ),
               InkWell(
                 onTap: () {
-                  try{
-                    auth.signInWithEmailAndPassword(email: _emailController.text, password: _passwordController.text);
-                    ScaffoldMessenger.of(context).showSnackBar(const SnackBar(content: Text("Welcome back to VetMe")));
-                  } on FirebaseAuthException catch(error){
-                    ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text(error.message!)));
+                  try {
+                    auth.signInWithEmailAndPassword(
+                        email: _emailController.text,
+                        password: _passwordController.text);
+                    ScaffoldMessenger.of(context).showSnackBar(
+                        const SnackBar(content: Text("Welcome back to VetMe")));
+
+                    if (userRole == 'pet-owner') {
+                      Navigator.of(context).push(MaterialPageRoute(
+                          builder: (context) => const PetOwnerDashboard()));
+                    } else {
+                      Navigator.of(context).push(MaterialPageRoute(
+                          builder: (context) => const ClinicDb()));
+                    }
+                  } on FirebaseAuthException catch (error) {
+                    ScaffoldMessenger.of(context)
+                        .showSnackBar(SnackBar(content: Text(error.message!)));
                   }
                 },
                 child: Container(
@@ -117,7 +142,9 @@ class _LoginState extends State<Login> {
                   ),
                 ),
               ),
-              const SizedBox(height: 50.0,),
+              const SizedBox(
+                height: 50.0,
+              ),
               Text('------- OR -------',
                   style: SafeGoogleFont(
                     'Inter',
@@ -126,10 +153,14 @@ class _LoginState extends State<Login> {
                     height: 1.2125 * ffem / fem,
                     color: const Color(0xff000000),
                   )),
-              const SizedBox(height: 50.0,),
+              const SizedBox(
+                height: 50.0,
+              ),
               InkWell(
-                onTap: (){
+                onTap: () {
                   auth.signInWithGoogle();
+                  Navigator.of(context).push(MaterialPageRoute(
+                      builder: (context) => const PetOwnerDashboard()));
                 },
                 child: Container(
                   // autogroupfxa1sS1 (KxJa5BVu9GdfM2Ep9BfXa1)
@@ -165,8 +196,8 @@ class _LoginState extends State<Login> {
                       ),
                       Container(
                         // loginwithgoogleMkV (1:430)
-                        margin:
-                            EdgeInsets.fromLTRB(0 * fem, 0 * fem, 0 * fem, 1 * fem),
+                        margin: EdgeInsets.fromLTRB(
+                            0 * fem, 0 * fem, 0 * fem, 1 * fem),
                         child: Text(
                           'Login with Google',
                           textAlign: TextAlign.center,
@@ -183,13 +214,15 @@ class _LoginState extends State<Login> {
                   ),
                 ),
               ),
-              const SizedBox(height: 30.0,),
+              const SizedBox(
+                height: 30.0,
+              ),
               Container(
                 // notregisteredyetcreateanaccoun (1:429)
                 margin:
                     EdgeInsets.fromLTRB(0 * fem, 0 * fem, 10.59 * fem, 0 * fem),
                 child: InkWell(
-                  onTap: (){},
+                  onTap: () {},
                   child: RichText(
                     textAlign: TextAlign.center,
                     text: TextSpan(
@@ -226,10 +259,12 @@ class _LoginState extends State<Login> {
                   ),
                 ),
               ),
-              const SizedBox(height: 30.0,),
+              const SizedBox(
+                height: 30.0,
+              ),
               SizedBox(
-                width: 227*fem,
-                height: 80*fem,
+                width: 227 * fem,
+                height: 80 * fem,
                 child: Image.asset(
                   'assets/page-1/images/logo-1.png',
                   fit: BoxFit.cover,

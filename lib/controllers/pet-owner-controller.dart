@@ -30,5 +30,12 @@ class PetOwnerController{
     }
   }
 
+  bool isCurrentUserAPetOwner(){
+    String signedInUser = FirebaseAuth.instance.currentUser!.uid;
+    List user = [];
+    user.add(collection.where('uid',isEqualTo: signedInUser ).get());
+    if(user.isEmpty){return false;}else{return true;}
+  }
+
 
 }

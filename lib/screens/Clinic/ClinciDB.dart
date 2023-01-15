@@ -76,7 +76,7 @@ class _ClinicDbState extends State<ClinicDb> {
                         decoration: BoxDecoration(
                           color: Colors.grey.shade50,
                           borderRadius: BorderRadius.circular(10.0),
-                          boxShadow: [
+                          boxShadow: const [
                             BoxShadow(
                               offset: Offset(6, 5),
                               spreadRadius: -8,
@@ -91,7 +91,7 @@ class _ClinicDbState extends State<ClinicDb> {
                         child: Row(
                           crossAxisAlignment: CrossAxisAlignment.center,
                           mainAxisAlignment: MainAxisAlignment.center,
-                          children: [
+                          children: const [
                             Icon( Icons.backup_table, ),
                             Text('Schedule'),
                           ],
@@ -111,7 +111,7 @@ class _ClinicDbState extends State<ClinicDb> {
                         decoration: BoxDecoration(
                           color: Colors.grey.shade50,
                           borderRadius: BorderRadius.circular(10.0),
-                          boxShadow: [
+                          boxShadow: const [
                             BoxShadow(
                               offset: Offset(6, 5),
                               spreadRadius: -8,
@@ -126,7 +126,7 @@ class _ClinicDbState extends State<ClinicDb> {
                         child: Row(
                           crossAxisAlignment: CrossAxisAlignment.center,
                           mainAxisAlignment: MainAxisAlignment.center,
-                          children: [
+                          children: const [
                             Icon( Icons.account_circle, ),
                             Text('Doctor'),
 

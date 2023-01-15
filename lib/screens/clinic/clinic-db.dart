@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
-class ClinicDb extends StatelessWidget {
-  const ClinicDb({Key? key}) : super(key: key);
+class ClinicDb1 extends StatelessWidget {
+  const ClinicDb1({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {

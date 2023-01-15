@@ -1,12 +1,9 @@
+
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:mad_cw2_vet_me/screens/Clinic/bookingdetails.dart';
-import 'package:mad_cw2_vet_me/screens/Clinic/create-doctor-profile.dart';
-import 'package:mad_cw2_vet_me/screens/authentication/registration.dart';
-import 'package:mad_cw2_vet_me/screens/pet-owner/CreateNewBooking.dart';
+import 'package:mad_cw2_vet_me/screens/authentication/redirect-page.dart';
 import 'package:mad_cw2_vet_me/utils.dart';
-
 import 'firebase_options.dart';
 
 void main() async {

@@ -1,4 +1,4 @@
-import 'package:cloud_firestore/cloud_firestore.dart';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:geoflutterfire2/geoflutterfire2.dart';
@@ -7,11 +7,12 @@ import 'package:google_places_flutter/model/prediction.dart';
 import 'package:mad_cw2_vet_me/controllers/clinic-controller.dart';
 import 'package:mad_cw2_vet_me/models/users.dart';
 import 'package:mad_cw2_vet_me/screens/widgets/banner-1.dart';
-import 'package:mad_cw2_vet_me/screens/widgets/clinic-details.dart';
+import 'package:mad_cw2_vet_me/screens/widgets/logout.dart';
 import 'package:mad_cw2_vet_me/screens/widgets/my-pets-button.dart';
 
 import '../../utils.dart';
 import '../widgets/profile-avatar.dart';
+import 'filtered-clinics.dart';
 
 class GeoLocation extends StateNotifier<GeoFirePoint> {
   GeoLocation() : super(GeoFirePoint(0.0, 0.0));
@@ -67,16 +68,16 @@ class _PetOwnerDashboardState extends ConsumerState<PetOwnerDashboard> {
     double fem = MediaQuery.of(context).size.width / baseWidth;
     double ffem = fem * 0.97;
 
-    final clinicsNearby = ref.watch(filteredClinicsProvider) as List<AppUser>;
+
 
     return Scaffold(
       appBar: AppBar(
-        leading: IconButton(onPressed: () {}, icon: const Icon(Icons.menu)),
+        leading: const SettingsMenu(),
         actions: const [ProfileAvatar(), SizedBox(width: 10.0)],
       ),
-      body: Padding(
-        padding: const EdgeInsets.all(10.0),
-        child: SingleChildScrollView(
+      body: SingleChildScrollView(
+        child: Padding(
+          padding: const EdgeInsets.all(10.0),
           child: Column(
             mainAxisAlignment: MainAxisAlignment.start,
             children: [
@@ -84,7 +85,7 @@ class _PetOwnerDashboardState extends ConsumerState<PetOwnerDashboard> {
                 height: 10.0,
               ),
               Text(
-                'Hi Tiger!',
+                'Welcome to VetMe!',
                 style: SafeGoogleFont(
                   'Poppins',
                   fontSize: 20 * ffem,
@@ -96,71 +97,99 @@ class _PetOwnerDashboardState extends ConsumerState<PetOwnerDashboard> {
               const SizedBox(
                 height: 10.0,
               ),
-              Container(
-                  decoration: BoxDecoration(
-                      color: Colors.white,
-                      border: Border.all(color: Colors.grey.shade300),
-                      borderRadius: BorderRadius.circular(12.0)),
-                  child: Padding(
-                      padding: const EdgeInsets.only(left: 20.0),
-                      child: TextField(
-                        keyboardType: TextInputType.number,
-                        textInputAction: TextInputAction.done,
-                        controller: _radiusController,
-                        decoration: const InputDecoration(
-                            border: InputBorder.none, hintText: "Radius (km)"),
-                      ))),
-              const SizedBox(
-                height: 10.0,
-              ),
-              Container(
-                  decoration: BoxDecoration(
-                      border: Border.all(color: Colors.grey.shade300),
-                      borderRadius: BorderRadius.circular(12.0)),
-                  child: Padding(
-                      padding: const EdgeInsets.only(left: 20.0),
-                      child: GooglePlaceAutoCompleteTextField(
-                          textEditingController: _locationController,
-                          googleAPIKey: key,
-                          inputDecoration: const InputDecoration(
-                              border: InputBorder.none, hintText: "Address"),
-                          countries: const ['lk'],
-                          debounceTime: 800,
-                          isLatLngRequired: true,
-                          getPlaceDetailWithLatLng: (Prediction prediction) {
-                            ref
-                                .read(centerLocationProvider.notifier)
-                                .getLocation(prediction);
-                          },
-                          itmClick: (Prediction prediction) {
-                            _locationController.text = prediction.description!;
-
-                            _locationController.selection =
-                                TextSelection.fromPosition(TextPosition(
-                                    offset: prediction.description!.length));
-
-                            ref
-                                .read(filteredClinicsProvider.notifier)
-                                .getFilteredClinics(_radiusController.text);
-                          }
-                          // default 600 ms ,
-                          ))),
-              const SizedBox(
-                height: 10.0,
-              ),
               const Banner1(),
               const SizedBox(
-                height: 10.0,
+                height: 20.0,
               ),
-              ListView.builder(
-                itemCount: clinicsNearby.length,
-                itemBuilder: (context, index) => ClinicDetails(
-                  clinicDetails: clinicsNearby[index],
+              Text(
+                'Find clinics nearby!',
+                style: SafeGoogleFont(
+                  'Poppins',
+                  fontSize: 20 * ffem,
+                  fontWeight: FontWeight.w600,
+                  height: 1.1812192917 * ffem / fem,
+                  color: const Color(0xffff7f0a),
                 ),
               ),
               const SizedBox(
-                height: 10.0,
+                height: 20.0,
               ),
+              SizedBox(
+                height: 375.0,
+                child: Column(
+                  children: [
+                    Container(
+                        decoration: BoxDecoration(
+                            color: Colors.white,
+                            border: Border.all(color: Colors.grey.shade300),
+                            borderRadius: BorderRadius.circular(12.0)),
+                        child: Padding(
+                            padding: const EdgeInsets.only(left: 20.0),
+                            child: TextField(
+                              keyboardType: TextInputType.number,
+                              textInputAction: TextInputAction.done,
+                              controller: _radiusController,
+                              decoration: const InputDecoration(
+                                  border: InputBorder.none, hintText: "Radius (km)"),
+                            ))),
+                    const SizedBox(
+                      height: 10.0,
+                    ),
+                    Container(
+                        decoration: BoxDecoration(
+                            border: Border.all(color: Colors.grey.shade300),
+                            borderRadius: BorderRadius.circular(12.0)),
+                        child: Padding(
+                            padding: const EdgeInsets.only(left: 20.0),
+                            child: GooglePlaceAutoCompleteTextField(
+                                textEditingController: _locationController,
+                                googleAPIKey: key,
+                                inputDecoration: const InputDecoration(
+                                    border: InputBorder.none, hintText: "Address"),
+                                countries: const ['lk'],
+                                debounceTime: 800,
+                                isLatLngRequired: true,
+                                getPlaceDetailWithLatLng: (Prediction prediction) {
+                                  ref
+                                      .read(centerLocationProvider.notifier)
+                                      .getLocation(prediction);
+                                },
+                                itmClick: (Prediction prediction) {
+                                  _locationController.text = prediction.description!;
+
+                                  _locationController.selection =
+                                      TextSelection.fromPosition(TextPosition(
+                                          offset: prediction.description!.length));
+
+                                  ref
+                                      .read(filteredClinicsProvider.notifier)
+                                      .getFilteredClinics(_radiusController.text);
+                                }
+                              // default 600 ms ,
+                            ))),
+                    const SizedBox(
+                      height: 10.0,
+                    ),
+                    ElevatedButton.icon(
+                      style:  ElevatedButton.styleFrom(
+                        backgroundColor: Colors.blue.shade900,
+                        textStyle: SafeGoogleFont (
+                          'Poppins',
+                          fontSize: 15*ffem,
+                          fontWeight: FontWeight.w600,
+                          height: 1.1812192917*ffem/fem,
+                          color: Colors.white,
+                        ) ,
+                      ),
+                      onPressed: () {
+                        Navigator.of(context).push(MaterialPageRoute(builder: (context) => const FilterClinics()));
+                      },
+                      icon: const Icon( Icons.pets_sharp),
+                      label: const Text('Filter'),),
+                  ],
+                ),
+              ),
+
               const MyPetsButton()
             ],
           ),

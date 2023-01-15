@@ -17,18 +17,7 @@ class AuthenticationController extends ChangeNotifier{
     }
   }
 
-  handleAuthState() {
-    return StreamBuilder(
-        stream: FirebaseAuth.instance.authStateChanges(),
-        builder: (BuildContext context, snapshot) {
-          if (snapshot.hasData) {
-            // if the user is a pet owner direct to pet owner dashboard or clinic dashboard
-            return const DefaultOpeningScreen();
-          } else {
-            return const Login();
-          }
-        });
-   }
+
 
   Future<void> signUpWithEmailAndPassword({
     required String email,
@@ -48,20 +37,16 @@ class AuthenticationController extends ChangeNotifier{
   }
 
   signInWithGoogle() async {
-    // Trigger the authentication flow
     final GoogleSignInAccount? googleUser = await GoogleSignIn(
         scopes: <String>["email"]).signIn();
 
-    // Obtain the auth details from the request
     final GoogleSignInAuthentication googleAuth = await googleUser!.authentication;
 
-    // Create a new credential
     final credential = GoogleAuthProvider.credential(
       accessToken: googleAuth.accessToken,
       idToken: googleAuth.idToken,
     );
 
-    // Once signed in, return the UserCredential
     return await FirebaseAuth.instance.signInWithCredential(credential);
   }
 

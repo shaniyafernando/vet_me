@@ -11,6 +11,25 @@ import 'package:mad_cw2_vet_me/models/users.dart';
 import 'package:mad_cw2_vet_me/screens/widgets/text-field.dart';
 import 'package:mask_text_input_formatter/mask_text_input_formatter.dart';
 import '../../utils.dart';
+import '../pet-owner/pet-owner-dashboard.dart';
+
+class UserRole extends StateNotifier<List<bool>>{
+  UserRole() : super([true,false]);
+
+  void onToggle(int index){
+    for (int buttonIndex = 0;
+    buttonIndex < state.length;
+    buttonIndex++) {
+      if (buttonIndex == index) {
+        state[buttonIndex] = true;
+      }else{
+        state[buttonIndex] = false;
+      }
+    }
+  }
+}
+
+final userRoleProvider = StateNotifierProvider((ref) => UserRole());
 
 class Registration extends ConsumerStatefulWidget {
   const Registration({Key? key}) : super(key: key);
@@ -31,9 +50,9 @@ class _RegistrationState extends ConsumerState<Registration> {
   final TextEditingController _locationController = TextEditingController();
   final String key = "AIzaSyCOpaFa6BK4mGwxG1XAEFOQOifWdCMAd8g";
   final geo = GeoFlutterFire();
-  late GeoFirePoint myLocation;
+
   final maskFormatter = MaskTextInputFormatter(mask: "### ### ####");
-  List<bool> isSelected = [true, false];
+
   static const List<Widget> user = <Widget>[Text('Pet Owner'), Text('Clinic')];
 
   @override
@@ -52,10 +71,12 @@ class _RegistrationState extends ConsumerState<Registration> {
     double baseWidth = 390;
     double fem = MediaQuery.of(context).size.width / baseWidth;
     double ffem = fem * 0.97;
-
+    final myLocation = ref.watch(centerLocationProvider) as GeoFirePoint;
+    final isSelected = ref.watch(userRoleProvider) as List<bool>;
     PetOwnerController newPet = PetOwnerController();
     ClinicController newClinic = ClinicController();
     AuthenticationController auth = AuthenticationController();
+
 
     return Scaffold(
       backgroundColor: Colors.white,
@@ -100,17 +121,7 @@ class _RegistrationState extends ConsumerState<Registration> {
               ToggleButtons(
                 direction: Axis.horizontal,
                 onPressed: (index) {
-                    setState(() {
-                      for (int buttonIndex = 0;
-                      buttonIndex < isSelected.length;
-                      buttonIndex++) {
-                        if (buttonIndex == index) {
-                          isSelected[buttonIndex] = true;
-                        }else{
-                          isSelected[buttonIndex] = false;
-                        }
-                      }
-                    });
+                    ref.read(userRoleProvider.notifier).onToggle(index);
                 },
                 borderRadius: const BorderRadius.all(Radius.circular(8)),
                 selectedBorderColor: Colors.deepOrange[700],
@@ -196,9 +207,9 @@ class _RegistrationState extends ConsumerState<Registration> {
                           debounceTime: 800,
                           isLatLngRequired: true,
                           getPlaceDetailWithLatLng: (Prediction prediction) {
-                            myLocation = geo.point(
-                                latitude: double.parse(prediction.lat!),
-                                longitude: double.parse(prediction.lng!));
+                            ref
+                                .read(centerLocationProvider.notifier)
+                                .getLocation(prediction);
                           },
                           itmClick: (Prediction prediction) {
                             _locationController.text = prediction.description!;
@@ -217,22 +228,17 @@ class _RegistrationState extends ConsumerState<Registration> {
                     try {
                       if (_passwordController.text.trim() ==
                           _confirmPasswordController.text.trim()) {
-                        auth.signInWithEmailAndPassword(
-                            email: _emailController.text,
-                            password: _passwordController.text);
+                        auth.signUpWithEmailAndPassword(
+                            email: _emailController.text, password: _passwordController.text);
                       }
                     } on FirebaseAuthException catch (error) {
-                      ScaffoldMessenger.of(context).showSnackBar(
-                          SnackBar(content: Text(error.message!)));
+                      ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text(error.message!)));
                     }
 
                     AppUser newUser = AppUser.user(
-                        _usernameController.text,
-                        _emailController.text,
-                        _phoneNumberController.text,
-                        _locationController.text,
-                        myLocation,
-                        FirebaseAuth.instance.currentUser!.uid);
+                        _usernameController.text, _emailController.text,
+                        _phoneNumberController.text, _locationController.text,
+                        myLocation, FirebaseAuth.instance.currentUser!.uid);
 
                     if (isSelected[0] == true) {
                       newPet.addPetOwner(newUser);

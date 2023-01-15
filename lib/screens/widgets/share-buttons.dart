@@ -42,14 +42,12 @@ class _ShareButtonsState extends State<ShareButtons> {
     );
       },
       child: Container(
-        // autogroupnesd7VK (KxJg3Ridnr6QoEman4neSD)
         margin: EdgeInsets.fromLTRB(86.33*fem, 0*fem, 128.42*fem, 67*fem),
         width: double.infinity,
         child: Row(
           crossAxisAlignment: CrossAxisAlignment.end,
           children: [
             Container(
-              // iconsaxlineardocumentdownloadE (39:570)
               margin: EdgeInsets.fromLTRB(0*fem, 0*fem, 8.83*fem, 0.33*fem),
               width: 33.33*fem,
               height: 33.33*fem,
@@ -60,7 +58,6 @@ class _ShareButtonsState extends State<ShareButtons> {
               ),
             ),
             Text(
-              // receiptuAH (39:574)
               'Receipt',
               textAlign: TextAlign.center,
               style: SafeGoogleFont (

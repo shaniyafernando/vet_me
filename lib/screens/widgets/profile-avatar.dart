@@ -19,32 +19,12 @@ class ProfileAvatar extends StatelessWidget {
           ),
         ],
       ),
-      size: 30.0,
-    //   children: [
-    //   Align(
-    //   alignment: Alignment.topRight,
-    //   child: Container(
-    //     width: 20,
-    //     height: 20,
-    //     alignment: Alignment.center,
-    //     decoration: BoxDecoration(
-    //       border: Border.all(
-    //         color: Colors.white,
-    //         width: 0.5,
-    //       ),
-    //       color: Colors.red,
-    //       shape: BoxShape.circle,
-    //     ),
-    //     child: const Text(
-    //       '12',
-    //       style: TextStyle(
-    //         fontSize: 6,
-    //         fontWeight: FontWeight.w500,
-    //         color: Colors.white,
-    //       ),
-    //     ),
-    //   ),
-    // )]
-    );
+      size: 30.0,);
   }
 }
+
+
+
+
+
+

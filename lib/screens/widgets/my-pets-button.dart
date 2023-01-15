@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:mad_cw2_vet_me/screens/pet-owner/list-of-pets.dart';
 
 import '../../utils.dart';
 
@@ -30,13 +31,11 @@ class _MyPetsButtonState extends State<MyPetsButton> {
             color: Colors.white,
           ) ,
           ),
-          onPressed: () {},
-          icon: Icon( Icons.pets_sharp, ),
-          label: const Text('My Pets >'),
-
-        ),
-      ),
-    );
+          onPressed: () {
+            Navigator.of(context).push(MaterialPageRoute(builder: (context) => const PetList()));
+          },
+          icon: const Icon( Icons.pets_sharp),
+          label: const Text('My Pets >'),),),);
   }
 }
 class HomeBtn extends StatefulWidget {
