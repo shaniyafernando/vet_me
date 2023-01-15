@@ -1,6 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:mad_cw2_vet_me/screens/Clinic/ClinciDB.dart';
 
+import 'package:mad_cw2_vet_me/screens/widgets/banner-1.dart';
+import 'package:mad_cw2_vet_me/screens/widgets/clinic-details.dart';
+import 'package:mad_cw2_vet_me/screens/widgets/my-pets-button.dart';
 import 'package:mad_cw2_vet_me/screens/widgets/profile-avatar.dart';
+import 'package:mad_cw2_vet_me/screens/widgets/text-field.dart';
 
 import '../../utils.dart';
 import '../pet-owner/pet-owner-dashboard.dart';
@@ -15,6 +20,7 @@ class Drawer extends StatelessWidget {
       drawer: Drawer(
         child: ListView(
           padding: EdgeInsets.zero,
+
           children: [
             const DrawerHeader(
 
@@ -31,11 +37,12 @@ class Drawer extends StatelessWidget {
                 Navigator.pop(context);
               },
             ),
-            const SizedBox(height: 5,),
+            SizedBox(height: 5,),
             ListTile(
               title: const Text('Home',),
               onTap: (){
-                Navigator.of(context).push(MaterialPageRoute(builder: (context) => const PetOwnerDashboard()),);
+                Navigator.of(context).push(MaterialPageRoute(builder: (context) => const ClinicDb()),
+                );
               },
             ),
 
