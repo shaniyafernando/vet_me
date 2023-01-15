@@ -20,7 +20,7 @@ class BookNow extends StatefulWidget {
   @override
   State<BookNow> createState() => _BookNowState();
 }
-const List<String> list = <String>['Chiko','Dog 2'];
+const List<String> list = <String>['Chiko'];
 class _BookNowState extends State<BookNow> {
 
 

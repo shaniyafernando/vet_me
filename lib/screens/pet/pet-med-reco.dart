@@ -62,9 +62,9 @@ class _MedRecState extends State<MedRec>{
           const SizedBox(
             height: 20.0,
           ),
-          const MedicalRecords(
-            title: 'Record 2',
-            description: 'Medical record',),
+          // const MedicalRecords(
+          //   title: 'Record 2',
+          //   description: 'Medical record',),
 
           const SizedBox(
             height: 30.0,

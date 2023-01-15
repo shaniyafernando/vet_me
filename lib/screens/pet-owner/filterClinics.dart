@@ -6,6 +6,7 @@ import 'package:mad_cw2_vet_me/screens/pet-owner/petDashboardempty.dart';
 import 'package:mad_cw2_vet_me/screens/widgets/clinicDetails2.dart';
 
 import '../../models/users.dart';
+import '../../utils.dart';
 import '../widgets/banner-1.dart';
 import '../widgets/clinic-details.dart';
 import '../widgets/profile-avatar.dart';
@@ -36,6 +37,13 @@ class FilterClinics extends ConsumerWidget {
               const SizedBox(
                 height: 10.0,
               ),
+              Text('Hi, User 1',  style: SafeGoogleFont(
+                'Poppins',
+                fontSize: 20,
+                fontWeight: FontWeight.w600,
+                height: 1,
+                color: const Color(0xffff7f0a),
+              ),),
               const Banner1(),
               const SizedBox(
                 height: 20.0,

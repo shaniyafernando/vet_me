@@ -3,7 +3,6 @@ import 'package:mad_cw2_vet_me/screens/widgets/share-buttons.dart';
 
 import '../../models/invoice.dart';
 import '../../utils.dart';
-import '../pet-owner/ClinicDb-PetOwner.dart';
 import '../pet-owner/filterClinics.dart';
 import '../pet-owner/pet-owner-dashboard.dart';
 import '../pet-owner/petOwnerDashboard.dart';
@@ -102,6 +101,7 @@ class SuccessMessage extends StatelessWidget {
                   ],
                 ),
               ),
+              // showRecieptButton(),
               ElevatedButton(
                   style: TextButton.styleFrom(
                       foregroundColor: Colors.white,
@@ -109,7 +109,7 @@ class SuccessMessage extends StatelessWidget {
                       textStyle: const TextStyle(fontSize: 15)),
                   onPressed: ()  {
                     Navigator.of(context).push(MaterialPageRoute(
-                        builder: (context) => const FilterClinics()),);
+                        builder: (context) => const PetOwnerDashboard()),);
                   },
                   child: const Text('Next')),
             ],

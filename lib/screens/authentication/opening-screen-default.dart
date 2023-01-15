@@ -16,41 +16,43 @@ class DefaultOpeningScreen extends StatelessWidget {
       child: Container(
         // openingscreendefaultGGy (3:1052)
         decoration: const BoxDecoration (
-          color: Color(0xffffffff),
+          color: Colors.white,
         ),
         child: Container(
           // iphone1313pro1cLq (1:317)
           width: double.infinity,
           height: 844*fem,
           decoration: const BoxDecoration (
-            color: Color(0xffffffff),
+            color: Colors.white,
           ),
           child: Container(
             // loginreg9Lm (1:318)
             width: 428*fem,
             height: 926*fem,
             decoration: const BoxDecoration (
-              color: Color(0xffffffff),
-              gradient: LinearGradient (
-                begin: Alignment(-0.118, -1.684),
-                end: Alignment(-0.096, 2.702),
-                colors: <Color>[Color(0xff000746), Color(0xff05537e)],
-                stops: <double>[0, 1],
-              ),
+              color: Colors.white,
+              // gradient: LinearGradient (
+              //   begin: Alignment(-0.118, -1.684),
+              //   end: Alignment(-0.096, 2.702),
+              //   colors: <Color>[Color(0xff000746), Color(0xff05537e)],
+              //   stops: <double>[0, 1],
+              // ),
             ),
             child: Stack(
               children: [
                 Positioned(
                   // adorablepuppysoloportrait1NDX (3:1048)
-                  left: 0*fem,
-                  top: 250*fem,
+                  // left: 0*fem,
+                  // top: 250*fem,
                   child: Align(
                     child: SizedBox(
                       width: 894*fem,
                       height: 596*fem,
-                      child: Image.asset(
-                        'assets/page-1/images/adorable-puppy-solo-portrait-1.png',
-                        fit: BoxFit.cover,
+                      child: FittedBox(
+                        child: Image.asset(
+                          'assets/page-1/images/dog.jpg',
+                          // fit: BoxFit.cover,
+                        ),
                       ),
                     ),
                   ),

@@ -48,7 +48,7 @@ class ClinicSchedule extends StatelessWidget {
             SlotCard(),
             SlotCard2(),
             SlotCard3(),
-            
+
             TextButton(
                 style: TextButton.styleFrom(
                     shape: CircleBorder(),
@@ -379,7 +379,7 @@ class SlotCard4 extends StatelessWidget {
           Align(
             alignment: Alignment.centerLeft,
             child: Padding(padding: EdgeInsets.only(left: 10.0, bottom: 10.0),
-              child: Text('16.00am - 13.00pm', style: SafeGoogleFont(
+              child: Text('16.00am', style: SafeGoogleFont(
                 'Poppins',
                 fontSize: 15,
                 fontWeight: FontWeight.w600,
