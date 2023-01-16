@@ -69,7 +69,7 @@ class _BookedPgState extends State<BookedPg> {
                                 color: Colors.black,
 
                               ), textAlign: TextAlign.left,),
-                              SizedBox(height: 12,),
+                              const SizedBox(height: 12,),
                               Text('Time', style: SafeGoogleFont(
                                 'Poppins',
                                 fontSize: 20,
@@ -77,7 +77,7 @@ class _BookedPgState extends State<BookedPg> {
                                 // height: 10,
                                 color: Colors.black,
                               ), textAlign: TextAlign.start),
-                              SizedBox(height: 12,),
+                              const SizedBox(height: 12,),
                               Text('Appoinmet Date', style: SafeGoogleFont(
                                 'Poppins',
                                 fontSize: 20,
@@ -85,7 +85,7 @@ class _BookedPgState extends State<BookedPg> {
                                 // height: 10,
                                 color: Colors.black,
                               ), ),
-                              SizedBox(height: 12,),
+                              const SizedBox(height: 12,),
                               Text('Appoinment No', style: SafeGoogleFont(
                                 'Poppins',
                                 fontSize: 20,
@@ -93,7 +93,7 @@ class _BookedPgState extends State<BookedPg> {
                                 // height: 10,
                                 color: Colors.black,
                               ), ),
-                              SizedBox(height: 12,),
+                              const SizedBox(height: 12,),
                               Text('Patient Details', style: SafeGoogleFont(
                                 'Poppins',
                                 fontSize: 20,
@@ -101,7 +101,7 @@ class _BookedPgState extends State<BookedPg> {
                                 // height: 10,
                                 color: Colors.black,
                               ), ),
-                              SizedBox(height: 12,),
+                              const SizedBox(height: 12,),
                               Text('Name', style: SafeGoogleFont(
                                 'Poppins',
                                 fontSize: 20,
@@ -109,7 +109,7 @@ class _BookedPgState extends State<BookedPg> {
                                 // height: 10,
                                 color: Colors.black,
                               ), ),
-                              SizedBox(height: 12,),
+                              const SizedBox(height: 12,),
                               Text('Pet ID', style: SafeGoogleFont(
                                 'Poppins',
                                 fontSize: 20,
@@ -117,7 +117,7 @@ class _BookedPgState extends State<BookedPg> {
                                 // height: 10,
                                 color: Colors.black,
                               ), ),
-                              SizedBox(height: 18,),
+                              const SizedBox(height: 18,),
                               Text('Total Fee (LKR)', style: SafeGoogleFont(
                                 'Poppins',
                                 fontSize: 23,
@@ -129,7 +129,7 @@ class _BookedPgState extends State<BookedPg> {
 
                             ]),
                       ),
-                      SizedBox(width: 10,),
+                      const SizedBox(width: 10,),
                       Container(
                         child: Column(
                             mainAxisAlignment: MainAxisAlignment.start,
@@ -145,7 +145,7 @@ class _BookedPgState extends State<BookedPg> {
                                 color: Colors.black,
 
                               ), textAlign: TextAlign.left,),
-                              SizedBox(height: 12,),
+                              const SizedBox(height: 12,),
                               Text(':', style: SafeGoogleFont(
                                 'Poppins',
                                 fontSize: 20,
@@ -154,7 +154,7 @@ class _BookedPgState extends State<BookedPg> {
                                 color: Colors.black,
 
                               ), textAlign: TextAlign.left,),
-                              SizedBox(height: 12,),
+                              const SizedBox(height: 12,),
                               Text(':', style: SafeGoogleFont(
                                 'Poppins',
                                 fontSize: 20,
@@ -163,7 +163,7 @@ class _BookedPgState extends State<BookedPg> {
                                 color: Colors.black,
 
                               ), textAlign: TextAlign.left,),
-                              SizedBox(height: 12,),
+                              const SizedBox(height: 12,),
                               Text(':', style: SafeGoogleFont(
                                 'Poppins',
                                 fontSize: 20,
@@ -172,7 +172,7 @@ class _BookedPgState extends State<BookedPg> {
                                 color: Colors.black,
 
                               ), textAlign: TextAlign.left,),
-                              SizedBox(height: 12,),
+                              const SizedBox(height: 12,),
                               Text('', style: SafeGoogleFont(
                                 'Poppins',
                                 fontSize: 20,
@@ -181,7 +181,7 @@ class _BookedPgState extends State<BookedPg> {
                                 color: Colors.black,
 
                               ), textAlign: TextAlign.left,),
-                              SizedBox(height: 12,),
+                              const SizedBox(height: 12,),
                               Text(':', style: SafeGoogleFont(
                                 'Poppins',
                                 fontSize: 20,
@@ -190,7 +190,7 @@ class _BookedPgState extends State<BookedPg> {
                                 color: Colors.black,
 
                               ), textAlign: TextAlign.left,),
-                              SizedBox(height: 12,),
+                              const SizedBox(height: 12,),
                               Text(':', style: SafeGoogleFont(
                                 'Poppins',
                                 fontSize: 20,
@@ -199,7 +199,7 @@ class _BookedPgState extends State<BookedPg> {
                                 color: Colors.black,
 
                               ), textAlign: TextAlign.left,),
-                              SizedBox(height: 18,),
+                              const SizedBox(height: 18,),
                               Text(':', style: SafeGoogleFont(
                                 'Poppins',
                                 fontSize: 23,
@@ -213,7 +213,7 @@ class _BookedPgState extends State<BookedPg> {
 
                             ]),
                       ),
-                      SizedBox(width: 10,),
+                      const SizedBox(width: 10,),
                       Container(
                         child: Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
@@ -229,7 +229,7 @@ class _BookedPgState extends State<BookedPg> {
                                 color: Colors.black,
 
                               ), textAlign: TextAlign.left,),
-                              SizedBox(height: 12,),
+                              const SizedBox(height: 12,),
                               Text('9.00am', style: SafeGoogleFont(
                                 'Poppins',
                                 fontSize: 20,
@@ -237,7 +237,7 @@ class _BookedPgState extends State<BookedPg> {
                                 // height: 10,
                                 color: Colors.black,
                               ), textAlign: TextAlign.start),
-                              SizedBox(height: 12,),
+                              const SizedBox(height: 12,),
                               Text('06/01/2023', style: SafeGoogleFont(
                                 'Poppins',
                                 fontSize: 20,
@@ -245,7 +245,7 @@ class _BookedPgState extends State<BookedPg> {
                                 // height: 10,
                                 color: Colors.black,
                               ), ),
-                              SizedBox(height: 12,),
+                              const SizedBox(height: 12,),
                               Text('06', style: SafeGoogleFont(
                                 'Poppins',
                                 fontSize: 20,
@@ -253,7 +253,7 @@ class _BookedPgState extends State<BookedPg> {
                                 // height: 10,
                                 color: Colors.black,
                               ), ),
-                              SizedBox(height: 12,),
+                              const SizedBox(height: 12,),
                               Text('', style: SafeGoogleFont(
                                 'Poppins',
                                 fontSize: 20,
@@ -261,7 +261,7 @@ class _BookedPgState extends State<BookedPg> {
                                 // height: 10,
                                 color: Colors.black,
                               ), ),
-                              SizedBox(height: 12,),
+                              const SizedBox(height: 12,),
                               Text('Meow', style: SafeGoogleFont(
                                 'Poppins',
                                 fontSize: 20,
@@ -269,7 +269,7 @@ class _BookedPgState extends State<BookedPg> {
                                 // height: 10,
                                 color: Colors.black,
                               ), ),
-                              SizedBox(height: 12,),
+                              const SizedBox(height: 12,),
                               Text('0618', style: SafeGoogleFont(
                                 'Poppins',
                                 fontSize: 20,
@@ -277,7 +277,7 @@ class _BookedPgState extends State<BookedPg> {
                                 // height: 10,
                                 color: Colors.black,
                               ), ),
-                              SizedBox(height: 18,),
+                              const SizedBox(height: 18,),
                               Text('4,350.00', style: SafeGoogleFont(
                                 'Poppins',
                                 fontSize: 23,
@@ -299,7 +299,7 @@ class _BookedPgState extends State<BookedPg> {
 
                 ),
               ),
-              SizedBox(height: 20,),
+              const SizedBox(height: 20,),
               ElevatedButton.icon(
 
                 style:  ElevatedButton.styleFrom(
@@ -316,7 +316,7 @@ class _BookedPgState extends State<BookedPg> {
                 onPressed: () {
                   Navigator.of(context).push(MaterialPageRoute(builder: (context) => ViewPet()));
                 },
-                icon: Icon( Icons.pets_rounded ),
+                icon: const Icon( Icons.pets_rounded ),
                 label: const Text('Patient details'),
 
               ),

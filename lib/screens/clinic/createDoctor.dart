@@ -1,20 +1,14 @@
-import 'dart:js';
+
 
 import 'package:flutter/material.dart';
-import 'package:mad_cw2_vet_me/controllers/WriteDoctor.dart';
-import 'package:mad_cw2_vet_me/screens/components/loadingLayer.dart';
 import '../../utils.dart';
 import '../widgets/profile-avatar.dart';
-import 'package:mad_cw2_vet_me/screens/widgets/text-field.dart';
 import '../widgets/profile_pic.dart';
-import 'package:hooks_riverpod/hooks_riverpod.dart';
-import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:mad_cw2_vet_me/controllers/WriteDoctor.dart';
 
-class CreateDoctorProfile extends ConsumerWidget {
+class CreateDoctorProfile extends StatelessWidget {
 
 
-  // CreateDoctorProfile({super.key});
+  CreateDoctorProfile({super.key});
 
 //   @override
 //   State<CreateDoctorProfile> createState() => _CreateDoctorProfileState();
@@ -39,7 +33,7 @@ class CreateDoctorProfile extends ConsumerWidget {
   // bool ch4 = false;
 
   @override
-  Widget build(BuildContext context, WidgetRef ref) {
+  Widget build(BuildContext context) {
     double baseWidth = 390;
     double fem = MediaQuery.of(context).size.width / baseWidth;
     double ffem = fem * 0.97;
@@ -47,10 +41,8 @@ class CreateDoctorProfile extends ConsumerWidget {
     final hours = dateTime.hour.toString().padLeft(2, '0');
     final minutes = dateTime.minute.toString().padLeft(2, '0');
 
-    final model = ref.watch(createDoctorProvider);
 
-    return LoadingLayer(
-      child: Scaffold(
+    return  Scaffold(
         appBar: AppBar(
           leading: IconButton(
               onPressed: () {},
@@ -99,13 +91,13 @@ class CreateDoctorProfile extends ConsumerWidget {
                 color: const Color(0xff000000),
               ),
             ),
-            TextFormField(
-              initialValue: model.name,
-              decoration: InputDecoration(
-                labelText: "Doctor "
-              ),
-              onChanged: (v)=> model.name=v,
-            ),
+            // TextFormField(
+            //   initialValue: name,
+            //   decoration: InputDecoration(
+            //     labelText: "Doctor "
+            //   ),
+            //   onChanged: (v)=> name=v,
+            // ),
 
             // InputField(
             //     hintText: "Doctor Name",
@@ -125,13 +117,13 @@ class CreateDoctorProfile extends ConsumerWidget {
                 color: const Color(0xff000000),
               ),
             ),
-            TextFormField(
-              initialValue: model.service,
-              decoration: InputDecoration(
-                  labelText: "Service "
-              ),
-              onChanged: (v)=> model.service=v,
-            ),
+            // TextFormField(
+            //   initialValue: model.service,
+            //   decoration: InputDecoration(
+            //       labelText: "Service "
+            //   ),
+            //   onChanged: (v)=> model.service=v,
+            // ),
             const SizedBox(
               height: 10.0,
             ),
@@ -144,13 +136,13 @@ class CreateDoctorProfile extends ConsumerWidget {
                 color: const Color(0xff000000),
               ),
             ),
-            TextFormField(
-              initialValue: model.contact,
-              decoration: InputDecoration(
-                  labelText: "Contact details "
-              ),
-              onChanged: (v)=> model.contact=v,
-            ),
+            // TextFormField(
+            //   initialValue: model.contact,
+            //   decoration: InputDecoration(
+            //       labelText: "Contact details "
+            //   ),
+            //   onChanged: (v)=> model.contact=v,
+            // ),
 
             const SizedBox(
               height: 10.0,
@@ -215,20 +207,18 @@ class CreateDoctorProfile extends ConsumerWidget {
               height: 10.0,
             ),
 
-            TextButton(
-                style: TextButton.styleFrom(
-                    foregroundColor: Colors.white,
-                    backgroundColor: Colors.green.shade800,
-                    textStyle: const TextStyle(fontSize: 18)),
-                onPressed: model.enabled? (){}:null,
-                child: const Text('Save')
-            ),
+            // TextButton(
+            //     style: TextButton.styleFrom(
+            //         foregroundColor: Colors.white,
+            //         backgroundColor: Colors.green.shade800,
+            //         textStyle: const TextStyle(fontSize: 18)),
+            //     onPressed: model.enabled? (){}:null,
+            //     child: const Text('Save')
+            // ),
 
 
           ],
         ),
-
-      ),
     );
   }
 

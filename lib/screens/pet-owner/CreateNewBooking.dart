@@ -1,12 +1,16 @@
 import 'package:draggable_fab/draggable_fab.dart';
 import 'package:dropdown_textfield/dropdown_textfield.dart';
 import 'package:flutter/material.dart';
+import 'package:mad_cw2_vet_me/models/invoice.dart';
 import 'package:mad_cw2_vet_me/screens/pet-owner/view-pet.dart';
+import 'package:mad_cw2_vet_me/screens/widgets/success-message.dart';
 
 import '../../utils.dart';
 import '../widgets/banner-1.dart';
 
 import '../widgets/profile-avatar.dart';
+
+Invoice invoice = Invoice('referenceNumber', 'time', 'appointmentDate', 'appointmentNumber', 'petName', 'petId', 'totalFee');
 
 class BookNow extends StatefulWidget {
   const BookNow({Key? key}) : super(key: key);
@@ -17,12 +21,7 @@ class BookNow extends StatefulWidget {
 const List<String> list = <String>['Pet 1','pet 2'];
 class _BookNowState extends State<BookNow> {
 
-
   String dropdownValue = list.first;
-
-
-
-
 
   @override
   Widget build(BuildContext context) {
@@ -68,10 +67,7 @@ class _BookNowState extends State<BookNow> {
                       Container(
                         child: Column(
                             crossAxisAlignment: CrossAxisAlignment.start,
-
                             children: [
-
-
                               Text('Ref.no', style: SafeGoogleFont(
                                 'Poppins',
                                 fontSize: 20,
@@ -315,19 +311,8 @@ class _BookNowState extends State<BookNow> {
                                 fontWeight: FontWeight.w600,
                                 // height: 10,
                                 color: Colors.black,
-                              ), ),
-
-
-
-                            ]),
-                      ),
-
-
-
-
-                    ],
+                              ), ),]), ),],
                   ),
-
                 ),
               ),
               const SizedBox(height: 20,),
@@ -346,7 +331,10 @@ class _BookNowState extends State<BookNow> {
                       color: Colors.white,
                     ) ,),
 
-                    onPressed: () {},
+                    onPressed: () {
+                      Navigator.of(context).push(MaterialPageRoute(builder: (context) => SuccessMessage(
+                          message: 'Booking Successful!!', showReceiptButton: true, invoice: invoice,)));
+                    },
                     child: const Text('Book now')),
               ),
 
@@ -374,6 +362,12 @@ class _BookNowState extends State<BookNow> {
     );
   }
 }
+
+
+
+
+
+
 // class DropDown extends StatefulWidget {
 //   const DropDown({Key? key}) : super(key: key);
 //

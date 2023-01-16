@@ -43,14 +43,11 @@ class ClinicSchedule extends StatelessWidget {
                 ),),
               ),
             ),
-            SlotCard(),
-            SlotCard(),
-            SlotCard(),
-            SlotCard(),
-            SlotCard(),
-            SlotCard(),
-            SlotCard(),
-            SlotCard(),
+            SizedBox(
+                height: 300.0,
+                child: ListView.builder(itemBuilder: (context, index) {
+                  return SlotCard();
+                })),
 
           ],
         ),
@@ -96,8 +93,23 @@ class SlotCard extends StatelessWidget {
           // height: 10,
           color: Colors.blue.shade900,
         ),),
-
-
+        leading: const Icon(Icons.person),
+        trailing: InkWell(
+          child: Container(
+          width: 80,
+          height: 35,
+          padding: new EdgeInsets.all(5.0),
+          decoration: BoxDecoration(
+            borderRadius: BorderRadius.circular(15),
+            color: Colors.green,
+          ),
+          child: Center(child: Text('Available',  style: SafeGoogleFont(
+            'Poppins',
+            fontSize: 13,
+            fontWeight: FontWeight.w600,
+            // height: 10,
+            color: Colors.black,
+          ),)),),),
         children: <Widget>[
           Align(
             alignment: Alignment.centerLeft,
@@ -126,29 +138,6 @@ class SlotCard extends StatelessWidget {
 
 
         ],
-        leading: const Icon(Icons.person),
-        trailing: InkWell(
-          child: Container(
-
-          width: 80,
-          height: 35,
-          padding: new EdgeInsets.all(5.0),
-
-          decoration: BoxDecoration(
-            borderRadius: BorderRadius.circular(15),
-            color: Colors.green,
-          ),
-          child: Center(child: Text('Available',  style: SafeGoogleFont(
-            'Poppins',
-            fontSize: 13,
-            fontWeight: FontWeight.w600,
-            // height: 10,
-            color: Colors.black,
-          ),)),
-
-        ),
-
-        ),
 
       ),
 

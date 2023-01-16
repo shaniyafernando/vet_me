@@ -67,8 +67,8 @@ class _PetListDashboardState extends State<PetList> {
               ),
               TextButton(
                   style: TextButton.styleFrom(
-                      shape: CircleBorder(),
-                      padding: EdgeInsets.all(15),
+                      shape: const CircleBorder(),
+                      padding: const EdgeInsets.all(15),
                       foregroundColor: Colors.white,
                       backgroundColor: Colors.green.shade900,
                       textStyle: const TextStyle(fontSize: 15)),

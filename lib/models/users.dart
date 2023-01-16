@@ -9,6 +9,7 @@ class AppUser{
   String address;
   GeoFirePoint coordinates;
   String uid;
+  String role;
 
   AppUser(
       {required this.referenceId,
@@ -17,10 +18,9 @@ class AppUser{
       required this.contact,
       required this.address,
       required this.coordinates,
-      required this.uid});
-
-  AppUser.user( this.username, this.email, this.contact,this.address,
-      this.coordinates, this.uid);
+      required this.uid,
+      required this.role,
+      });
 
   factory AppUser.fromFireStore(
       DocumentSnapshot<Map<String, dynamic>> snapshot,
@@ -35,7 +35,9 @@ class AppUser{
           contact:data['contact'],
           address:data['address'],
           coordinates: data['coordinates'],
-          uid:data['uid']);
+          uid:data['uid'],
+          role:data['role']
+    );
 
   }
 
@@ -46,7 +48,8 @@ class AppUser{
       "contact": contact,
       "address": address,
       "coordinates": coordinates.data,
-      "uid": uid
+      "uid": uid,
+      "role": role,
     };
   }
 

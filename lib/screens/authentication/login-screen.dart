@@ -1,22 +1,20 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:mad_cw2_vet_me/controllers/authentication-controller.dart';
-import 'package:mad_cw2_vet_me/screens/authentication/redirect-page.dart';
 import 'package:mad_cw2_vet_me/screens/pet-owner/pet-owner-dashboard.dart';
 import 'package:mad_cw2_vet_me/screens/widgets/text-field.dart';
 
 import '../../utils.dart';
 import '../Clinic/ClinciDB.dart';
 
-class Login extends ConsumerStatefulWidget {
+class Login extends StatefulWidget {
   const Login({Key? key}) : super(key: key);
 
   @override
-  ConsumerState<Login> createState() => _LoginState();
+  State<Login> createState() => _LoginState();
 }
 
-class _LoginState extends ConsumerState<Login> {
+class _LoginState extends State<Login> {
   final TextEditingController _emailController = TextEditingController();
   final TextEditingController _passwordController = TextEditingController();
 
@@ -27,7 +25,6 @@ class _LoginState extends ConsumerState<Login> {
     double ffem = fem * 0.97;
 
     AuthenticationController auth = AuthenticationController();
-    final String userRole = ref.watch(currentUserRoleProvider);
 
     return Scaffold(
       backgroundColor: Colors.white,
@@ -101,13 +98,12 @@ class _LoginState extends ConsumerState<Login> {
                     ScaffoldMessenger.of(context).showSnackBar(
                         const SnackBar(content: Text("Welcome back to VetMe")));
 
-                    if (userRole == 'pet-owner') {
                       Navigator.of(context).push(MaterialPageRoute(
                           builder: (context) => const PetOwnerDashboard()));
-                    } else {
-                      Navigator.of(context).push(MaterialPageRoute(
-                          builder: (context) => const ClinicDb()));
-                    }
+
+                      // Navigator.of(context).push(MaterialPageRoute(
+                      //     builder: (context) => const ClinicDb()));
+
                   } on FirebaseAuthException catch (error) {
                     ScaffoldMessenger.of(context)
                         .showSnackBar(SnackBar(content: Text(error.message!)));

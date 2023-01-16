@@ -1,59 +1,43 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:geoflutterfire2/geoflutterfire2.dart';
 import 'package:google_places_flutter/google_places_flutter.dart';
 import 'package:google_places_flutter/model/prediction.dart';
+import 'package:mad_cw2_vet_me/controllers/app-user-controller.dart';
 import 'package:mad_cw2_vet_me/controllers/authentication-controller.dart';
-import 'package:mad_cw2_vet_me/controllers/clinic-controller.dart';
-import 'package:mad_cw2_vet_me/controllers/pet-owner-controller.dart';
 import 'package:mad_cw2_vet_me/models/users.dart';
 import 'package:mad_cw2_vet_me/screens/widgets/text-field.dart';
 import 'package:mask_text_input_formatter/mask_text_input_formatter.dart';
 import '../../utils.dart';
-import '../pet-owner/pet-owner-dashboard.dart';
 
-class UserRole extends StateNotifier<List<bool>>{
-  UserRole() : super([true,false]);
-
-  void onToggle(int index){
-    for (int buttonIndex = 0;
-    buttonIndex < state.length;
-    buttonIndex++) {
-      if (buttonIndex == index) {
-        state[buttonIndex] = true;
-      }else{
-        state[buttonIndex] = false;
-      }
-    }
-  }
-}
-
-final userRoleProvider = StateNotifierProvider((ref) => UserRole());
-
-class Registration extends ConsumerStatefulWidget {
+class Registration extends StatefulWidget {
   const Registration({Key? key}) : super(key: key);
 
   @override
-  ConsumerState<Registration> createState() => _RegistrationState();
+  State<Registration> createState() => _RegistrationState();
 }
 
 const List<String> list = <String>['Pet Owner', 'Clinic'];
 
-class _RegistrationState extends ConsumerState<Registration> {
+class _RegistrationState extends State<Registration> {
   final TextEditingController _emailController = TextEditingController();
   final TextEditingController _usernameController = TextEditingController();
   final TextEditingController _passwordController = TextEditingController();
-  final TextEditingController _confirmPasswordController =
-      TextEditingController();
+  final TextEditingController _confirmPasswordController = TextEditingController();
   final TextEditingController _phoneNumberController = TextEditingController();
   final TextEditingController _locationController = TextEditingController();
+
   final String key = "AIzaSyCOpaFa6BK4mGwxG1XAEFOQOifWdCMAd8g";
+
   final geo = GeoFlutterFire();
+  final myLocation = GeoFirePoint(0, 0);
 
   final maskFormatter = MaskTextInputFormatter(mask: "### ### ####");
 
+  List<bool> isSelected = [true,false];
   static const List<Widget> user = <Widget>[Text('Pet Owner'), Text('Clinic')];
+
+  final appUserController = AppUserController();
 
   @override
   void dispose() {
@@ -71,10 +55,6 @@ class _RegistrationState extends ConsumerState<Registration> {
     double baseWidth = 390;
     double fem = MediaQuery.of(context).size.width / baseWidth;
     double ffem = fem * 0.97;
-    final myLocation = ref.watch(centerLocationProvider) as GeoFirePoint;
-    final isSelected = ref.watch(userRoleProvider) as List<bool>;
-    PetOwnerController newPet = PetOwnerController();
-    ClinicController newClinic = ClinicController();
     AuthenticationController auth = AuthenticationController();
 
 
@@ -121,7 +101,6 @@ class _RegistrationState extends ConsumerState<Registration> {
               ToggleButtons(
                 direction: Axis.horizontal,
                 onPressed: (index) {
-                    ref.read(userRoleProvider.notifier).onToggle(index);
                 },
                 borderRadius: const BorderRadius.all(Radius.circular(8)),
                 selectedBorderColor: Colors.deepOrange[700],
@@ -207,9 +186,7 @@ class _RegistrationState extends ConsumerState<Registration> {
                           debounceTime: 800,
                           isLatLngRequired: true,
                           getPlaceDetailWithLatLng: (Prediction prediction) {
-                            ref
-                                .read(centerLocationProvider.notifier)
-                                .getLocation(prediction);
+
                           },
                           itmClick: (Prediction prediction) {
                             _locationController.text = prediction.description!;
@@ -235,23 +212,27 @@ class _RegistrationState extends ConsumerState<Registration> {
                       ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text(error.message!)));
                     }
 
-                    AppUser newUser = AppUser.user(
-                        _usernameController.text, _emailController.text,
-                        _phoneNumberController.text, _locationController.text,
-                        myLocation, FirebaseAuth.instance.currentUser!.uid);
+                    String role = '';
 
                     if (isSelected[0] == true) {
-                      newPet.addPetOwner(newUser);
+                      role = 'pet-owner';
                     } else {
-                      newClinic.addClinic(newUser);
+                      role = 'clinic';
                     }
 
-                    ScaffoldMessenger.of(context).showSnackBar(
-                        const SnackBar(content: Text("Welcome to VetMe!")));
+                    AppUser newUser = AppUser(
+                        referenceId: '',
+                        username: _usernameController.text,
+                        email: _emailController.text,
+                        contact: _phoneNumberController.text,
+                        address: _locationController.text,
+                        coordinates: myLocation,
+                        uid: FirebaseAuth.instance.currentUser!.uid,
+                        role: role);
+
+                    appUserController.addAppUser(newUser);
                   },
                   child: Container(
-                    // autogroupyrimvbK (KxJZrwMJRpCK8LHMSCYrim)
-                    // margin: EdgeInsets.fromLTRB(0 * fem, 0 * fem, 0 * fem, 67 * fem),
                     width: double.infinity,
                     height: 50 * fem,
                     decoration: BoxDecoration(

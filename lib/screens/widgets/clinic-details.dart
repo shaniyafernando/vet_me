@@ -34,9 +34,7 @@ class ClinicDetails extends StatelessWidget {
                 color: const Color(0xff000000),
               ),
             ),
-            onPressed: () {
-
-            },
+            onPressed: () {},
             child: const Text('view')),
         title: Text(
           clinicDetails.username,

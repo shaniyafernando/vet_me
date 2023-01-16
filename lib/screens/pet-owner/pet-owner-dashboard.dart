@@ -1,11 +1,8 @@
 
 import 'package:flutter/material.dart';
-import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:geoflutterfire2/geoflutterfire2.dart';
 import 'package:google_places_flutter/google_places_flutter.dart';
 import 'package:google_places_flutter/model/prediction.dart';
-import 'package:mad_cw2_vet_me/controllers/clinic-controller.dart';
-import 'package:mad_cw2_vet_me/models/users.dart';
 import 'package:mad_cw2_vet_me/screens/widgets/banner-1.dart';
 import 'package:mad_cw2_vet_me/screens/widgets/logout.dart';
 import 'package:mad_cw2_vet_me/screens/widgets/my-pets-button.dart';
@@ -14,44 +11,15 @@ import '../../utils.dart';
 import '../widgets/profile-avatar.dart';
 import 'filtered-clinics.dart';
 
-class GeoLocation extends StateNotifier<GeoFirePoint> {
-  GeoLocation() : super(GeoFirePoint(0.0, 0.0));
 
-  void getLocation(Prediction prediction) {
-    if (prediction.lat != null && prediction.lng != null) {
-      double lngPrediction = double.parse(prediction.lng!);
-      double latPrediction = double.parse(prediction.lat!);
-      state.distance(lat: latPrediction, lng: lngPrediction);
-    }
-  }
-}
-
-class FilteredClinics extends StateNotifier<List<AppUser>> {
-  FilteredClinics() : super([]);
-
-  getFilteredClinics(String radius) {
-    final clinicController = ClinicController();
-    final centerLocation = GeoLocation();
-    List<AppUser> clinics = clinicController
-        .filterClinicsByRadiusForGivenLocation(radius, centerLocation.state);
-    for (var element in clinics) {
-      state.add(element);
-    }
-  }
-}
-
-final filteredClinicsProvider =
-    StateNotifierProvider((ref) => FilteredClinics());
-final centerLocationProvider = StateNotifierProvider((ref) => GeoLocation());
-
-class PetOwnerDashboard extends ConsumerStatefulWidget {
+class PetOwnerDashboard extends StatefulWidget {
   const PetOwnerDashboard({Key? key}) : super(key: key);
 
   @override
-  ConsumerState<PetOwnerDashboard> createState() => _PetOwnerDashboardState();
+  State<PetOwnerDashboard> createState() => _PetOwnerDashboardState();
 }
 
-class _PetOwnerDashboardState extends ConsumerState<PetOwnerDashboard> {
+class _PetOwnerDashboardState extends State<PetOwnerDashboard> {
   final geo = GeoFlutterFire();
 
   double lat = 0.0;
@@ -150,9 +118,7 @@ class _PetOwnerDashboardState extends ConsumerState<PetOwnerDashboard> {
                                 debounceTime: 800,
                                 isLatLngRequired: true,
                                 getPlaceDetailWithLatLng: (Prediction prediction) {
-                                  ref
-                                      .read(centerLocationProvider.notifier)
-                                      .getLocation(prediction);
+
                                 },
                                 itmClick: (Prediction prediction) {
                                   _locationController.text = prediction.description!;
@@ -161,9 +127,6 @@ class _PetOwnerDashboardState extends ConsumerState<PetOwnerDashboard> {
                                       TextSelection.fromPosition(TextPosition(
                                           offset: prediction.description!.length));
 
-                                  ref
-                                      .read(filteredClinicsProvider.notifier)
-                                      .getFilteredClinics(_radiusController.text);
                                 }
                               // default 600 ms ,
                             ))),

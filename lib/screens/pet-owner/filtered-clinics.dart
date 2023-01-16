@@ -1,17 +1,14 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:mad_cw2_vet_me/screens/pet-owner/pet-owner-dashboard.dart';
 
-import '../../models/users.dart';
 import '../widgets/clinic-details.dart';
 import '../widgets/profile-avatar.dart';
 
-class FilterClinics extends ConsumerWidget {
+class FilterClinics extends StatelessWidget {
   const FilterClinics({Key? key}) : super(key: key);
 
   @override
-  Widget build(BuildContext context, WidgetRef ref) {
-    final clinicsNearby = ref.watch(filteredClinicsProvider) as List<AppUser>;
+  Widget build(BuildContext context) {
+    final clinicsNearby = [];
     return Scaffold(
       appBar: AppBar(
         actions: const [

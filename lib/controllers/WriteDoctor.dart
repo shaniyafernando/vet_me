@@ -1,15 +1,10 @@
-import 'dart:core';
+
 import 'dart:html';
-import 'package:hooks_riverpod/hooks_riverpod.dart';
+
 import 'package:flutter/foundation.dart';
-import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:mad_cw2_vet_me/models/doctorModel.dart';
-import 'package:riverpod/riverpod.dart';
-
-import '../providers/loadingProvider.dart';
 
 
-final createDoctorProvider = ChangeNotifierProvider((ref) => createDoctor(ref));
 
 
 class createDoctor extends ChangeNotifier {
@@ -61,7 +56,6 @@ class createDoctor extends ChangeNotifier {
   }
 
 
-  Loading get _loading => _reader(loadingProvider);
   bool get enabled => name.isNotEmpty&&service.isNotEmpty&&service.isNotEmpty&&contact.isNotEmpty;
 
   Future<void> write() async{
