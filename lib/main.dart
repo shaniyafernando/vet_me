@@ -1,7 +1,12 @@
 
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
+import 'package:mad_cw2_vet_me/screens/Clinic/ClinciDB.dart';
+import 'package:mad_cw2_vet_me/screens/Clinic/ClinicSchedule.dart';
+import 'package:mad_cw2_vet_me/screens/Clinic/Test/clinic-db.dart';
+import 'package:mad_cw2_vet_me/screens/Clinic/create-schedule.dart';
 import 'package:mad_cw2_vet_me/screens/authentication/redirect-page.dart';
+import 'package:mad_cw2_vet_me/screens/clinic-dashboard.dart';
 import 'package:mad_cw2_vet_me/utils.dart';
 import 'firebase_options.dart';
 
@@ -27,7 +32,7 @@ class MyApp extends StatelessWidget {
         primaryColor: Colors.white
       ),
       scrollBehavior: MyCustomScrollBehavior(),
-      home:  const RedirectPage(),
+      home:   CreateSchedule(),
     );
   }
 }

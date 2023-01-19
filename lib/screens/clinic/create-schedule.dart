@@ -1,3 +1,4 @@
+
 import 'package:flutter/material.dart';
 import '../../utils.dart';
 import '../widgets/profile-avatar.dart';
@@ -13,6 +14,11 @@ class CreateSchedule extends StatefulWidget {
 }
 
 class _CreateScheduleState extends State<CreateSchedule> {
+   late String _slotNo;
+
+   final slotNo = TextEditingController();
+   final doctor = TextEditingController();
+
 
   //variables
   final TextEditingController _descriptionController = TextEditingController();
@@ -21,14 +27,26 @@ class _CreateScheduleState extends State<CreateSchedule> {
   bool ch1 = false;
   bool ch2 = false;
 
-  String dropdownvalue = 'Item 1';
-  var items = [
-    'Item 1',
-    'Item 2',
-    'Item 3',
-    'Item 4',
-    'Item 5',
+  final _formKey = GlobalKey<FormState>();
+
+  String dropdownvalue = 'Slot 1';
+  var slotItem = [
+    'Slot 1',
+    'Slot 2',
+    'Slot 3',
+    'Slot 4',
+    'Slot 6',
+    'Slot 7',
+    'Slot 8',
+    'Slot 9',
+    'Slot 10',
   ];
+
+  String dropDownDoc = 'Doc 1';
+  var docList = ['Doc 1', 'doc 2','Doc3'];
+
+  String statusDrop = 'Available';
+  var statusList = ['Available', 'pending', 'cancelld'];
   
 
   @override
@@ -56,15 +74,18 @@ class _CreateScheduleState extends State<CreateSchedule> {
             height: 20.0,
           ),
 
-          Container(
-            margin: EdgeInsets.fromLTRB(85*fem, 0*fem, 0*fem, 0*fem),
-            child: Text(
-              'Appointment',
-              style: SafeGoogleFont (
-                'Poppins',
-                fontSize: 18*ffem,
-                fontWeight: FontWeight.w600,
-                color: const Color(0xff000000),
+          Form(
+            key: _formKey,
+            child: Container(
+              margin: EdgeInsets.fromLTRB(85*fem, 0*fem, 0*fem, 0*fem),
+              child: Text(
+                'Create Schedule',
+                style: SafeGoogleFont (
+                  'Poppins',
+                  fontSize: 18*ffem,
+                  fontWeight: FontWeight.w600,
+                  color: const Color(0xff000000),
+                ),
               ),
             ),
           ),
@@ -72,8 +93,10 @@ class _CreateScheduleState extends State<CreateSchedule> {
             height: 20.0,
           ),
 
+          //Slot ----------------------------
           Text(
             'Slot',
+
             style: SafeGoogleFont (
               'Poppins',
               fontSize: 18*ffem,
@@ -83,7 +106,7 @@ class _CreateScheduleState extends State<CreateSchedule> {
           DropdownButton(
               value: dropdownvalue,
               icon: const Icon(Icons.keyboard_arrow_down),
-              items: items.map((String items) {
+              items: slotItem.map((String items) {
                 return DropdownMenuItem(
                   value: items,
                   child: Text(items),
@@ -100,45 +123,8 @@ class _CreateScheduleState extends State<CreateSchedule> {
             height: 20.0,
           ),
 
-          // Text(
-          //   'Time',
-          //   style: SafeGoogleFont (
-          //     'Poppins',
-          //     fontSize: 18*ffem,
-          //     color: const Color(0xff000000),
-          //   ),
-          // ),
-          // Row(
-          //   children: [
-          //     Checkbox(
-          //       value: ch1,
-          //       onChanged: (val) {
-          //         setState(() {
-          //           ch1 = val!;
-          //         });
-          //       },
-          //     ),
-          //     const Text("09.00 - 12.00"),
-          //   ],
-          // ),
-          // Row(
-          //   children: [
-          //     Checkbox(
-          //       value: ch2,
-          //       onChanged: (val) {
-          //         setState(() {
-          //           ch2 = val!;
-          //         });
-          //       },
-          //     ),
-          //     const Text("13.00 - 15.00"),
-          //   ],
-          // ),
-          //
-          // const SizedBox(
-          //   height: 10.0,
-          // ),
 
+          ////Doctor ----------------------------
           Text(
             'Doctor',
             style: SafeGoogleFont (
@@ -148,17 +134,17 @@ class _CreateScheduleState extends State<CreateSchedule> {
             ),
           ),
           DropdownButton(
-              value: dropdownvalue,
+              value: dropDownDoc,
               icon: const Icon(Icons.keyboard_arrow_down),
-              items: items.map((String items) {
+              items: docList.map((String docList) {
                 return DropdownMenuItem(
-                  value: items,
-                  child: Text(items),
+                  value: docList,
+                  child: Text(docList),
                 );
               }).toList(),
-              onChanged: (String? newValue){
+              onChanged: (String? newDocValue){
                 setState(() {
-                  dropdownvalue = newValue!;
+                  dropDownDoc = newDocValue!;
                 });
               }
           ),
@@ -166,7 +152,7 @@ class _CreateScheduleState extends State<CreateSchedule> {
             height: 10.0,
           ),
 
-
+          ////Status ----------------------------
           Text(
             'Status',
             style: SafeGoogleFont (
@@ -176,23 +162,26 @@ class _CreateScheduleState extends State<CreateSchedule> {
             ),
           ),
           DropdownButton(
-              value: dropdownvalue,
+              value: statusDrop,
               icon: const Icon(Icons.keyboard_arrow_down),
-              items: items.map((String items) {
+              items: statusList.map((String statusList) {
                 return DropdownMenuItem(
-                  value: items,
-                  child: Text(items),
+                  value: statusList,
+                  child: Text(statusList),
                 );
               }).toList(),
-              onChanged: (String? newValue){
+              onChanged: (String? newStValue){
                 setState(() {
-                  dropdownvalue = newValue!;
+                  statusDrop = newStValue!;
                 });
               }
           ),
           const SizedBox(
             height: 10.0,
           ),
+
+
+          ////Description ----------------------------
 
           Text(
             'Description',
@@ -210,29 +199,31 @@ class _CreateScheduleState extends State<CreateSchedule> {
             height: 10.0,
           ),
 
-
-          Text(
-            'Details',
-            style: SafeGoogleFont (
-              'Poppins',
-              fontSize: 18*ffem,
-              color: const Color(0xff000000),
-            ),
-          ),
-          InputField(
-              hintText: "Details",
-              controller: _detailsController,
-              obscureText: false),
-          const SizedBox(
-            height: 30.0,
-          ),
+          //////Details ----------------------------
+          // Text(
+          //   'Details',
+          //   style: SafeGoogleFont (
+          //     'Poppins',
+          //     fontSize: 18*ffem,
+          //     color: const Color(0xff000000),
+          //   ),
+          // ),
+          // InputField(
+          //     hintText: "Details",
+          //     controller: _detailsController,
+          //     obscureText: false),
+          // const SizedBox(
+          //   height: 30.0,
+          // ),
 
           TextButton(
               style: TextButton.styleFrom(
                   foregroundColor: Colors.white,
                   backgroundColor: Colors.green.shade800,
                   textStyle: const TextStyle(fontSize: 18)),
-              onPressed: (){},
+              onPressed: (){
+                if (formKey.currentState!.validate())
+              },
               child: const Text('Save')
           ),
 
