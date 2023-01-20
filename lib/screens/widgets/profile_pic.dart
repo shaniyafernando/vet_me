@@ -2,6 +2,7 @@ import 'dart:io';
 
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
+import 'package:mad_cw2_vet_me/globals.dart';
 
 class ProfilePic extends StatefulWidget {
   const ProfilePic({Key? key}) : super(key: key);
@@ -20,7 +21,9 @@ class _ProfilePicState extends State<ProfilePic> {
     await _picker.pickImage(source: ImageSource.gallery);
     if (pickedImage != null) {
       setState(() {
+        GlobalVar.path = pickedImage.path;
         _image = File(pickedImage.path);
+
       });
     }
   }
@@ -31,6 +34,7 @@ class _ProfilePicState extends State<ProfilePic> {
     await _picker1.pickImage(source: ImageSource.camera);
     if (pickedImage1 != null) {
       setState(() {
+        GlobalVar.path = pickedImage1.path;
         _image = File(pickedImage1.path);
       });
     }

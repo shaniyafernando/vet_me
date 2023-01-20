@@ -1,4 +1,7 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
+import '../../controllers/list_of_pets_controller.dart';
+import '../../models/pets.dart';
 import '../widgets/banner-2.dart';
 import '../widgets/pet-details.dart';
 import '../widgets/profile-avatar.dart';
@@ -26,9 +29,15 @@ class _PetListDashboardState extends State<PetList> {
         leading: IconButton(onPressed: () {}, icon: const Icon(Icons.menu)),
         actions: const [ProfileAvatar(), SizedBox(width: 10.0)],
       ),
+      floatingActionButton: FloatingActionButton(
+        onPressed: () {
+                Navigator.of(context).push(
+                    MaterialPageRoute(builder: (context) => PetProfile()));
+        },
+        child: Icon(Icons.add),
+      ),
       body: Padding(
-        padding: const EdgeInsets.all(10.0),
-        child: SingleChildScrollView(
+          padding: const EdgeInsets.all(10.0),
           child: Column(
             mainAxisAlignment: MainAxisAlignment.start,
             children: [
@@ -48,10 +57,11 @@ class _PetListDashboardState extends State<PetList> {
               const SizedBox(
                 height: 20.0,
               ),
-              InputField(
-                  hintText: "Filter by Name",
-                  controller: _filterController,
-                  obscureText: false),
+              // InputField(
+              //     hintText: "Filter by Name",
+              //     controller: _filterController,
+              //     obscureText: false),
+
               const SizedBox(
                 height: 20.0,
               ),
@@ -59,27 +69,50 @@ class _PetListDashboardState extends State<PetList> {
               const SizedBox(
                 height: 10.0,
               ),
-              const PetDetails(
-                name: 'Chiko',
-                category: 'Labrador',),
-              const SizedBox(
-                height: 10.0,
+
+              SingleChildScrollView(
+                child: Padding(
+                  padding: const EdgeInsets.only(top: 10),
+                  child: Container(
+                    height: 350,
+                    child: StreamBuilder(
+                        stream:
+                        FirebaseFirestore.instance.collection('pets').snapshots(),
+                        builder: (context, AsyncSnapshot<QuerySnapshot> snapshot) {
+                          if (snapshot.connectionState == ConnectionState.waiting) {
+                            return CircularProgressIndicator();
+                          } else {
+                            final docs = snapshot.data!.docs;
+                            print(' snapshot.data!.docs.length' +
+                                snapshot.data!.docs.length.toString());
+                            return ListView.builder(
+                              itemCount: snapshot.data!.docs.length,
+                              itemBuilder: (context, index) {
+                                DocumentSnapshot pets = snapshot.data!.docs[index];
+
+                              return snapshot.data!.docs.length != 0
+                                    ? PetDetails(
+                                  docId : pets.id,
+                                  name: pets['name'],
+                                  category: pets['breed'], age: pets['age'], details: pets['details'],
+                                  image: pets['image'] == null ? "" : pets['image'],
+                                  uid: pets['uid'],
+                                )
+                                    : Container();
+                              },
+                            );
+                          }
+                        }),
+                  ),
+                ),
               ),
-              TextButton(
-                  style: TextButton.styleFrom(
-                      shape: const CircleBorder(),
-                      padding: const EdgeInsets.all(15),
-                      foregroundColor: Colors.white,
-                      backgroundColor: Colors.green.shade900,
-                      textStyle: const TextStyle(fontSize: 15)),
-                  onPressed: () {
-                    Navigator.of(context).push(MaterialPageRoute(builder: (context) => PetProfile()));
-                  },
-                  child: const Icon(Icons.add))
             ],
-          ),
-        ),
+          ), 
       ),
+      
+      
+      
+      
     );
   }
 }

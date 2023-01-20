@@ -1,4 +1,7 @@
+import 'dart:developer';
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
+import '../../models/pets.dart';
 import '../../utils.dart';
 import '../widgets/profile-avatar.dart';
 import 'package:mad_cw2_vet_me/screens/widgets/text-field.dart';
@@ -6,18 +9,34 @@ import '../widgets/profile_pic.dart';
 import 'list-of-pets.dart';
 
 const List<String> list = <String>['Female','Male'];
+class ViewPet extends StatefulWidget {
+  String name,category,details,docId,image;
+  int uid,age;
 
-class ViewPet extends StatelessWidget {
-  final TextEditingController _nameController = TextEditingController();
-  final TextEditingController _ageController = TextEditingController();
-  final TextEditingController _breedController = TextEditingController();
-  final TextEditingController _detailsController = TextEditingController();
+  ViewPet({Key? key, required this.name, required this.category, required this.age, required this.details, required this.docId, required this.uid, required this.image,}) : super(key: key);
+  @override
+  _ViewPetState createState() => _ViewPetState();
+}
+
+class _ViewPetState extends State<ViewPet> {
+
   String dropdownValue = list.first;
-
-  ViewPet({super.key});
-
+  final  _nameController = TextEditingController();
+  final  _ageController = TextEditingController();
+  final  _breedController = TextEditingController();
+  final  _detailsController = TextEditingController();
+  @override
+  void initState() {
+    _nameController.text = widget.name;
+    _ageController.text = widget.age.toString();
+    _breedController.text = widget.category;
+    _detailsController.text = widget.details;
+    super.initState();
+  }
   @override
   Widget build(BuildContext context) {
+
+
     double baseWidth = 390;
     double fem = MediaQuery.of(context).size.width / baseWidth;
     double ffem = fem * 0.97;
@@ -67,8 +86,8 @@ class ViewPet extends StatelessWidget {
               color: const Color(0xff000000),
             ),
           ),
-          InputField(
-              hintText: "Name",
+          TextField(
+
               controller: _nameController,
               obscureText: false),
           const SizedBox(
@@ -146,8 +165,8 @@ class ViewPet extends StatelessWidget {
               color: const Color(0xff000000),
             ),
           ),
-          InputField(
-              hintText: "Breed",
+          TextField(
+
               controller: _breedController,
               obscureText: false),
           const SizedBox(
@@ -161,21 +180,21 @@ class ViewPet extends StatelessWidget {
               color: const Color(0xff000000),
             ),
           ),
-          InputField(
-              hintText: "Other Details",
+          TextField(
+
               controller: _detailsController,
               obscureText: false),
           const SizedBox(
             height: 30.0,
           ),
-         ElevatedButton.icon(
-          onPressed: () {},
-           style: ElevatedButton.styleFrom(primary: Colors.red),
-          icon: const Icon( // <-- Icon
-          Icons.medical_information,
-          size: 24.0,
-          ),
-           label: const Text('Medical Records'), // <-- Text
+          ElevatedButton.icon(
+            onPressed: () {},
+            style: ElevatedButton.styleFrom(primary: Colors.red),
+            icon: const Icon( // <-- Icon
+              Icons.medical_information,
+              size: 24.0,
+            ),
+            label: const Text('Medical Records'), // <-- Text
           ),
           const SizedBox(
             height: 20.0,
@@ -187,6 +206,13 @@ class ViewPet extends StatelessWidget {
                   textStyle: const TextStyle(fontSize: 15)),
               onPressed: (){
 
+                var updatePetResult = updatePet(name: _nameController.text,age: _ageController.text,breed: _breedController.text,image: widget.image,uid: widget.uid,gender: dropdownValue,details: _detailsController.text);
+                updatePetResult.then((value){
+                  ScaffoldMessenger.of(context).showSnackBar(const SnackBar(content: Text("Successfully Updated!")));
+                  Navigator.of(context).pushReplacementNamed('/petList');
+                },
+                  onError: (e) => ScaffoldMessenger.of(context).showSnackBar(const SnackBar(content: Text("error")))
+                );
               },
               child: const Text('Edit')),
           const SizedBox(
@@ -202,10 +228,24 @@ class ViewPet extends StatelessWidget {
               onPressed: () {
                 Navigator.of(context).push(MaterialPageRoute(builder: (context) => PetList()));
               },
-              child: const Icon(Icons.filter_list_alt))
+              child: const Icon(Icons.pets_rounded))
         ],
       ),
-
     );
   }
+
+  updatePet({uid, image, name, age, gender, breed, details}) async {
+    var db = FirebaseFirestore.instance;
+    final docRef = db.collection('pets');
+    String resultMsg;
+    print('widget.docId ' + widget.docId);
+    Pets appt =
+    Pets(uid: uid, image: image, name: name, age: int.parse(age), gender: gender,  breed: breed, details: details);
+   await docRef.doc(widget.docId).update(appt.toFireStore()).then(
+            (value) => log("Pet Details Updated Successfully!"),
+        onError: (e) => log("Error Updating Pet Details: $e"));
+
+  }
 }
+
+

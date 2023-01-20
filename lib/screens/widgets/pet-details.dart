@@ -1,15 +1,21 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:mad_cw2_vet_me/screens/pet-owner/view-pet.dart';
 
+import '../../models/pets.dart';
 import '../../utils.dart';
 
 class PetDetails extends StatelessWidget {
-  final String name, category;
+  final String name,category,details,docId,image;
+  final int age,uid;
   const PetDetails(
       {Key? key,
+        required this.docId,
         required this.name,
-        required this.category,})
+        required this.category, required this.age, required this.details, required this.uid, required this.image,})
       : super(key: key);
+
+
 
   @override
   Widget build(BuildContext context) {
@@ -18,7 +24,7 @@ class PetDetails extends StatelessWidget {
     double ffem = fem * 0.97;
 
     return ListTile(
-      tileColor: const Color(0xffc1eaec),
+      tileColor: Colors.white,
       leading: const Icon(
         Icons.pets_sharp,
         color: Color(0xff04097e),
@@ -35,7 +41,7 @@ class PetDetails extends StatelessWidget {
             ),
           ),
           onPressed: () {
-            Navigator.of(context).push(MaterialPageRoute(builder: (context) => ViewPet()));
+            Navigator.of(context).push(MaterialPageRoute(builder: (context) => ViewPet(name: name,category: category,age: age,details: details,docId: docId, uid: uid, image: image,)));
           },
           child: const Text('view')),
       title: Text(
@@ -60,4 +66,8 @@ class PetDetails extends StatelessWidget {
       ),
     );
   }
+
+
+
+
 }
