@@ -4,15 +4,16 @@ import 'package:mad_cw2_vet_me/screens/pet-owner/view-pet.dart';
 
 import '../../models/pets.dart';
 import '../../utils.dart';
+import '../Clinic/ClinicSchedule.dart';
 
-class PetDetails extends StatelessWidget {
-  final String name,category,details,docId,image;
-  final int age,uid;
-  const PetDetails(
+class SlotDetails extends StatelessWidget {
+  final String id, slot, status,doctoMod,desc;
+
+  const SlotDetails(
       {Key? key,
-        required this.docId,
-        required this.name,
-        required this.category, required this.age, required this.details, required this.uid, required this.image,})
+        required this.id,
+        required this.slot,
+        required this.status, required this.doctoMod, required this.desc,})
       : super(key: key);
 
 
@@ -26,7 +27,7 @@ class PetDetails extends StatelessWidget {
     return ListTile(
       tileColor: Colors.white,
       leading: const Icon(
-        Icons.pets_sharp,
+        Icons.add,
         color: Color(0xff04097e),
       ),
       trailing: ElevatedButton(
@@ -41,11 +42,11 @@ class PetDetails extends StatelessWidget {
             ),
           ),
           onPressed: () {
-            Navigator.of(context).push(MaterialPageRoute(builder: (context) => ViewPet(name: name,category: category,age: age,details: details,docId: docId, uid: uid, image: image,)));
+            Navigator.of(context).push(MaterialPageRoute(builder: (context) => ClinicSchedule()));
           },
           child: const Text('view')),
       title: Text(
-        name,
+        slot,
         style: SafeGoogleFont(
           'Poppins',
           fontSize: 20 * ffem,
@@ -55,7 +56,7 @@ class PetDetails extends StatelessWidget {
         ),
       ),
       subtitle: Text(
-        category,
+        doctoMod,
         style: SafeGoogleFont(
           'Poppins',
           fontSize: 15 * ffem,

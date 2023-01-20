@@ -1,33 +1,45 @@
 
+import 'dart:developer';
+
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import '../../models/slotModel.dart';
 import '../../utils.dart';
+import '../authentication/registration.dart';
 import '../widgets/profile-avatar.dart';
 import 'package:mad_cw2_vet_me/screens/widgets/text-field.dart';
+
+import 'ClinicSchedule.dart';
 
 
 class CreateSchedule extends StatefulWidget {
 
+
   CreateSchedule({super.key});
+
+
 
   @override
   State<CreateSchedule> createState() => _CreateScheduleState();
 }
 
 class _CreateScheduleState extends State<CreateSchedule> {
-   late String _slotNo;
 
-   final slotNo = TextEditingController();
-   final doctor = TextEditingController();
+   final TextEditingController _slotCont = TextEditingController();
+   final TextEditingController _doctoModCont = TextEditingController();
+   final TextEditingController _statusCont = TextEditingController();
+   final TextEditingController _descCont = TextEditingController();
 
 
-  //variables
-  final TextEditingController _descriptionController = TextEditingController();
-  final TextEditingController _detailsController = TextEditingController();
 
   bool ch1 = false;
   bool ch2 = false;
 
   final _formKey = GlobalKey<FormState>();
+
+
 
   String dropdownvalue = 'Slot 1';
   var slotItem = [
@@ -47,7 +59,24 @@ class _CreateScheduleState extends State<CreateSchedule> {
 
   String statusDrop = 'Available';
   var statusList = ['Available', 'pending', 'cancelld'];
-  
+
+   final db = FirebaseFirestore.instance;
+
+   saveSlot({id, slot, doctoMod, status, desc}) async{
+     final docRefs = db.collection('slots').doc();
+     Slots appts = Slots(id:id, slot:slot , doctoMod: doctoMod, status: status, desc: desc);
+
+
+     await docRefs.set(appts.toFireStore()).then(
+             (value) => log("Schedule created successfully!"),
+         onError: (e) => log("Failed : $e"));
+
+
+
+
+
+  }
+
 
   @override
   Widget build(BuildContext context) {
@@ -103,20 +132,21 @@ class _CreateScheduleState extends State<CreateSchedule> {
               color: const Color(0xff000000),
             ),
           ),
-          DropdownButton(
+          DropdownButton<String>(
               value: dropdownvalue,
               icon: const Icon(Icons.keyboard_arrow_down),
-              items: slotItem.map((String items) {
-                return DropdownMenuItem(
-                  value: items,
-                  child: Text(items),
-                );
-              }).toList(),
               onChanged: (String? newValue){
                 setState(() {
                   dropdownvalue = newValue!;
                 });
-              }
+              },
+              items: slotItem.map<DropdownMenuItem<String>>((String newValue) {
+              return DropdownMenuItem<String>(
+              value: newValue,
+              child: Text(newValue),
+              );
+              }).toList(),
+
           ),
 
           const SizedBox(
@@ -184,7 +214,7 @@ class _CreateScheduleState extends State<CreateSchedule> {
           ////Description ----------------------------
 
           Text(
-            'Description',
+            'Time',
             style: SafeGoogleFont (
               'Poppins',
               fontSize: 18*ffem,
@@ -192,29 +222,13 @@ class _CreateScheduleState extends State<CreateSchedule> {
             ),
           ),
           InputField(
-              hintText: "Description",
-              controller: _descriptionController,
+              hintText: "Time",
+              controller: _descCont,
               obscureText: false),
           const SizedBox(
             height: 10.0,
           ),
 
-          //////Details ----------------------------
-          // Text(
-          //   'Details',
-          //   style: SafeGoogleFont (
-          //     'Poppins',
-          //     fontSize: 18*ffem,
-          //     color: const Color(0xff000000),
-          //   ),
-          // ),
-          // InputField(
-          //     hintText: "Details",
-          //     controller: _detailsController,
-          //     obscureText: false),
-          // const SizedBox(
-          //   height: 30.0,
-          // ),
 
           TextButton(
               style: TextButton.styleFrom(
@@ -222,7 +236,16 @@ class _CreateScheduleState extends State<CreateSchedule> {
                   backgroundColor: Colors.green.shade800,
                   textStyle: const TextStyle(fontSize: 18)),
               onPressed: (){
-                if (formKey.currentState!.validate())
+                try{saveSlot(id:1, slot: dropdownvalue, doctoMod: dropDownDoc, status: statusDrop, desc: _descCont);
+                  ScaffoldMessenger.of(context).showSnackBar(const SnackBar(content: Text('Schedule created Successfully')));
+                Navigator.of(context).pushReplacementNamed('/slots');
+
+                }on FirebaseAuthException  catch(error) {
+    ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text(error.message!)));
+    }
+
+
+
               },
               child: const Text('Save')
           ),

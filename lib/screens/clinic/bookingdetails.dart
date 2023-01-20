@@ -314,7 +314,7 @@ class _BookedPgState extends State<BookedPg> {
                   ) ,
                 ),
                 onPressed: () {
-                  Navigator.of(context).push(MaterialPageRoute(builder: (context) => ViewPet()));
+                  // Navigator.of(context).push(MaterialPageRoute(builder: (context) => ViewPet()));
                 },
                 icon: const Icon( Icons.pets_rounded ),
                 label: const Text('Patient details'),
