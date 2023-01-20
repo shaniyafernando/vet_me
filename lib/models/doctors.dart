@@ -1,31 +1,25 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 
 class Doctor{
-  String? referenceId;
-  //String image;
+  int uid;
+  String image;
   String name;
   String details;
   String contact;
-  // String date;
-  // String time;
 
-  Doctor(
-      {required this.referenceId,
-        //required this.image,
-        required this.name,
-        required this.details,
-        required this.contact,
-        // required this.date,
-        // required this.time}
-      );
+  Doctor({required this.uid,
+    required this.image,
+    required this.name,
+    required this.details,
+    required this.contact,
+  });
 
   Doctor.user(
-      //this.image,
+      this.uid,
       this.name,
+      this.image,
       this.details,
       this.contact,
-      // this.date,
-      // this.time
       );
 
   factory Doctor.fromFireStore(
@@ -35,24 +29,21 @@ class Doctor{
     final data = snapshot.data();
 
     return Doctor(
-        referenceId: snapshot.reference.id,
-        //image: data!['image'],
-        name: data!['name'],
+        uid:data!['uid'],
+        image: data!['image'],
+        name: data['name'],
         details:data['details'],
         contact:data['contact'],
-        // date:data['date'],
-        // time:data['time']
     );
   }
 
   Map<String, dynamic> toFireStore() {
     return {
-      //"image": image,
+      "uid": uid,
+      "image": image,
       "name": name,
       "details": details,
       "contact": contact,
-      // "date": date,
-      // "time": time,
     };
   }
 }

@@ -4,6 +4,10 @@ import 'package:flutter/material.dart';
 import 'package:mad_cw2_vet_me/screens/authentication/redirect-page.dart';
 import 'package:mad_cw2_vet_me/utils.dart';
 import 'firebase_options.dart';
+import 'package:mad_cw2_vet_me/screens/pet-owner/create-pet-profile.dart';
+import 'package:mad_cw2_vet_me/screens/pet-owner/list-of-pets.dart';
+import 'package:mad_cw2_vet_me/screens/Clinic/create-doctor-profile.dart';
+
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -27,7 +31,7 @@ class MyApp extends StatelessWidget {
         primaryColor: Colors.white
       ),
       scrollBehavior: MyCustomScrollBehavior(),
-      home:  const RedirectPage(),
+      home:   CreateDoctorProfile(),
     );
   }
 }
