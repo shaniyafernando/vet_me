@@ -7,6 +7,7 @@ import 'firebase_options.dart';
 import 'package:mad_cw2_vet_me/screens/pet-owner/create-pet-profile.dart';
 import 'package:mad_cw2_vet_me/screens/pet-owner/list-of-pets.dart';
 import 'package:mad_cw2_vet_me/screens/Clinic/create-doctor-profile.dart';
+import 'package:mad_cw2_vet_me/screens/Clinic/ClinciDB.dart';
 
 
 void main() async {
@@ -31,7 +32,7 @@ class MyApp extends StatelessWidget {
         primaryColor: Colors.white
       ),
       scrollBehavior: MyCustomScrollBehavior(),
-      home:   CreateDoctorProfile(),
+      home:   ClinicDb(),
     );
   }
 }

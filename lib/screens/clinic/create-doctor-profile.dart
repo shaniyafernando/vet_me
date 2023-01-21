@@ -1,11 +1,14 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'dart:developer';
+import 'package:mad_cw2_vet_me/globals.dart';
 import 'package:flutter/material.dart';
 import '../../utils.dart';
 import '../widgets/profile-avatar.dart';
 import 'package:mad_cw2_vet_me/screens/widgets/text-field.dart';
 import '../widgets/profile_pic.dart';
 import 'ClinciDB.dart';
-import 'package:mad_cw2_vet_me/controllers/doctor-controller.dart';
+//import 'package:mad_cw2_vet_me/controllers/doctor-controller.dart';
 import 'package:mad_cw2_vet_me/models/doctors.dart';
 
 class CreateDoctorProfile extends StatefulWidget {
@@ -24,6 +27,18 @@ class _CreateDoctorProfileState extends State<CreateDoctorProfile> {
   final TextEditingController _detailsController = TextEditingController();
   final TextEditingController _contactController = TextEditingController();
 
+  final db = FirebaseFirestore.instance;
+
+  addDoctor({uid, name, image, contact, details}) async {
+    final docRef = db.collection('doctors').doc();
+    Doctor appt =
+    Doctor(uid: uid,name: name, image: image, contact: contact, details: details);
+
+    await docRef.set(appt.toFireStore()).then(
+            (value) => log("Doctor Added Successfully!"),
+        onError: (e) => log("Error Adding Doctor: $e"));
+  }
+
   bool ch1 = false;
   bool ch2 = false;
   bool ch3 = false;
@@ -35,7 +50,7 @@ class _CreateDoctorProfileState extends State<CreateDoctorProfile> {
     double fem = MediaQuery.of(context).size.width / baseWidth;
     double ffem = fem * 0.97;
 
-    DoctorController newDoctor = DoctorController();
+    //DoctorController newDoctor = DoctorController();
 
     // final hours = dateTime.hour.toString().padLeft(2, '0');
     // final minutes = dateTime.minute.toString().padLeft(2, '0');
@@ -114,72 +129,35 @@ class _CreateDoctorProfileState extends State<CreateDoctorProfile> {
           ),
 
           Text(
-            'Contact Details',
+            'Contact',
             style: SafeGoogleFont (
               'Poppins',
               fontSize: 18*ffem,
               color: const Color(0xff000000),
             ),
           ),
-          InputField(
-              hintText: "Contact Details",
-              controller: _contactController,
-              obscureText: false),
+          Container(
+              decoration: BoxDecoration(
+                  color: Colors.white,
+                  border: Border.all(color: Colors.grey.shade300),
+                  borderRadius: BorderRadius.circular(12.0)),
+              child: Padding(
+                  padding: const EdgeInsets.only(left: 20.0),
+                  child: TextField(
+                    keyboardType: TextInputType.number,
+                    textInputAction: TextInputAction.done,
+                    controller: _contactController,
+                    decoration: const InputDecoration(
+                        border: InputBorder.none,
+                        hintText: "Contact Details"
+                    ),
+                  )
+              )
+          ),
 
           const SizedBox(
             height: 10.0,
           ),
-
-          // Text(
-          //   'Date and Time',
-          //   style: SafeGoogleFont (
-          //     'Poppins',
-          //     fontSize: 18*ffem,
-          //     color: const Color(0xff000000),
-          //   ),
-          // ),
-          //
-          // Row(
-          //   mainAxisAlignment: MainAxisAlignment.center,
-          //   children: [
-          //     Expanded(
-          //         child: ElevatedButton(
-          //           child: Text('${dateTime.year}/${dateTime.month}/${dateTime.day}'),
-          //           onPressed: () async {
-          //             final date = await pickDate();
-          //             if (date == null ) return;
-          //
-          //             final newDateTime = DateTime(
-          //               date.year,
-          //               date.month,
-          //               date.day,
-          //               dateTime.hour,
-          //               dateTime.minute,
-          //             );
-          //             setState(() => dateTime = date);
-          //           },
-          //         )
-          //     ),
-          //     const SizedBox(width: 12),
-          //     Expanded(
-          //         child: ElevatedButton(
-          //           child: Text('$hours:$minutes'),
-          //           onPressed: () async {
-          //             final time = await pickTime();
-          //             if (time == null ) return;
-          //             final newDateTime = DateTime(
-          //               dateTime.year,
-          //               dateTime.month,
-          //               dateTime.day,
-          //               time.hour,
-          //               time.minute,
-          //             );
-          //             setState(() => dateTime = newDateTime);
-          //           },
-          //         )
-          //     ),
-          //   ],
-          // ),
 
           const SizedBox(
             height: 10.0,
@@ -195,50 +173,20 @@ class _CreateDoctorProfileState extends State<CreateDoctorProfile> {
                 backgroundColor: Colors.green,
                 textStyle: const TextStyle(fontSize: 15)),
             onPressed: () {
-              Navigator.of(context).push(MaterialPageRoute(builder: (context) => ClinicDb()));
-              final snackBar = SnackBar(
-                content: const Text('Doctor created'),
-                action: SnackBarAction(
-                  label: 'Undo',
-                  onPressed: () {
-
-                    try{
-                      ScaffoldMessenger.of(context).showSnackBar(const SnackBar(content: Text("Doctor Added")));
-                    }on FirebaseAuthException catch(error){
-                      ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text(error.message!)));
-                    }
-
-                    Doctor newUser = Doctor.user(
-                        _dNameController.text,
-                        _detailsController.text,
-                        _contactController.text,
-                    );
-
-                    newDoctor.addDoctor(newUser);
-
-                  },
-                ),
-              );
-
+              try{
+                addDoctor(uid:1, image: GlobalVar.path, name : _dNameController.text, contact : _contactController.text, details: _detailsController.text);
+                ScaffoldMessenger.of(context).showSnackBar(const SnackBar(content: Text("Successful")));
+                Navigator.of(context).push(MaterialPageRoute(builder: (context) => ClinicDb()));
+              } on FirebaseAuthException catch(error) {
+                ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text(error.message!)));
+              }
             },
             child: const Text('Save'),
           ),
-
-
         ],
       ),
-
     );
   }
 
-// Future<DateTime?> pickDate() => showDatePicker(
-//   context: context,
-//   initialDate: dateTime,
-//   firstDate: DateTime(2020),
-//   lastDate: DateTime(2025),
-// );
-// Future<TimeOfDay?> pickTime() => showTimePicker(
-//   context: context,
-//   initialTime: TimeOfDay(hour: dateTime.hour, minute: dateTime.minute),
-// );
+
 }

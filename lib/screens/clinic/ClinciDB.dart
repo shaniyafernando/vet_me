@@ -1,13 +1,15 @@
 import 'package:draggable_fab/draggable_fab.dart';
 import 'package:flutter/material.dart';
 import 'package:mad_cw2_vet_me/screens/widgets/banner-1.dart';
-
+import 'package:cloud_firestore/cloud_firestore.dart';
 import '../../utils.dart';
 import '../widgets/clinic-details.dart';
 import '../widgets/my-pets-button.dart';
 import '../widgets/profile-avatar.dart';
 import '../widgets/text-field.dart';
 import 'ClinicSchedule.dart';
+import 'package:mad_cw2_vet_me/screens/Clinic/create-doctor-profile.dart';
+import '../widgets/clinic-details-dashboard.dart';
 
 class ClinicDb extends StatefulWidget {
   const ClinicDb({Key? key}) : super(key: key);
@@ -125,7 +127,7 @@ class _ClinicDbState extends State<ClinicDb> {
                     ),
                     onTap: () {
                       Navigator.of(context).push(MaterialPageRoute(
-                        builder: (context) => ClinicSchedule(),
+                        builder: (context) => CreateDoctorProfile(),
                       ));
                     },
                   )
@@ -135,11 +137,47 @@ class _ClinicDbState extends State<ClinicDb> {
               const SizedBox(
                 height: 10.0,
               ),
-              SizedBox(
-                  height: 300.0,
-                  child: ListView.builder(itemBuilder: (context, index) {
-                    return DoctorCard();
-                  })),
+              // SizedBox(
+              //     height: 300.0,
+              //     child: ListView.builder(itemBuilder: (context, index) {
+              //       return DoctorCard();
+              //     })),
+
+              Padding(
+                padding: const EdgeInsets.only(top: 10),
+                child: Container(
+                  height: 350,
+                  child: StreamBuilder(
+                      stream:
+                      FirebaseFirestore.instance.collection('doctors').snapshots(),
+                      builder: (context, AsyncSnapshot<QuerySnapshot> snapshot) {
+                        if (snapshot.connectionState == ConnectionState.waiting) {
+                          return const CircularProgressIndicator();
+                        } else {
+                          final docs = snapshot.data!.docs;
+                          print(' snapshot.data!.docs.length${snapshot.data!.docs.length}');
+                          return ListView.builder(
+                            itemCount: snapshot.data!.docs.length,
+                            itemBuilder: (context, index) {
+                              DocumentSnapshot doctors = snapshot.data!.docs[index];
+
+                              return snapshot.data!.docs.length != 0
+                                  ? DoctorDetails(
+                                docId : doctors.id,
+                                name: doctors['name'],
+                                contact: doctors['contact'],
+                                details: doctors['details'],
+                                image: doctors['image'] == null ? "" : doctors['image'],
+                                uid: doctors['uid'],
+                              )
+                                  : Container();
+                            },
+                          );
+                        }
+                      }),
+                ),
+              ),
+
               const SizedBox(
                 height: 10.0,
               ),
