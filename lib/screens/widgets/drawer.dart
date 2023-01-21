@@ -8,7 +8,7 @@ import 'package:mad_cw2_vet_me/screens/widgets/profile-avatar.dart';
 import 'package:mad_cw2_vet_me/screens/widgets/text-field.dart';
 
 import '../../utils.dart';
-import '../pet-owner/pet-owner-dashboard.dart';
+import '../pet-owner/du/pet-owner-dashboard.dart';
 
 
 class Drawer extends StatelessWidget {

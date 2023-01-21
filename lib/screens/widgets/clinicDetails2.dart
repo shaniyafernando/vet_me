@@ -2,7 +2,9 @@ import 'package:flutter/material.dart';
 
 import '../../models/users.dart';
 import '../../utils.dart';
-import '../pet-owner/ClinicDb-PetOwner.dart';
+import '../pet-owner/Clinic_DB.dart';
+import '../pet-owner/du/ClinicDb-PetOwner.dart';
+import '../pet-owner/list-of-pets.dart';
 
 class ClinicDetails2 extends StatelessWidget {
   final AppUser clinicDetails;
@@ -36,7 +38,7 @@ class ClinicDetails2 extends StatelessWidget {
               ),
             ),
             onPressed: () {
-              Navigator.of(context).push(MaterialPageRoute(builder: (context) => ClinicDbPetOwner()));
+              Navigator.of(context).push(MaterialPageRoute(builder: (context) => PetOwnerClinicDb()));
             },
             child: const Text('view')),
         title: Text(

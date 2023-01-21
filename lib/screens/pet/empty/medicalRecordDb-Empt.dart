@@ -38,8 +38,17 @@ class _MedRecState extends State<MedRecDb>{
             height: 20.0,
           ),
 
-          const ProfilePic(),
-
+          // const ProfilePic(),
+          Text(
+            'No medical record found!',
+            style: SafeGoogleFont (
+              'Poppins',
+              fontSize: 20*ffem,
+              fontWeight: FontWeight.w600,
+              height: 1.9462193383*ffem/fem,
+              color: const Color(0x06537E),
+            ),
+          ),
           Container(
             // addanewpeteYZ (21:170)
             margin: EdgeInsets.fromLTRB(70*fem, 0*fem, 8*fem, 10*fem),

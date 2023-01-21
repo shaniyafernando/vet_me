@@ -1,7 +1,7 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 
 class Pets{
-  String? referenceId;
+  int uid;
   String image;
   String name;
   int age;
@@ -10,16 +10,18 @@ class Pets{
   String details;
 
   Pets(
-      {required this.referenceId,
+      {required this.uid,
         required this.image,
         required this.name,
         required this.age,
         required this.gender,
         required this.breed,
-        required this.details});
+        required this.details,
+
+      });
 
 
-  Pets.pet( this.image, this.name, this.age, this.gender, this.breed, this.details);
+  Pets.user(this.uid, this.image, this.name, this.age, this.gender, this.breed, this.details, );
 
 
   factory Pets.fromFireStore(
@@ -29,17 +31,19 @@ class Pets{
     final data = snapshot.data();
 
     return Pets(
-        referenceId: snapshot.reference.id,
-        image: data!['image'],
-        name: data['name'],
-        age:data['age'],
-        gender:data['gender'],
-        breed:data['breed'],
-        details:data['details']);
+      uid:data!['uid'],
+      image: data!['image'],
+      name: data['name'],
+      age:data['age'],
+      gender:data['gender'],
+      breed:data['breed'],
+      details:data['details'],
+    );
   }
 
   Map<String, dynamic> toFireStore() {
     return {
+      "uid": uid,
       "image": image,
       "name": name,
       "age": age,
@@ -48,4 +52,5 @@ class Pets{
       "details": details,
     };
   }
+
 }

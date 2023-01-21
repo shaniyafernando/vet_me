@@ -12,7 +12,7 @@ import 'package:mad_cw2_vet_me/screens/widgets/success-message.dart';
 import 'package:mad_cw2_vet_me/screens/widgets/text-field.dart';
 import 'package:mask_text_input_formatter/mask_text_input_formatter.dart';
 import '../../utils.dart';
-import '../pet-owner/ClinicDb-PetOwner.dart';
+import '../pet-owner/du/ClinicDb-PetOwner.dart';
 import '../pet-owner/petOwnerDashboard.dart';
 
 class Registration extends StatefulWidget {

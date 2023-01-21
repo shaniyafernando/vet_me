@@ -3,12 +3,12 @@ import 'package:flutter/material.dart';
 import 'package:mad_cw2_vet_me/screens/pet-owner/petDashboardempty.dart';
 import 'package:mad_cw2_vet_me/screens/widgets/banner-1.dart';
 
-import '../../utils.dart';
-import '../widgets/clinic-details.dart';
-import '../widgets/my-pets-button.dart';
-import '../widgets/profile-avatar.dart';
-import '../widgets/text-field.dart';
-import 'filterClinics.dart';
+import '../../../utils.dart';
+import '../../widgets/clinic-details.dart';
+import '../../widgets/my-pets-button.dart';
+import '../../widgets/profile-avatar.dart';
+import '../../widgets/text-field.dart';
+import '../filterClinics.dart';
 
 
 

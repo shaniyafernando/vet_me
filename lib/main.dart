@@ -2,15 +2,18 @@ import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:mad_cw2_vet_me/screens/Clinic/ClinciDB.dart';
+import 'package:mad_cw2_vet_me/screens/Clinic/Test/pro.dart';
 import 'package:mad_cw2_vet_me/screens/Clinic/bookingdetails.dart';
 import 'package:mad_cw2_vet_me/screens/Clinic/create-doctor-profile.dart';
 import 'package:mad_cw2_vet_me/screens/Clinic/create-schedule.dart';
 import 'package:mad_cw2_vet_me/screens/Clinic/createDoctor.dart';
+import 'package:mad_cw2_vet_me/screens/Clinic/slots.dart';
 import 'package:mad_cw2_vet_me/screens/authentication/LoginDup2.dart';
 import 'package:mad_cw2_vet_me/screens/authentication/login-screen.dart';
 import 'package:mad_cw2_vet_me/screens/authentication/opening-screen-default.dart';
 import 'package:mad_cw2_vet_me/screens/authentication/registration.dart';
-import 'package:mad_cw2_vet_me/screens/pet-owner/ClinicDb-PetOwner.dart';
+import 'package:mad_cw2_vet_me/screens/pet-owner/Clinic_DB.dart';
+import 'package:mad_cw2_vet_me/screens/pet-owner/du/ClinicDb-PetOwner.dart';
 import 'package:mad_cw2_vet_me/screens/pet-owner/CreateNewBooking.dart';
 import 'package:mad_cw2_vet_me/screens/pet-owner/create-pet-profile.dart';
 import 'package:mad_cw2_vet_me/screens/pet-owner/filterClinics.dart';
@@ -47,7 +50,7 @@ class MyApp extends ConsumerWidget {
         primaryColor: Colors.white
       ),
       scrollBehavior: MyCustomScrollBehavior(),
-      home:  DefaultOpeningScreen(),
+      home:  SlotsScreen(),
     );
   }
 }

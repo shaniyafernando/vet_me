@@ -59,9 +59,9 @@ class _PetListDbState extends State<PetListDb> {
               const SizedBox(
                 height: 10.0,
               ),
-              const PetDetails(
-                name: 'Chiko',
-                category: 'Labrador',),
+              // const PetDetails(
+              //   name: 'Chiko',
+              //   category: 'Labrador',),
               const SizedBox(
                 height: 10.0,
               ),

@@ -1,10 +1,19 @@
+import 'dart:async';
+import 'dart:developer';
+import 'dart:js';
 import 'package:flutter/material.dart';
 import 'package:google_places_flutter/google_places_flutter.dart';
+import 'package:mad_cw2_vet_me/globals.dart';
+import 'package:mad_cw2_vet_me/models/pets.dart';
 import 'package:mad_cw2_vet_me/screens/pet-owner/list-of-pets.dart';
 import '../../utils.dart';
 import '../widgets/profile-avatar.dart';
 import 'package:mad_cw2_vet_me/screens/widgets/text-field.dart';
 import '../widgets/profile_pic.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart';
+import 'package:mad_cw2_vet_me/models/pets.dart';
+import 'package:mad_cw2_vet_me/controllers/list_of_pets_controller.dart';
 
 const List<String> list = <String>['Female','Male'];
 
@@ -18,6 +27,18 @@ class PetProfile extends StatelessWidget {
 
   PetProfile({super.key});
 
+  final db = FirebaseFirestore.instance;
+
+  bookPet({uid, image, name, age, gender, breed, details,context} ) async {
+    final docRef = db.collection('pets').doc();
+    Pets appt =
+    Pets(uid: uid, image: image, name: name, age: age, gender: gender,  breed: breed, details: details);
+
+    await docRef.set(appt.toFireStore()).whenComplete(
+            () => Navigator.of(context).push(MaterialPageRoute(builder: (context) => const PetList())));
+  }
+
+
   @override
   Widget build(BuildContext context) {
     double baseWidth = 390;
@@ -26,7 +47,6 @@ class PetProfile extends StatelessWidget {
         .size
         .width / baseWidth;
     double ffem = fem * 0.97;
-
 
     return Scaffold(
       appBar: AppBar(
@@ -57,7 +77,9 @@ class PetProfile extends StatelessWidget {
           const SizedBox(
             height: 20.0,
           ),
+
           const ProfilePic(),
+
           const SizedBox(
             height: 30.0,
           ),
@@ -170,48 +192,38 @@ class PetProfile extends StatelessWidget {
           const SizedBox(
             height: 30.0,
           ),
-          ElevatedButton(
-            style: TextButton.styleFrom(
-                foregroundColor: Colors.white,
-                backgroundColor: Colors.blue.shade900,
-                textStyle: const TextStyle(fontSize: 15)),
-            onPressed: () {
-              Navigator.of(context).push(MaterialPageRoute(builder: (context) => PetList()));
-              final snackBar = SnackBar(
-                content: const Text('Pet Created'),
-                action: SnackBarAction(
-                  label: 'Undo',
-                  onPressed: () {
+          TextButton(
+              style: TextButton.styleFrom(
+                  foregroundColor: Colors.white,
+                  backgroundColor: Colors.blue.shade900,
+                  textStyle: const TextStyle(fontSize: 15)),
+              onPressed: () {
+                try{
+                  bookPet(uid:1,image: GlobalVar.path, name : _nameController.text,age: int.parse(_ageController.text) ,gender: dropdownValue,breed: _breedController.text,details: _detailsController.text,context: context);
 
-                  },
-                ),
-              );
+                  ScaffoldMessenger.of(context).showSnackBar(const SnackBar(content: Text("Successfully Added")));
 
-              // Find the ScaffoldMessenger in the widget tree
-              // and use it to show a SnackBar.
-              ScaffoldMessenger.of(context).showSnackBar(snackBar);
-            },
-            child: const Text('Save'),
-          ),
 
+                } on FirebaseAuthException catch(error) {
+                  ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text(error.message!)));
+                }
+
+              },
+              child: const Text('Save')),
           const SizedBox(
             height: 30.0,
           ),
-
-
           TextButton(
               style: TextButton.styleFrom(
-                  shape: CircleBorder(),
-                  padding: EdgeInsets.all(15),
+                  shape: const CircleBorder(),
+                  padding: const EdgeInsets.all(15),
                   foregroundColor: Colors.white,
                   backgroundColor: Colors.green.shade900,
                   textStyle: const TextStyle(fontSize: 15)),
               onPressed: () {
-                Navigator.of(context).push(MaterialPageRoute(builder: (context) => PetList()));
+                Navigator.of(context).push(MaterialPageRoute(builder: (context) => const PetList()));
               },
-              child: const Icon(Icons.home)),
-
-
+              child: const Icon(Icons.pets_rounded))
         ],
       ),
     );

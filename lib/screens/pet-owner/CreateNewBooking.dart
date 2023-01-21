@@ -12,7 +12,7 @@ import '../../utils.dart';
 import '../widgets/banner-1.dart';
 
 import '../widgets/profile-avatar.dart';
-import 'ClinicDb-PetOwner.dart';
+import 'du/ClinicDb-PetOwner.dart';
 
 class BookNow extends StatefulWidget {
   const BookNow({Key? key}) : super(key: key);
@@ -20,7 +20,7 @@ class BookNow extends StatefulWidget {
   @override
   State<BookNow> createState() => _BookNowState();
 }
-const List<String> list = <String>['Chiko'];
+const List<String> list = <String>['Dog1', 'Chiko', 'Balla' ,'Poosa'];
 class _BookNowState extends State<BookNow> {
 
 

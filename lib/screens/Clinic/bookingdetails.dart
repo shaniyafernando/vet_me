@@ -19,8 +19,9 @@ class _BookedPgState extends State<BookedPg> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        leading: IconButton(onPressed: ()
-        {}, icon: const Icon(Icons.menu)),
+        leading: IconButton(
+            icon: Icon(Icons.arrow_back),
+            onPressed:  () => Navigator.of(context).push(MaterialPageRoute(builder: (context) => ClinicDb()))),
         actions: const [ProfileAvatar(), SizedBox(width: 10.0)],
       ),
       drawer: const Drawer(),
@@ -316,7 +317,7 @@ class _BookedPgState extends State<BookedPg> {
                   ) ,
                 ),
                 onPressed: () {
-                  Navigator.of(context).push(MaterialPageRoute(builder: (context) => ViewPet()));
+                  // Navigator.of(context).push(MaterialPageRoute(builder: (context) => ViewPet()));
                 },
                 icon: Icon( Icons.pets_rounded ),
                 label: const Text('Patient details'),

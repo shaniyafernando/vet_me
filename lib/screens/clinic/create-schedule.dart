@@ -4,7 +4,7 @@ import '../widgets/profile-avatar.dart';
 import 'package:mad_cw2_vet_me/screens/widgets/text-field.dart';
 
 import 'ClinicSchedule.dart';
-import 'Schdule2Dup.dart';
+import 'Test/Schdule2Dup.dart';
 
 
 class CreateSchedule extends StatefulWidget {

@@ -2,11 +2,11 @@ import 'package:draggable_fab/draggable_fab.dart';
 import 'package:flutter/material.dart';
 import 'package:mad_cw2_vet_me/screens/Clinic/ClinciDB.dart';
 
-import '../../utils.dart';
-import '../pet-owner/list-of-pets.dart';
-import '../widgets/profile-avatar.dart';
-import '../widgets/text-field.dart';
-import 'create-schedule.dart';
+import '../../../utils.dart';
+import '../../pet-owner/list-of-pets.dart';
+import '../../widgets/profile-avatar.dart';
+import '../../widgets/text-field.dart';
+import '../create-schedule.dart';
 
 class ClinicSchedule2 extends StatelessWidget {
   ClinicSchedule2({Key? key}) : super(key: key);

@@ -1,18 +1,18 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
-import 'package:mad_cw2_vet_me/screens/pet-owner/view-pet.dart';
-
+import 'package:mad_cw2_vet_me/screens/Clinic/bookingdetails.dart';
 import '../../models/pets.dart';
 import '../../utils.dart';
 
-class PetDetails extends StatelessWidget {
-  final String name,category,details,docId,image;
-  final int age,uid;
-  const PetDetails(
+class DoctorDetails extends StatelessWidget {
+  final String name,contact,details,image, docId;
+  final int uid;
+  const DoctorDetails(
       {Key? key,
         required this.docId,
         required this.name,
-        required this.category, required this.age, required this.details, required this.uid, required this.image,})
+        required this.contact, required this.details, required this.uid,
+        required this.image,})
       : super(key: key);
 
 
@@ -25,10 +25,6 @@ class PetDetails extends StatelessWidget {
 
     return ListTile(
       tileColor: Colors.white,
-      leading: const Icon(
-        Icons.pets_sharp,
-        color: Color(0xff04097e),
-      ),
       trailing: ElevatedButton(
           style: ElevatedButton.styleFrom(
             backgroundColor: const Color(0xff0bb312),
@@ -41,9 +37,11 @@ class PetDetails extends StatelessWidget {
             ),
           ),
           onPressed: () {
-            Navigator.of(context).push(MaterialPageRoute(builder: (context) => ViewPet(name: name,category: category,age: age,details: details,docId: docId, uid: uid, image: image,)));
+            Navigator.of(context).push(MaterialPageRoute(
+                builder: (context) => BookedPg()));
+            //Navigator.of(context).push(MaterialPageRoute(builder: (context) => ViewPet(name: name,category: category,age: age,details: details,docId: docId, uid: uid, image: image,)));
           },
-          child: const Text('view')),
+          child: const Text('Available')),
       title: Text(
         name,
         style: SafeGoogleFont(
@@ -55,7 +53,7 @@ class PetDetails extends StatelessWidget {
         ),
       ),
       subtitle: Text(
-        category,
+        contact,
         style: SafeGoogleFont(
           'Poppins',
           fontSize: 15 * ffem,
@@ -63,6 +61,7 @@ class PetDetails extends StatelessWidget {
           height: 1.9462192535 * ffem / fem,
           color: const Color(0xff04097e),
         ),
+
       ),
     );
   }

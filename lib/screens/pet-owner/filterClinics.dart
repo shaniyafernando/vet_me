@@ -10,7 +10,9 @@ import '../../utils.dart';
 import '../widgets/banner-1.dart';
 import '../widgets/clinic-details.dart';
 import '../widgets/profile-avatar.dart';
+import 'Clinic_DB.dart';
 import 'create-pet-profile.dart';
+import 'list-of-pets.dart';
 
 List<AppUser> list = [
   AppUser(referenceId: ' ', username: 'Metro clinic', email: '', contact: '', address: '498 Galle Road, Colombo, Sri Lanka', coordinates: GeoFirePoint(0, 0), uid: ''),
@@ -63,7 +65,7 @@ class FilterClinics extends ConsumerWidget {
       floatingActionButton: DraggableFab(
         child: FloatingActionButton.extended(
           onPressed: () {
-            Navigator.of(context).push(MaterialPageRoute(builder: (context) => PetListDb()));
+            Navigator.of(context).push(MaterialPageRoute(builder: (context) => PetList()));
           },
           label: const Text('MyPets >'),
           icon: const Icon(Icons.pets_rounded),

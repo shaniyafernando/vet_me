@@ -4,7 +4,7 @@ import 'package:mad_cw2_vet_me/screens/widgets/share-buttons.dart';
 import '../../models/invoice.dart';
 import '../../utils.dart';
 import '../pet-owner/filterClinics.dart';
-import '../pet-owner/pet-owner-dashboard.dart';
+import '../pet-owner/du/pet-owner-dashboard.dart';
 import '../pet-owner/petOwnerDashboard.dart';
 
 class SuccessMessage extends StatelessWidget {

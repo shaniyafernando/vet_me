@@ -52,8 +52,18 @@ class ViewMedRec extends StatelessWidget {
           const SizedBox(
             height: 20.0,
           ),
+           Text(
+            'No medical record found!',
+            style: SafeGoogleFont (
+              'Poppins',
+              fontSize: 20*ffem,
+              fontWeight: FontWeight.w600,
+              height: 1.9462193383*ffem/fem,
+              color: const Color(0x06537E),
+            ),
+          ),
 
-          const ProfilePic(),
+          // const ProfilePic(),
 
           Container(
             // addanewpeteYZ (21:170)
