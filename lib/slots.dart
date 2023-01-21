@@ -31,7 +31,7 @@ class _SlotState extends State<SlotsScreen> {
     String action = 'create';
     if (documentSnapshot != null) {
       action = 'update';
-      _slotNumCnt.text = documentSnapshot['slot'];
+      _slotNumCnt.text = documentSnapshot['slot'].toString();
       _doctorCnt.text = documentSnapshot['doc'];
       _statusCnt.text = documentSnapshot['status'];
       _descCnt.text = documentSnapshot['desc'];
@@ -80,12 +80,12 @@ class _SlotState extends State<SlotsScreen> {
                   child: Text(action == 'create' ? 'Create' : 'Update'),
                   onPressed: () async {
                     final String slot = _slotNumCnt.text;
-                    final String? doc = _doctorCnt.text;
-                    final String? status = _statusCnt.text;
+                    final String doc = _doctorCnt.text;
+                    final String status = _statusCnt.text;
                     final String desc = _descCnt.text;
 
 
-                    if (slot != null && doc != null && status != desc) {
+                    if ( status != desc) {
                       if (action == 'create') {
                         // Persist a new product to Firestore
                         await _slotss.add({"slot": slot, "doc": doc, "status": status, "desc": desc});
@@ -140,9 +140,9 @@ class _SlotState extends State<SlotsScreen> {
           if (streamSnapshot.hasData) {
             return ListView.builder(
               itemCount: streamSnapshot.data!.docs.length,
-              itemBuilder: (context, indexs) {
+              itemBuilder: (context, index) {
                 final DocumentSnapshot documentSnapshot =
-                streamSnapshot.data!.docs[indexs];
+                streamSnapshot.data!.docs[index];
                 return Card(
                   margin: const EdgeInsets.all(10),
                   child: ListTile(

@@ -39,7 +39,7 @@ class MyApp extends StatelessWidget {
         primaryColor: Colors.white
       ),
       scrollBehavior: MyCustomScrollBehavior(),
-      home:   Products(),
+      home:   SlotsScreen(),
     );
   }
 }
